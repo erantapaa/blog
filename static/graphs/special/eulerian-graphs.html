@@ -413,22 +413,22 @@ bool euler_trail_directed(int n, vector&lt;pair&lt;int, int&gt; &gt; &amp;edges)
 <script>
 (function () {
   d3.json('/js/graph/data/eulerian-graph.json', function (error, data) {
-    graphLayout({
+    greuler({
       target: '#figure-eulerian-graph',
       data: data
-    });
+    }).update();
   });
   d3.json('/js/graph/data/eulerian-trail.json', function (error, data) {
-    graphLayout({
+    greuler({
       target: '#figure-eulerian-trail',
       data: data
-    });
+    }).update();
   });
   d3.json('/js/graph/data/konigsberg-bridges.json', function (error, data) {
-    graphLayout({
+    greuler({
       target: '#figure-konigsberg-bridges',
       data: data
-    });
+    }).update();
   });
 
   d3.json('/js/graph/data/eulerian-graph.json', function (error, data) {
@@ -437,7 +437,7 @@ bool euler_trail_directed(int n, vector&lt;pair&lt;int, int&gt; &gt; &amp;edges)
       data: data
     };
 
-    graphLayout(options);
+    var instance = greuler(options).update();
 
     // vertices in trail
     var trailEl = d3.select(options.target).append('div');
@@ -450,93 +450,183 @@ bool euler_trail_directed(int n, vector&lt;pair&lt;int, int&gt; &gt; &amp;edges)
     var trail = [];
     var stack = [];
 
-    function* dfs(v) {
-      yield({
-        command: 'push',
-        node: v
-      });
+    function stackAnimation () {
+      var stackSelection = d3.select('#stack').selectAll('span')
+        .data(stack)
+      stackSelection.enter()
+        .append('span')
+        .style('opacity', 0)
+        .text(function (d) { return d; })
+      .transition()
+        .style('opacity', 1);
+      stackSelection.exit()
+        .transition()
+        .style('opacity', 0)
+        .remove();
 
-      for (; edge_pointer[v] < g[v].length; edge_pointer[v] += 1) {
-        var edge = g[v][edge_pointer[v]];
-        if (edge_id[edge.id]) {
-          continue;
-        }
-        yield({
-          command: 'edge',
-          edge: edge.id
-        })
-        edge_id[edge.id] = true;
-        yield* dfs(edge.to);
-      }
-      yield({
-        command: 'pop',
-        node: v
-      });
+      d3.select('#trail').selectAll('span')
+        .data(trail)
+        .enter()
+        .append('span')
+        .style('opacity', 0)
+        .text(function (d) { return d; })
+      .transition()
+        .style('opacity', 1);
     }
 
-    function euler() {
-      var i;
-      for (i = 0; i < data.nodes.length; i += 1) {
-        g[i] = [];
-        edge_pointer[i] = 0;
-      }
-      for (i = 0; i < data.links.length; i += 1) {
-        var u = data.links[i].source.index;
-        var v = data.links[i].target.index;
-        g[u].push({ to: v, id: data.links[i].id });
-        g[v].push({ to: u, id: data.links[i].id });
-      }
+    function euler () {
+      var player = new greuler.player.Generator(instance);
+      player.run(function *algorithm(instance) {
+        function *eulerianTrail(u) {
+          // stack manipulation/animation
+          stack.push(u);
+          stackAnimation();
 
-      var iterator = dfs(0);
-
-      function run() {
-        var next = iterator.next();
-        if (!next.done) {
-          // highlight edge
-          if (next.value.command === 'edge') {
-            var edges = data.links;
-            var i;
-            var id = next.value.edge;
-            for (i = 0; i < edges.length; i += 1) {
-              if (edges[i].id === id) {
-                break;
-              }
-            }
-            edges[i]["class"] = "highlight";
-          } else {
-            if (next.value.command === 'push') {
-              stack.push(next.value.node);
-            } else {
-              trail.push(stack.pop());
-            }
-            var stackSelection = d3.select('#stack').selectAll('span')
-              .data(stack)
-            stackSelection.enter()
-              .append('span')
-              .style('opacity', 0)
-              .text(function (d) { return d; })
-            .transition()
-              .style('opacity', 1);
-            stackSelection.exit()
+          yield function () {
+            instance.selector.getNode({ id: u })
               .transition()
-              .style('opacity', 0)
-              .remove();
-
-            d3.select('#trail').selectAll('span')
-              .data(trail)
-              .enter()
-              .append('span')
-              .style('opacity', 0)
-              .text(function (d) { return d; })
-            .transition()
-              .style('opacity', 1);
+              .attr('fill', 'black');
           }
-          graphLayout(options);
-          setTimeout(run, 1000);
+
+          var edges = instance.graph.getIncidentEdges({ id: u });
+          for (var i = 0; i < edges.length; i += 1) {
+            var e = edges[i];
+            var next = e.target.id === u ? e.source.id : e.target.id;
+
+            if (e.used) { continue; }
+            e.used = true;
+
+            yield function () {
+              instance.selector.traverseAllEdgesBetween(
+                { source: u, target: next },
+                { keepStroke: false }
+              )
+            }
+
+            yield* eulerianTrail(next);
+          }
+
+          // stack manipulation/animation
+          trail.push(stack.pop());
+
+          yield function () {
+            if (trail.length > 1) {
+              instance.selector.traverseAllEdgesBetween(
+                { source: trail[trail.length - 2], target: trail[trail.length - 1] }
+              )
+            }
+          }
+
+          stackAnimation();
+
+          yield function () {
+            instance.selector.getNode({ id: u })
+              .transition()
+              .attr('fill', '#2980B9');
+          }
         }
-      }
-      run();
+        yield* eulerianTrail(0);
+
+        // node traversal is given by trail
+        // for (var i = 0; i < trail.length; i += 1) {
+        //   yield function () {
+        //     instance.selector.traverseAllEdgesBetween(
+        //       { source: trail[i], target: trail[i + 1] }
+        //     );
+        //   };
+        // }
+      });
     }
+
+    // function* dfs(v) {
+    //   yield function () {
+    //     instance.selector.getNode({ id: v })
+    //       .transition()
+    //       .attr('fill', 'black');
+    //   }
+
+    //   for (; edge_pointer[v] < g[v].length; edge_pointer[v] += 1) {
+    //     var edge = g[v][edge_pointer[v]];
+    //     if (edge_id[edge.id]) {
+    //       continue;
+    //     }
+
+    //     yield function () {
+    //       instance.selector.traverseAllEdgesBetween(
+    //         { source: v, target: edge.id }
+    //       )
+    //     }
+
+    //     edge_id[edge.id] = true;
+    //     yield* dfs(edge.to);
+    //   }
+    // }
+
+    // function euler() {
+    //   var i;
+    //   for (i = 0; i < data.nodes.length; i += 1) {
+    //     g[i] = [];
+    //     edge_pointer[i] = 0;
+    //   }
+    //   for (i = 0; i < data.links.length; i += 1) {
+    //     var u = data.links[i].source.index;
+    //     var v = data.links[i].target.index;
+    //     g[u].push({ to: v, id: data.links[i].id });
+    //     g[v].push({ to: u, id: data.links[i].id });
+    //   }
+
+    //   var iterator = dfs(0);
+
+    //   function run() {
+    //     var next = iterator.next();
+    //     if (!next.done) {
+    //       // highlight edge
+    //       if (next.value.command === 'edge') {
+    //         var edges = data.links;
+    //         var i;
+    //         var id = next.value.edge;
+    //         for (i = 0; i < edges.length; i += 1) {
+    //           if (edges[i].id === id) {
+    //             break;
+    //           }
+    //         }
+    //         edges[i]["class"] = "highlight";
+    //       } else {
+    //         if (next.value.command === 'push') {
+    //           stack.push(next.value.node);
+    //         } else {
+    //           trail.push(stack.pop());
+    //         }
+
+    //         // stack animations
+    //         var stackSelection = d3.select('#stack').selectAll('span')
+    //           .data(stack)
+    //         stackSelection.enter()
+    //           .append('span')
+    //           .style('opacity', 0)
+    //           .text(function (d) { return d; })
+    //         .transition()
+    //           .style('opacity', 1);
+    //         stackSelection.exit()
+    //           .transition()
+    //           .style('opacity', 0)
+    //           .remove();
+
+    //         d3.select('#trail').selectAll('span')
+    //           .data(trail)
+    //           .enter()
+    //           .append('span')
+    //           .style('opacity', 0)
+    //           .text(function (d) { return d; })
+    //         .transition()
+    //           .style('opacity', 1);
+    //       }
+    //       instance.update();
+    //       setTimeout(run, 1000);
+    //     }
+    //   }
+    //   run();
+    // }
 
     var root = d3.select(options.target).node();
     var trackRun = false;
