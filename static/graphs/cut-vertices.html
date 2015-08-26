@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Cut-vertices (articulation points)</title>
+  <meta name="description" content="Layout run failed ._.
+">
+
+  <!-- syntax highlighter -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/graphs/cut-vertices.html">
+  <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Mauricio Poppe</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/components.html">Components</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/derivative.html">Derivative</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/divisor-function.html">Divisor Function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/index.html">Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/integral.html">Integral</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/introduction.html">Introduction</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/introduction.html">Introduction</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/primality-test.html">Primality Test</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/topological-sorting.html">Topological sorting</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/traversal.html">Traversal</a>
+          
+        
+      </div>
+ -->
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="static-page-sidebar">
+        <ul><li><a href="/index.html"></a><ul><li>static<ul><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/graphs/traversal.html">Traversal</a><ul></ul></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a><ul></ul></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a><ul></ul></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a><ul></ul></li><li><a href="/static/graphs/components.html">Components</a><ul></ul></li><li><a href="/static/graphs/tree/index.html">Tree</a><ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a><ul></ul></li></ul></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a><ul></ul></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a><ul></ul></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a><ul></ul></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/math/calculus/derivative.html">Derivative</a><ul></ul></li><li><a href="/static/math/calculus/integral.html">Integral</a><ul></ul></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a><ul></ul></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a><ul></ul></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a><ul></ul></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a><ul></ul></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a><ul></ul></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a><ul></ul></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a><ul></ul></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a><ul></ul></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a><ul></ul></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a><ul></ul></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a><ul></ul></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a><ul></ul></li></ul></li></ul></li></ul></li></ul></li></ul>
+      </div>
+
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Cut-vertices (articulation points)</h1>
+  </header>
+
+  <article class="post-content">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
+<script src="//maurizzzio.github.io/greuler/scripts/lib/cola.v3.js"></script>
+
+<script src="//maurizzzio.github.io/greuler/greuler.js"></script>
+
+<p>A vertex $v$ in a connected graph $G$ is called a <strong>cut-vertex</strong> if $G - v$ results in a disconnected graph, note that $G - v$ is an induced subgraph of $G$ (meaning that $G - v$ contains all the vertices of $G$ but $v$ and a set of edges $G - V$ where $V$ consists of all the edges incident to $v$)</p>
+
+<h2 id="undirected-graph">Undirected graph</h2>
+
+<div id="figure-cut-vertex"></div>
+
+<script type="math/tex; mode=display">\text{$v_0, v_2$ are cut vertices }</script>
+
+<p>All the facts/properties below are considered for an undirected connected graph $G$</p>
+
+<ul>
+  <li>if $v$ is a vertex incident with a bridge in a graph $G$ then $v$ is a cut-vertex if $deg \;v \geq 2$ (if $deg \; v = 1$ then $v$ is an end-vertex of $G$ so $G - v$ is still connected)</li>
+  <li>given that the order $G$ is $\geq 3$, if it contains a bridge then it also contains a cut-vertex</li>
+  <li>if $v$ is a cut-vertex of $G$ and $u$, $w$ are vertices in different components formed by $G - v$ then $v$ is part of every $u-w$ path in $G$</li>
+  <li>let $u \in V(G)$, if $v$ is a vertex that is farthest from $u$ then $v$ is not a cut-vertex</li>
+</ul>
+
+<p>Let $G$ be an undirected graph, by analyzing the properties of the dfs tree we can determine if a vertex is an articulation point given the following facts:</p>
+
+<ul>
+  <li>a leaf vertex is not an cut-vertex</li>
+  <li>let $u$ and $v$ be two vertices of the dfs such that $u$ is an antecesor of $v$
+    <ul>
+      <li>if $u$ and $v$ are not adjacent and there’s a <em>back edge</em> $vw$ to some vertex $w$  such that $w$ is an predecessor of $u$ then none of the vertices in the $u-v$ path are cut-vertices</li>
+      <li>let $u$ and $v$ are not adjacent and there’s a <em>back edge</em> from $v$ to some vertex <strong>in the $u-v$ path</strong> then $u$ is a cut-vertex</li>
+    </ul>
+  </li>
+  <li>let $u$ be the root node of the dfs tree, it’s an cut-vertex if during the exploration of its successor vertices finds out that it has more than one children i.e. the root has more than one branch in the dfs tree</li>
+</ul>
+
+<pre><code class="language-cpp">int time_spent;
+
+// the adjacency list representation of `G`
+vector&lt;vector&lt;int&gt; &gt; g;
+// the time a vertex `i` was discovered first
+vector&lt;int&gt; time_in;
+// stores the discovery time of the lowest predecessor that vertex `i`'s
+// succesor vertices can reach **through a back edge**, initially
+// the lowest predecessor is set to the vertex itself
+vector&lt;int&gt; back;
+// the articulation points found during the dfs
+vector&lt;int&gt; cut_vertex;
+
+void dfs(int v, int parent) {
+  // the lowest back edge discovery time of `v` is
+  // set to the discovery time of `v` initally
+  back[v] = time_in[v] = ++time_spent;
+
+  // count the number of children for the `root` vertex
+  int children = 0;
+  int is_cut_vertex = false;
+
+  for (int i = 0; i &lt; g[v].size(); i += 1) {
+    int next = g[v][i];
+
+    if (next == parent) {
+      continue;
+    }
+
+    if (time_in[next] == -1) {
+      dfs(next, v);
+      /// if there's a back edge between a descendant of `next` and
+      // a predecessor of `v` then `next` will have a lower reachable
+      // vertex than `v` through a back edge, in this case the vertex `v` is not
+      // a cut-vertex (the special case of the root node is handled below)
+      if (back[next] &gt;= time_in[v] &amp;&amp; parent != -1) {
+        is_cut_vertex = true;
+      }
+      // propagation of the back edge to a vertex with the lowest discovery time
+      back[v] = min(back[v], back[next]);
+      ++children;
+    } else {
+      // * back edge *
+      // update index of the vertex incident with this back edge to
+      // be the one with the lowest discovery time
+      // it's possible for this edge to be a *forward edge*, in that
+      // case the time won't be updated since time[v] &lt; time[next]
+      back[v] = min(back[v], time_in[next]);
+    }
+  }
+
+  // the root vertex of the dfs tree is a cut-vertex
+  // if it has more than two children in the dfs tree
+  if (parent == -1 &amp;&amp; children &gt; 1) {
+    is_cut_vertex = true;
+  }
+
+  if (is_cut_vertex) {
+    cut_vertex.push_back(v);
+  }
+}
+
+/**
+ * Finds the articulation points in an undirected graph `G`
+ * of order`n` and size `m`
+ *
+ * Time complexity: O(n + m)
+ * Space complexity: O(n)
+ *
+ * @returns {int} the number of articulation points
+ */
+int articulation_points() {
+  int n = g.size();
+  time_spent = 0;
+  time_in.assign(n, -1);
+  back.assign(n, -1);
+  cut_vertex.clear();
+
+  for (int i = 0; i &lt; n; i += 1) {
+    if (time_in[i] == -1) {
+      dfs(i, -1);
+    }
+  }
+  return cut_vertex.size();
+}
+
+</code></pre>
+
+<h3 id="biconnected-components-in-an-undirected-graph">Biconnected components in an undirected graph</h3>
+
+<p>A biconnected graph is a nonseparable graph meaning that if any vertex is removed the graph is still connected and therefore it doesn’t have cut-vertices</p>
+
+<p>Key observations:</p>
+
+<ul>
+  <li>two different biconnected components can’t have a common edge (but they might share a common vertex)</li>
+  <li>a common vertex linking multiple biconnected components must be a cut-vertex of $G$</li>
+</ul>
+
+<p>Let $uv$ be an edge of an undirected graph $G$, we can keep an stack telling the order of the edges analyzed so we push it to the stack, let $u$ be a cut-vertex then all the edges from the top of the stack up to $uv$ are the edges of one biconnected component</p>
+
+<pre><code class="language-cpp">int time_spent;
+
+// the adjacency list representation of `G`
+vector&lt;vector&lt;int&gt; &gt; g;
+// the time a vertex `i` was discovered first
+vector&lt;int&gt; time_in;
+// stores the discovery time of the lowest predecessor that vertex `i`'s
+// succesor vertices can reach **through a back edge**, initially
+// the lowest predecessor is set to the vertex itself
+vector&lt;int&gt; back;
+
+// the biconnected components found during the dfs
+vector&lt;vector&lt;pair&lt;int, int&gt; &gt; &gt; bcc;
+stack&lt;pair&lt;int, int&gt; &gt; edges_processed;
+
+void output_biconnected_component(int u, int v) {
+  pair&lt;int, int&gt; top;
+  vector&lt;pair&lt;int, int&gt; &gt; component;
+  do {
+    top = edges_processed.top();
+    edges_processed.pop();
+    component.push_back(top);
+  } while (u != top.first || v != top.second);
+  bcc.push_back(component);
+}
+
+void dfs(int v, int parent) {
+  // the lowest back edge discovery time of `v` is
+  // set to the discovery time of `v` initally
+  back[v] = time_in[v] = ++time_spent;
+
+  // count the number of children for the `root` vertex
+  int is_cut_vertex = false;
+
+  for (int i = 0; i &lt; g[v].size(); i += 1) {
+    int next = g[v][i];
+
+    if (parent == next) {
+      continue;
+    }
+
+    // mark the edge (v, next) as processed
+    if (time_in[next] == -1) {
+      // this edge is being processed right now
+      edges_processed.push(pair&lt;int, int&gt; (v, next));
+
+      dfs(next, v);
+      // if there's a back edge between a descendant of `next` and
+      // a predecessor of `v` then `next` will have a lower reachable
+      // vertex than `v` through a back edge, in this case the vertex `v` is not
+      // a cut-vertex
+      if (back[next] &gt;= time_in[v]) {
+        output_biconnected_component(v, next);
+      }
+      // propagation of the back edge to a vertex with the lowest discovery time
+      back[v] = min(back[v], back[next]);
+    } else if (time_in[next] &lt; time_in[v]) {
+      // * back edge *
+      // update index of the vertex incident with this back edge to
+      // be the one with the lowest discovery time
+      back[v] = min(back[v], time_in[next]);
+
+      // push this edge to the stack only once
+      edges_processed.push(pair&lt;int, int&gt; (v, next));
+    }
+  }
+}
+
+/**
+ * Finds the biconnected components in an undirected graph `G`
+ * of order`n` and size `m`
+ *
+ * Time complexity: O(n + m)
+ * Space complexity: O(m)
+ *
+ * @returns {int} the number of biconnected components
+ */
+int biconnected_components() {
+  int n = g.size();
+  time_spent = 0;
+  time_in.assign(n, -1);
+  back.assign(n, -1);
+
+  while (!edges_processed.empty()) {
+    edges_processed.pop();
+  }
+  bcc.clear();
+
+  for (int i = 0; i &lt; n; i += 1) {
+    if (time_in[i] == -1) {
+      dfs(i, -1);
+    }
+  }
+
+  return bcc.size();
+}
+
+</code></pre>
+
+<h2 id="connectivity">Connectivity</h2>
+
+<p>Let $G$ be a noncomplete graph without cut vertices, let $U$ be a set of vertices of $G$ such that $G - U$ is disconnected, $U$ is called a <strong>vertex-cut set</strong></p>
+
+<p>The graph below doesn’t have a cut-vertex but it has many vertex-cut sets, $U_1 = {v_1, v_2}$, $U_2 = {v_2, v_4}$, $U_3 = {v_1, v_2, v_3}$, $U_4 = {v_1, v_2, v_4}$, $U_5 = {v_0, v_2, v_4}$</p>
+
+<div id="figure-cut-vertex-2"></div>
+
+<ul>
+  <li>the set with minimum cardinality is called a <strong>minimum vertex-cut set</strong></li>
+  <li>a connected graph $G$ contains a <strong>cut-vertex set</strong> only if $G$ is not complete</li>
+</ul>
+
+<p>For a graph $G$ that is not complete the <strong>vertex-connectivity</strong> denoted as $\kappa(G)$ is the cardinality of the minimum vertex-cut set of $G$, for the graph above $\kappa(G) = 2$</p>
+
+<ul>
+  <li>if $G$ is a graph of order $n$ and size $m \geq n - 1$ then $\kappa(G) = \left \lfloor \tfrac{2m}{n} \right \rfloor$</li>
+</ul>
+
+<p>There are other measures of how connected a graph is, let $X$ be a set of edges of $G$ such that $G - X$ is disconnected or a trivial graph, $X$ is called a <strong>edge-cut set</strong>, the <strong>edge-connectivity</strong> denoted as $\lambda(G)$ is the cardinality of the minimum edge-cut of $G$</p>
+
+<ul>
+  <li>for complete graph $G$ of order $n$, $\lambda(G) = n - 1$</li>
+</ul>
+
+<script>
+(function () {
+  d3.json('/js/graph/data/cut-vertex.json', function (err, data) {
+    if (err) { throw err }
+    var options = {
+      target: '#figure-cut-vertex',
+      data: data
+    };
+    greuler(options).update();
+  });
+  d3.json('/js/graph/data/cut-vertex-2.json', function (err, data) {
+    if (err) { throw err }
+    greuler({
+      target: '#figure-cut-vertex-2',
+      data: data
+    }).update();
+  });
+  // greuler({
+  //   data: '/js/graph/data/cut-vertex.json'
+  // });
+  // greuler({
+  //   target: '#figure-cut-vertex-2',
+  //   data: '/js/graph/data/cut-vertex-2.json'
+  // });
+})();
+</script>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Mauricio Poppe</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Mauricio Poppe</li>
+          <li><a href="mailto:mauricio.poppe@gmail.com">mauricio.poppe@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/maurizzzio">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">maurizzzio</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/iMauricio">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">iMauricio</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Layout run failed ._.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: 'none',
+    tex2jax: {
+      // http://docs.mathjax.org/en/latest/options/tex2jax.html
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']]
+      // processEnvironments: false
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      },
+      Macros: {
+        edge: '\\mathrel{-}',
+        notedge: '\\not\\edge'
+      }
+    },
+    'HTML-CSS': {
+      imageFont: null
+    }
+  });
+</script>
+
+<script type="text/javascript">
+/*
+ * MathJax eqn preview for a tags
+ *
+ * Copyright (c) 2015 Mauricio Poppe
+ * Licensed under the MIT license.
+ */
+
+(function () {
+  var $container = $('.post-content');
+  var $tooltip = $('<div />').addClass('mathjax-tooltip');
+  $container.append($tooltip);
+
+  function onMouseOver(ev) {
+    var a = ev.currentTarget;
+    var $number = $(a.hash);
+    var $root = $number.closest('.MathJax_Display');
+    var bounds = $(a).offset();
+    var containerBounds = $container.offset();
+
+    $tooltip.stop(true, true);
+    $tooltip.empty();
+    $tooltip.append($root.clone());
+    $tooltip.css({
+      top: bounds.top - containerBounds.top - $tooltip.height() - 5,
+      left: -1
+    });
+    $tooltip.addClass('active');
+  }
+
+  function onMouseOut(a) {
+    $tooltip.removeClass('active');
+  }
+
+  MathJax.Hub.Queue(function () {
+    $container.on('mouseover', 'a[href*="mjx-eqn-"]', onMouseOver);
+    $container.on('mouseout', 'a[href*="mjx-eqn-"]', onMouseOut);
+  });
+
+})();
+</script>
+
+</footer>
+
+
+  </body>
+
+</html>

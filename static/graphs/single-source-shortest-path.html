@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Single Source Shortest Path (SSSP)</title>
+  <meta name="description" content="Layout run failed ._.
+">
+
+  <!-- syntax highlighter -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/graphs/single-source-shortest-path.html">
+  <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Mauricio Poppe</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/components.html">Components</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/derivative.html">Derivative</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/divisor-function.html">Divisor Function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/index.html">Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/integral.html">Integral</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/introduction.html">Introduction</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/introduction.html">Introduction</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/primality-test.html">Primality Test</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/topological-sorting.html">Topological sorting</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/traversal.html">Traversal</a>
+          
+        
+      </div>
+ -->
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="static-page-sidebar">
+        <ul><li><a href="/index.html"></a><ul><li>static<ul><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/graphs/traversal.html">Traversal</a><ul></ul></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a><ul></ul></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a><ul></ul></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a><ul></ul></li><li><a href="/static/graphs/components.html">Components</a><ul></ul></li><li><a href="/static/graphs/tree/index.html">Tree</a><ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a><ul></ul></li></ul></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a><ul></ul></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a><ul></ul></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a><ul></ul></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/math/calculus/derivative.html">Derivative</a><ul></ul></li><li><a href="/static/math/calculus/integral.html">Integral</a><ul></ul></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a><ul></ul></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a><ul></ul></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a><ul></ul></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a><ul></ul></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a><ul></ul></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a><ul></ul></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a><ul></ul></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a><ul></ul></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a><ul></ul></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a><ul></ul></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a><ul></ul></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a><ul></ul></li></ul></li></ul></li></ul></li></ul></li></ul>
+      </div>
+
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Single Source Shortest Path (SSSP)</h1>
+  </header>
+
+  <article class="post-content">
+    <p>Given a weighted graph $G$ of order $n$ and size $m$ where all the weights are non-negative and given a source vertex $s$, the single source shortest path problem consists in finding the distance from $s$ to all the other vertices</p>
+
+<h2 id="unweighted-graph">Unweighted graph</h2>
+
+<p>We call a shortest path from vertex $u$ to vertex $v$ a path of length $k$ where the path consists of vertices $p = (x_1, x_2, \ldots, x_k)$ such that $x_1 = u, x_k = v$ and $k$ is minimum</p>
+
+<p>In an unweighted graph, breadth first search guarantees that when we analyze a vertex $v$ it will actually hold the shortest path to it, more searching will never find a path $uv$ to $v$ with fewer edges</p>
+
+<ul>
+  <li>let $d(v)$ be the shortest distance from a vertex $v$ to $s$, initially $d(v) = \infty, v \not= s$ and $d(s) = 0$</li>
+  <li>whenever a vertex $v$ where $d(v) = \infty$ is reached by some other vertex $u$ whose $d(u)$ was already computed then $d(v) = d(u) + 1$</li>
+</ul>
+
+<pre><code class="language-cpp">/**
+ * Breadth first search algorithm applied on an unweighted graph `G`
+ * of order `n` and size `m` to find the shortest path from a source
+ * vertex `s`
+ *
+ * Time complexity: O(n + m)
+ * Space complexity: O(n)
+ *
+ * @param {vector&lt;vector&lt;int&gt; &gt;} g The adjacency list representation
+ *  of `G`, each entry `g_{ij}` holds the end `v` of the edge `iv`
+ * @param {int} s The source vertex
+ * @return {vector&lt;int&gt;} The shortest path from `s` to all the other vertices
+ */
+vector&lt;int&gt; bfs(vector&lt;vector&lt;int&gt; &gt; &amp;g, int s) {
+  int n = g.size();
+
+  // the vertex predecessor of `i` in the `s-i` path
+  vector&lt;int&gt; parent(n, -1);
+  // holds the shortest distance from `s` to vertex `i`
+  vector&lt;int&gt; d(n, INF);
+
+  // the distance from the source vertex is zero
+  d[s] = 0;
+
+  // accumulated weight, next vertex (weight, v)
+  queue&lt;int&gt; q;
+  q.push(s);
+
+  while (!q.empty()) {
+    int v = q.front();
+    q.pop();
+
+    for (int i = 0; i &lt; g[v].size(); i += 1) {
+      int to = g[v][i];
+      if (d[to] == INF) {
+        d[to] = d[v] + 1;
+        parent[to] = v;
+        q.push(to);
+      }
+    }
+  }
+
+  return d;
+}
+
+</code></pre>
+
+<h2 id="weighted-graph">Weighted graph</h2>
+
+<h3 id="dijkstras-algorithm">Dijkstra’s algorithm</h3>
+
+<p>Dijkstra described an algorithm to solve the SSSP, there are some additional states that need to be stored per vertex:</p>
+
+<ul>
+  <li>let $d(v)$ be an estimate of the shortest distance from a vertex $v$ to $s$, initially $d(v) = \infty, v \not= s$ and $d(s) = 0$</li>
+  <li>let $visited(v)$ be the visited state of a given vertex, initially $visited(v) = false$</li>
+</ul>
+
+<p>The algorithm consists in a series of iterations, on each iteration let $u$ be the vertex with the minimum distance to $s$ that wasn’t visited yet, a process called <strong>relaxation</strong> is the performed with $u$</p>
+
+<ul>
+  <li>the visited state is set to true, i.e. $visited(v) = true$</li>
+  <li>let $uv$ be an edge to an unvisited node $v$ with weight $w(uv)$, we might improve the best estimate of the shortest path between $u$ and $v$ by including $uv$ in the path so</li>
+</ul>
+
+<script type="math/tex; mode=display">d(v) = min(d(v), d(u) + w(uv))</script>
+
+<p>After $n$ iterations all the vertices will be marked and $d(v)$ state will hold the shortest path from $s$ to all the other vertices</p>
+
+<p>We need a data structure that supports the following 3 operations quickly:</p>
+
+<ul>
+  <li>remove a vertex with the minimum distance that wasn’t discovered yet (up to once for each vertex in the graph)</li>
+  <li>add a new vertex (up to once for each vertex in the graph)</li>
+  <li>update the estimated distance of an existing vertex (once for each edge in the graph)</li>
+</ul>
+
+<h4 id="implementation-with-an-array">Implementation with an array</h4>
+
+<p>An array supports the operations above in $O(n)$, $O(1)$, and $O(1)$ respectively leading to an overall $O(n^2 + m)$ which is optimal for dense graphs (when $m \approx n^2$)</p>
+
+<pre><code class="language-cpp">/**
+ * An implementation of Dijkstra's algorithm which computes
+ * the shortest path from a source vertex `s` to all the other vertices
+ * in a graph `G` of order `n` and size `m`
+ *
+ * Time complexity: O(n^2 + m)
+ * Space complexity: O(n)
+ *
+ * @param {vector&lt;vector&lt;pair&lt;int, int&gt; &gt; &gt;} g The adjacency list representation
+ *  of `G`, each entry `g_{ij}` holds the end `v` of the edge `iv` and the weight
+ *  `weight` of the edge i.e. (v, weight)
+ * @param {int} s The source vertex
+ * @return {vector&lt;int&gt;} The shortest path from `s` to all the other vertices
+ */
+vector&lt;int&gt; dijkstra(vector&lt;vector&lt;pair&lt;int, int&gt; &gt; &gt; &amp;g, int s) {
+  int n = g.size();
+  int INF = 1e9;
+
+  vector&lt;bool&gt; visited(n);
+  // the vertex predecessor of `i` in the `s-i` path
+  vector&lt;int&gt; parent(n, -1);
+  // holds the estimated distance
+  vector&lt;int&gt; d(n, INF);
+
+  // the estimated distance from the source vertex is zero
+  d[s] = 0;
+
+  for (int i = 0; i &lt; n; i += 1) {
+    // the vertex with the minimum estimated distance
+    int v = -1;
+    for (int j = 0; j &lt; n; j += 1) {
+      // find the vertices which haven't been visited yet
+      // among them find a vertex with the minimum estimated distance
+      if (!visited[j] &amp;&amp; (v == -1 || d[j] &lt; d[v])) {
+        v = j;
+      }
+    }
+
+    if (d[v] == INF) {
+      // the vertex selected is not reachable from `s`
+      break;
+    }
+
+    visited[v] = true;
+
+    // update the estimated distance from `v`
+    // to all the other adjacent vertices
+    for (int j = 0; j &lt; g[v].size(); j += 1) {
+      pair&lt;int, int&gt; &amp;edge = g[v][j];
+      int next = edge.first;
+      int weight = edge.second;
+      int new_distance = d[v] + weight;
+
+      if (new_distance &lt; d[next]) {
+        d[next] = new_distance;
+        parent[next] = v;
+      }
+    }
+  }
+
+  return d;
+}
+
+</code></pre>
+
+<h4 id="implementation-with-an-bst">Implementation with an BST</h4>
+
+<p>A balanced searth tree supports the operations above in $O(log\;n)$, $O(log\;n)$, and $O(log\;n)$ respectively leading to an overal $O(m\;log\;n)$ time complexity optimal for sparse graphs (when $m \approx n$)</p>
+
+<pre><code class="language-cpp">/**
+ * C++11
+ *
+ * An implementation of Dijkstra's algorithm which computes
+ * the shortest path from a source vertex `s` to all the other vertices
+ * in a graph `G` of order `n` and size `m`
+ *
+ * Time complexity: O(m log n)
+ * Space complexity: O(n)
+ *
+ * @param {vector&lt;vector&lt;pair&lt;int, int&gt; &gt; &gt;} g The adjacency list representation
+ *  of `G`, each entry `g_{ij}` holds a pair which represents an edge
+ * (vertex, weight) which tells that there's an edge from `i` to `vertex`
+ * with weight `weight`
+ * @param {int} s The source vertex
+ * @return {vector&lt;int&gt;} The shortest path from `s` to all the other vertices
+ */
+int dijkstra(vector&lt;vector&lt;pair&lt;int, int&gt; &gt; &gt; &amp;g, int source) {
+  int n = g.size();
+  int INF = 1e9;
+  int total = 0;
+
+  // the vertex predecessor of `i` in the `s-i` path
+  vector&lt;int&gt; parent(n, -1);
+  // holds the estimated distance
+  vector&lt;int&gt; d(n, INF);
+
+  // the estimated distance from the source vertex is zero
+  d[s] = 0;
+
+  // accumulated weight, next vertex (weight, v)
+  set&lt;pair&lt;int, int&gt; &gt; q;
+  q.insert({0, s});
+
+  while (!q.empty()) {
+    pair&lt;int, int&gt; edge = *(q.begin());
+    int v = edge.second;
+    q.erase(q.begin());
+
+    for (int i = 0; i &lt; g[v].size(); i += 1) {
+      pair&lt;int, int&gt; next = g[v][i];
+
+      // note that in the graph the first element is the neighbor vertex
+      // but in the set the first element is the edge weight
+      int to = next.first;
+      int weight = next.second;
+      int new_distance = d[to] + weight;
+
+      if (new_distance &lt; d[to]) {
+        q.erase({ d[to], to });
+        d[to] = new_distance;
+        parent[to] = v;
+        q.insert({ d[to], to });
+      }
+    }
+  }
+
+  return d;
+}
+
+</code></pre>
+
+<h4 id="applications">Applications</h4>
+
+<ul>
+  <li>Find the shortest path between two vertices $u$ and $v$</li>
+  <li>Find the shortest path from all the vertices to a given vertex $v$ by reversing the direction of each edge in the graph</li>
+  <li>Find the shortest path for every pair of vertices $u$ and $v$ by running the algorithm once per vertex</li>
+</ul>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Mauricio Poppe</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Mauricio Poppe</li>
+          <li><a href="mailto:mauricio.poppe@gmail.com">mauricio.poppe@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/maurizzzio">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">maurizzzio</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/iMauricio">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">iMauricio</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Layout run failed ._.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: 'none',
+    tex2jax: {
+      // http://docs.mathjax.org/en/latest/options/tex2jax.html
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']]
+      // processEnvironments: false
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      },
+      Macros: {
+        edge: '\\mathrel{-}',
+        notedge: '\\not\\edge'
+      }
+    },
+    'HTML-CSS': {
+      imageFont: null
+    }
+  });
+</script>
+
+<script type="text/javascript">
+/*
+ * MathJax eqn preview for a tags
+ *
+ * Copyright (c) 2015 Mauricio Poppe
+ * Licensed under the MIT license.
+ */
+
+(function () {
+  var $container = $('.post-content');
+  var $tooltip = $('<div />').addClass('mathjax-tooltip');
+  $container.append($tooltip);
+
+  function onMouseOver(ev) {
+    var a = ev.currentTarget;
+    var $number = $(a.hash);
+    var $root = $number.closest('.MathJax_Display');
+    var bounds = $(a).offset();
+    var containerBounds = $container.offset();
+
+    $tooltip.stop(true, true);
+    $tooltip.empty();
+    $tooltip.append($root.clone());
+    $tooltip.css({
+      top: bounds.top - containerBounds.top - $tooltip.height() - 5,
+      left: -1
+    });
+    $tooltip.addClass('active');
+  }
+
+  function onMouseOut(a) {
+    $tooltip.removeClass('active');
+  }
+
+  MathJax.Hub.Queue(function () {
+    $container.on('mouseover', 'a[href*="mjx-eqn-"]', onMouseOver);
+    $container.on('mouseout', 'a[href*="mjx-eqn-"]', onMouseOut);
+  });
+
+})();
+</script>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Integer Factorization</title>
+  <meta name="description" content="Layout run failed ._.
+">
+
+  <!-- syntax highlighter -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/math/number-theory/integer-factorization.html">
+  <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Mauricio Poppe</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/components.html">Components</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/derivative.html">Derivative</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/divisor-function.html">Divisor Function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/index.html">Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/integral.html">Integral</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/introduction.html">Introduction</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/introduction.html">Introduction</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/primality-test.html">Primality Test</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/topological-sorting.html">Topological sorting</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/traversal.html">Traversal</a>
+          
+        
+      </div>
+ -->
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="static-page-sidebar">
+        <ul><li><a href="/index.html"></a><ul><li>static<ul><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/graphs/traversal.html">Traversal</a><ul></ul></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a><ul></ul></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a><ul></ul></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a><ul></ul></li><li><a href="/static/graphs/components.html">Components</a><ul></ul></li><li><a href="/static/graphs/tree/index.html">Tree</a><ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a><ul></ul></li></ul></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a><ul></ul></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a><ul></ul></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a><ul></ul></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/math/calculus/derivative.html">Derivative</a><ul></ul></li><li><a href="/static/math/calculus/integral.html">Integral</a><ul></ul></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a><ul></ul></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a><ul></ul></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a><ul></ul></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a><ul></ul></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a><ul></ul></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a><ul></ul></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a><ul></ul></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a><ul></ul></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a><ul></ul></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a><ul></ul></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a><ul></ul></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a><ul></ul></li></ul></li></ul></li></ul></li></ul></li></ul>
+      </div>
+
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Integer Factorization</h1>
+  </header>
+
+  <article class="post-content">
+    <p>Integer factorization is the process of decomposing a <em>composite</em> number into a product of smaller integers, if these integers are restricted to be prime numbers then the process is called <strong>prime factorization</strong></p>
+
+<p>The fundamental theorem of arithmetic states that ever positive integer can be written uniquely as a product of primes</p>
+
+<p>example:</p>
+
+<script type="math/tex; mode=display">65340 = 2^2 \cdot 3^3 \cdot 5 \cdot 11^2</script>
+
+<h2 id="trial-division">Trial division</h2>
+
+<p>Trial division is the simplest algorithm for factoring an integer, we assume that $s$ and $t$ are factors of a number $n$ such that $n = st$ and $s \leq t$ (note that $s$ and $t$ do not need to be prime numbers), when a divisor $s$ is found then $n / s$ is also a factor</p>
+
+<pre><code class="language-cpp">vector&lt;int&gt; trial_division(int n) {
+  for (int i = 2; i * i &lt;= n; i += 1) {
+    if (n % i == 0) {
+      // `n` is a composite number
+      return vector&lt;int&gt; {i, n / i};
+    }
+  }
+  // n is a prime number
+  return vector&lt;int&gt; {n};
+}
+</code></pre>
+
+<h2 id="fermat-factorization">Fermat factorization</h2>
+
+<p>Fermat’s observation was to write an integer as the difference of squares</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+n &= x^2 - y^2 \label{fermat} \\
+&= (x + y)(x - y)
+\end{align} %]]></script>
+
+<p>Assuming that $s$ and $t$ are <strong>odd</strong> factors of $n$ such that $n = st$ and $s \leq t$ we can find $x$ and $y$ such that</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+s &= x - y \\
+t &= x + y
+\end{align*} %]]></script>
+
+<p>Adding both equations</p>
+
+<script type="math/tex; mode=display">s + t = 2x \\
+x = \frac{s + t}{2}</script>
+
+<p>Also</p>
+
+<script type="math/tex; mode=display">y = \frac{t - s}{2}</script>
+
+<p>Since we assumed that $s$ and $t$ are odd numbers, their difference is an even number which is divisible by $2$ therefore $x$ and $y$ are integers, since $s &gt; 1$ and $t \geq s$ we find that $x \geq 1$ and $y \geq 0$</p>
+
+<p>From \eqref{fermat} we also know that $x = \sqrt{n + y^2}$ and hence $x \geq \sqrt{n}$, also $x = \tfrac{s + t}{2}$ and we know that the upper bound of $s$ happens when $s$ is as close as $t$ as possible, given that $s \leq t$, $x \leq \tfrac{t + t}{2} \leq n$</p>
+
+<p>Implementation notes: since $s$ and $t$ are odd numbers, their product $n$ is also an odd number, therefore the implementation below works with odd values of $n$</p>
+
+<pre><code class="language-cpp">/**
+ * Factorization of an odd number `n` based on Fermat's
+ * factorization algorithm
+ *
+ * @param  {int} n
+ * @return {vector&lt;int&gt;} a vector with two odd integers if `n` is not a
+ * prime number, a single integer if `n` is a prime number
+ */
+vector&lt;int&gt; fermat_factorization(int n) {
+  for (int x = (int) ceil(sqrt(n)); x &lt;= n; x += 1) {
+    int ySquared = x * x - n;
+    // check if `y` is the square of some number
+    int y = (int) sqrt(ySquared);
+    if (y * y == ySquared) {
+      int s = x - y;
+      int t = x + y;
+      // `s` must be &gt; 1
+      if (s != 1 &amp;&amp; t != n) {
+        return vector&lt;int&gt; {s, t};
+      }
+    }
+  }
+  // n is a prime number
+  return vector&lt;int&gt; {n};
+}
+</code></pre>
+
+<h3 id="pollards-rho-factorization">Pollard’s Rho factorization</h3>
+
+<p>Pollard’s Rho factorization is a probabilistic factorization algorithm based on the assumption that a number $n$ is a composite number and the following facts:</p>
+
+<ul>
+  <li>since $n$ is a <strong>composite number</strong> there must be a factor $d$</li>
+  <li>let $a$, $b$ two positive integers, if $a \equiv b \pmod{d}$ then the difference $a - b$ is a multiple of $d$, since $n$ is also a multiple of $d$ some multiple of $d$ is a divisor of $n$ and $a - b$, particularly $gcd(a - b, n)$ is a divisor of $n$, let $gcd(a - b, n) &gt; 1$ then we have found two factors of $n$ ($gcd(a - b, n), \tfrac{n}{gcd(a - b, n)}$)</li>
+</ul>
+
+<p>Now the problem is reduced to find $a$ and $b$ such that $gcd(a - b, n) &gt; 1$, we can use the following algorithm which picks random numbers in the range $[1, n - 1]$</p>
+
+<pre><code class="language-text">let `n` be the number to be factorized
+let `x` be an array of integers
+
+x[0] = random integer in the range [1, n - 1]
+while we haven't two numbers such that `gcd(x_i, x_j, n) &gt; 1`
+  x[i] = random integer in the range [1, n - 1]
+  for all `j &lt; i` and `j &gt;= 0`
+    if `gcd(x[i] - x[j], n) &gt; 1`
+      return x[i], x[j]
+</code></pre>
+
+<p><a href="http://www.cs.colorado.edu/~srirams/classes/doku.php/pollard_rho_tutorial">This page</a> has a good explanation on how this algorithm will find $a$ and $b$ with a probability $~50\%$ after $\sqrt{n}$ iterations, the algorithm above is not very helpful though since at the $k$ iteration we have to do $k - 1$ pairwise checks</p>
+
+<p>Here’s another algorithm to pick random numbers, let $x$ be an integer in the range $[1, n - 1]$, a function that will generate a number in the range $[1, n - 1]$ based on a previous number is</p>
+
+<script type="math/tex; mode=display">f(x) = x^2 + c \pmod{n}</script>
+
+<p>Because there are only $n - 1$ possible values our generator will eventually fall into a cycle, for example let $n = 55, c = 2, x = 2$</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+x_0 &= 2 \\
+x_1 &= (2^2 + 2) \pmod{55} = 6 \\
+x_2 &= (6^2 + 2) \pmod{55} = 38 \\
+x_3 &= (38^2 + 2) \pmod{55} = 16 \\
+x_4 &= (16^2 + 2) \pmod{55} = 38 \text{ which is equal to $x_2$ }
+\end{align*} %]]></script>
+
+<p>Pollard detected the cycle using <a href="https://www.wikiwand.com/en/Cycle_detection#/Tortoise_and_hare">Floyd’s cycle-finding algorithm</a> which is based on two pointers which move through a sequence at different speeds, one moves a unit and the other moves two units each time, if there’s a cycle eventually the two pointers will encounter at some element belonging to the cycle, if we’ve analyzed all the elements of the sequence and saw not a single contiguous pair fullfills $gcd(x_i - x_{i + 1}, n) &gt; 1$ we need to choose other values for $x_0, a$ and rerun the algorithm</p>
+
+<pre><code class="language-cpp">// C++11
+#include &lt;random&gt;
+
+/**
+ * Computes a factor of `n` which is greater than `1`
+ * @param {long long} n The number to be factorized
+ * @return {long long} A positive integer which is a factor of `n`
+ * when the algorithm successfully finds a factor of `n`, -1 otherwise
+ */
+long long pollard_rho(long long n) {
+  if (n % 2 == 0) {
+    return 2;
+  }
+
+  std::random_device rd;
+  std::mt19937 engine(rd());
+  std::uniform_int_distribution&lt;long long&gt; dis(1, n - 1);
+
+  long long x = dis(engine);
+  long long c = dis(engine);
+  long long y = x;   // y = x^2 + c (mod n)
+  do {
+    // tortoise goes x = f(x)
+    x = ((x * x) % n + c) % n;
+
+    // hare goes y = f(f(y))
+    y = ((y * y) % n + c) % n;
+    y = ((y * y) % n + c) % n;
+
+    long long gcd = __gcd(abs(x - y), n);
+    if (gcd &gt; 1) {
+      return gcd;
+    }
+  } while (x != y);
+
+  return -1;
+}
+
+/**
+ * Pollard rho factorization runner, it makes multiple calls to
+ * `pollard_rho` until a factor is found
+ * @param {long long} n The number to be factorized
+ * @return {long long} A factor of `n` (it is `n` when `n` is a prime number)
+ */
+long long pollard_rho_factorization(long long n) {
+  long long factor;
+  do {
+    factor = pollard_rho(n);
+  } while(factor &lt; 0);
+  return factor;
+}
+
+</code></pre>
+
+<h3 id="eratosthenes-sieve-factorization-of-a-range">Eratosthenes Sieve factorization of a range</h3>
+
+<p>We can also compute the factorization of a number by modifying the sieve of Erathostenes, remember that each state of the sieve hold a boolean telling if the number is prime or not, this time each state of the sieve will hold a pair of numbers</p>
+
+<ul>
+  <li>the lowest prime that is a divisor of any index <code>i</code></li>
+  <li>the maximum power of the lowest prime computed above (optional)</li>
+</ul>
+
+<p>Let’s represent $n$ as $p_1^{a_1} \cdot p_2^{a_2} \ldots p_n^{a_n}$, since we’re hold for each position the lowest prime and its the maximum power, the state stored at the position $n$ of the sieve will be $p_1^{a_1}$, if we divide $n$ by this number we will move to the state $p_2^{a_2} \ldots p_n^{a_n}$, this recursive process is run until the current state reached in the sieve is $1$</p>
+
+<pre><code class="language-cpp">// let `p` be the smallest prime factor of the index `i`, each element
+// contains a pair `(p, x)` such that `p^x` is a divisor of `i`
+// e.g.
+//
+//    8 = (2, 3)
+//    15 = (3, 1)
+//    6 = (2, 1)
+//
+vector&lt;pair&lt;int, int&gt; &gt; lp;
+
+void eratosthenes_sieve_factorization(long long n) {
+  pair&lt;int, int&gt; unvisited(-1, -1);
+
+  // (-1, -1) is an unvisited state
+  lp.assign(n + 1, unvisited);
+
+  for (int i = 2; i * i &lt;= n; i += 1) {
+    if (lp[i] == unvisited) {
+      // if an index is in an unvisited state it's a prime number
+      pair&lt;int, int&gt; base(i, 1);
+      lp[i] = base;
+      for (int j = i * i; j &lt;= n; j += i) {
+        if (lp[j] == unvisited) {
+          // if a multiple of the prime number is in an unvisited
+          // state that means that it's lowest prime divisor is
+          // the current index `i`
+          lp[j] = base;
+          if (lp[j / i] != unvisited) {
+            // `j` is a multiple of `i`, in fact `j = i^x` because
+            // only numbers which don't have other factors but `i`
+            // reach this point, to accumulate the powers it's enough
+            // find out the power of `j / i`
+            lp[j].second += lp[j / i].second;
+          }
+        }
+      }
+    }
+  }
+
+  // all the prime numbers &gt; sqrt(n) will have an unvisited state
+  // changing the unvisited state to prime_number^1
+  int sqrtN = sqrt(n);
+  if (sqrtN % 2 == 0) {
+    sqrtN += 1;
+  }
+  for (int i = sqrtN; i &lt;= n; i += 2) {
+    if (lp[i] == unvisited) {
+      lp[i] = pair&lt;int, int&gt;(i, 1);
+    }
+  }
+}
+
+</code></pre>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Mauricio Poppe</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Mauricio Poppe</li>
+          <li><a href="mailto:mauricio.poppe@gmail.com">mauricio.poppe@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/maurizzzio">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">maurizzzio</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/iMauricio">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">iMauricio</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Layout run failed ._.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: 'none',
+    tex2jax: {
+      // http://docs.mathjax.org/en/latest/options/tex2jax.html
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']]
+      // processEnvironments: false
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      },
+      Macros: {
+        edge: '\\mathrel{-}',
+        notedge: '\\not\\edge'
+      }
+    },
+    'HTML-CSS': {
+      imageFont: null
+    }
+  });
+</script>
+
+<script type="text/javascript">
+/*
+ * MathJax eqn preview for a tags
+ *
+ * Copyright (c) 2015 Mauricio Poppe
+ * Licensed under the MIT license.
+ */
+
+(function () {
+  var $container = $('.post-content');
+  var $tooltip = $('<div />').addClass('mathjax-tooltip');
+  $container.append($tooltip);
+
+  function onMouseOver(ev) {
+    var a = ev.currentTarget;
+    var $number = $(a.hash);
+    var $root = $number.closest('.MathJax_Display');
+    var bounds = $(a).offset();
+    var containerBounds = $container.offset();
+
+    $tooltip.stop(true, true);
+    $tooltip.empty();
+    $tooltip.append($root.clone());
+    $tooltip.css({
+      top: bounds.top - containerBounds.top - $tooltip.height() - 5,
+      left: -1
+    });
+    $tooltip.addClass('active');
+  }
+
+  function onMouseOut(a) {
+    $tooltip.removeClass('active');
+  }
+
+  MathJax.Hub.Queue(function () {
+    $container.on('mouseover', 'a[href*="mjx-eqn-"]', onMouseOver);
+    $container.on('mouseout', 'a[href*="mjx-eqn-"]', onMouseOut);
+  });
+
+})();
+</script>
+
+</footer>
+
+
+  </body>
+
+</html>

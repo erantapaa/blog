@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Introduction</title>
+  <meta name="description" content="Layout run failed ._.
+">
+
+  <!-- syntax highlighter -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/graphs/introduction.html">
+  <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Mauricio Poppe</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/components.html">Components</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/derivative.html">Derivative</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/divisor-function.html">Divisor Function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/index.html">Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/integral.html">Integral</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/introduction.html">Introduction</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/introduction.html">Introduction</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/primality-test.html">Primality Test</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/topological-sorting.html">Topological sorting</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/traversal.html">Traversal</a>
+          
+        
+      </div>
+ -->
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="static-page-sidebar">
+        <ul><li><a href="/index.html"></a><ul><li>static<ul><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/graphs/traversal.html">Traversal</a><ul></ul></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a><ul></ul></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a><ul></ul></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a><ul></ul></li><li><a href="/static/graphs/components.html">Components</a><ul></ul></li><li><a href="/static/graphs/tree/index.html">Tree</a><ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a><ul></ul></li></ul></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a><ul></ul></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a><ul></ul></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a><ul></ul></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/math/calculus/derivative.html">Derivative</a><ul></ul></li><li><a href="/static/math/calculus/integral.html">Integral</a><ul></ul></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a><ul></ul></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a><ul></ul></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a><ul></ul></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a><ul></ul></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a><ul></ul></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a><ul></ul></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a><ul></ul></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a><ul></ul></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a><ul></ul></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a><ul></ul></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a><ul></ul></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a><ul></ul></li></ul></li></ul></li></ul></li></ul></li></ul>
+      </div>
+
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Introduction</h1>
+  </header>
+
+  <article class="post-content">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
+<script src="//maurizzzio.github.io/greuler/scripts/lib/cola.v3.js"></script>
+
+<script src="//maurizzzio.github.io/greuler/greuler.js"></script>
+
+<p>A graph is a pair $G = (V, E)$, it consists of a finite set $V$ of objects called the <em>vertices</em> (or nodes or points) and a set $E$ of 2-elements subsets of $V$ called <em>edges</em>, another way to denote the vertex set/edges of a graph $G$ is using $V(G)$ (the vertex set of $G$) and $E(G)$ (the edge set of $G$)</p>
+
+<div id="figure-introduction"></div>
+
+<script type="math/tex; mode=display">G = (V, E) \\
+V = \{1, 2, 3, 4, 5, 6, 7\} \\
+E = \{ \{1, 5\}, \{5, 7\}, \{2, 3\}, \{2, 4\}, \{3, 4\} \}</script>
+
+<h2 id="properties">Properties</h2>
+
+<ul>
+  <li>the <strong>order</strong> of a graph is the number of vertices (written as $\mid G \mid$)</li>
+  <li>the <strong>size</strong> of a graph is the number of edges (written as $\Vert G \Vert$)</li>
+  <li>an edge ${u, v}$ is usually written as $uv$ (or $vu$), if $uv$ is an edge of $G$ then $u$ and $v$ are said to be <strong>adjacent</strong> in $G$</li>
+  <li>a vertex $v$ is <strong>incident</strong> with an edge <em>e</em> if $v \in e$</li>
+  <li>the set of neighbors of a vertex $v$ is denoted by $N(v)$</li>
+  <li>the <strong>degree of a vertex</strong> $v$ is the number of edges incident to $v$ (loops are counted twice)</li>
+</ul>
+
+<p>Let $G = (V, E)$ and $G’ = (V’, E’)$ be two graphs, we set $G \cup G’ = (V \cup V’, E \cup E’)$ and $G \cap G’ = (V \cap V’, E \cap E’)$</p>
+
+<ul>
+  <li>if $G \cup G = \varnothing$ then $G$ and $G’$ are <strong>disjoint</strong></li>
+  <li>if $V’ \subseteq V$ and $E’ \subseteq E$ then $G’$ is a <strong>subgraph</strong> of $G$ written as $G’ \subseteq G$</li>
+  <li>if $G’$ is a subgraph of $G$ and either $V’ \subset V$ or $E’ \subset E$ then $G’$ is a <strong>proper subgraph</strong> of $G$</li>
+  <li>if $G’$ is a subgraph of $G$ and $V’ = V$ then $G’$ is an <strong>spanning subgraph</strong> of $G$</li>
+  <li>if $V’ \subseteq V$ and all the edges $e = uv \in E$ so that $u \in V’$ and $v \in V’$ and also $e \in E’$ then $G’$ is an <strong>induced graph</strong> of $G$</li>
+</ul>
+
+<h2 id="movement">Movement</h2>
+
+<p>A <strong>walk</strong> in a graph is a sequence of movements beginning at $u$ moving to a neighbor of $u$ and then to a neighbor of that vertex and so on until we stop at a vertex $v$</p>
+
+<script type="math/tex; mode=display">W = (u = v_0, v_1, \ldots, v = v_k)</script>
+
+<p>where $k \geq 0$, note that there are no restrictions on the vertices visited so a vertex can be visited more than once also there are no restrictions on the edges traversed so an edge can be traversed more than once, every two consecutive vertices in $W$ are distinct since they are adjacent, if $u = v$ then we said that the walk is <em>closed</em> otherwise it’s <em>open</em></p>
+
+<ul>
+  <li>a <strong>trail</strong> is a walk in which no edge is traversed more than once</li>
+  <li>a <strong>path</strong> is a walk in which no vertex is visited more than once (note that every path is also a trail)</li>
+  <li>a <strong>circuit</strong> is a <em>closed trail</em> of length 3 or more (it begins and ends at the same vertex but repeat no edges)</li>
+  <li>a <strong>cycle</strong> is a circuit that repeat no vertex (think of it as a <em>closed path</em>), a $k$-cycle is a cycle of length $k$ (e.g. a $3$-cycle is a triangle)</li>
+</ul>
+
+<p>Properties related with path lengths</p>
+
+<ul>
+  <li>the <strong>distance</strong> between two vertices $u$ and $v$ is the smallest length of any $u - v$ path in $G$ denoted by $d(u, v)$</li>
+  <li>the <strong>diameter</strong> is the greatest distance between any two vertices of a connected graph</li>
+</ul>
+
+<p>Some additional properties related with connectivity in a graph</p>
+
+<ul>
+  <li>if a graph $G$ contains a $u-v$ path then $u$ and $v$ are said to be <strong>connected</strong></li>
+  <li>a graph $G$ is <strong>connected</strong> if every two vertices of $G$ are connected</li>
+  <li>a connected subgraph of $G$ that is not a proper subgraph of any other connected subgraph of $G$ is a <strong>component</strong> of $G$</li>
+  <li>the number of components of a graph is denoted by $k(G)$, then a graph is connected if $k(G) = 1$</li>
+</ul>
+
+<h2 id="common-classes-of-graphs">Common classes of graphs</h2>
+
+<h3 id="complete-graph">Complete graph</h3>
+
+<p>A graph $G$ is <strong>complete</strong> if every two distinct vertices of $G$ are adjacent</p>
+
+<div id="figure-complete-graph"></div>
+
+<ul>
+  <li>a complete graph of order $n$ is denoted by $K_n$, for complete graphs $K_n$ has the maximum possible size for a graph of $n$ vertices</li>
+  <li>the number of pairs of vertices in $K_n$ is $\binom{n}{2} = \tfrac{n(n - 1)}{2}$</li>
+</ul>
+
+<h3 id="sparse-graph">Sparse graph</h3>
+
+<p>A graph $G$ of order $n$ and size $m$ is a <strong>sparse graph</strong> if $m$ is close to the minimal number of edges i.e. when $m \approx n$, in this case <strong>adjacency lists</strong> are prefered since they require constant space for every edge, a tree is a good example of a sparse graph</p>
+
+<h3 id="dense-graph">Dense graph</h3>
+
+<p>A graph $G$ of order $n$ and size $m$ is a <strong>dense graph</strong> if $m$ is close to the maximal number of edges i.e. when $m \approx n^2$, in this case an <strong>adjacency matrix</strong> is prefered, a complete graph is a dense graph</p>
+
+<h3 id="complement-graph">Complement graph</h3>
+
+<p>The <strong>complement</strong> $\bar{G}$ of a graph $G$ is a graph whose vertex is the set $V(G)$ and such that for each pair $u, v$ of distinct vertices, $uv \in E(\bar{G})$ and $uv \not\in E(G)$, that means that the complement of a complete graph is a graph of order $n$ and size $0$</p>
+
+<div id="figure-complement-graph"></div>
+
+<ul>
+  <li>if $G$ is diconnected, $\bar{G}$ is connected</li>
+</ul>
+
+<h3 id="bipartite-graph">Bipartite graph</h3>
+
+<p>A graph $G$ is bipartite when the set $V(G)$ can be partitioned into two subsets $U$ and $W$ called <strong>partite sets</strong> such that every edge of $G$ joins a vertex of $U$ and a vertex of $W$</p>
+
+<div id="figure-bipartite-graph"></div>
+
+<ul>
+  <li>a nontrivial graph $G$ is bipartite if it doesn’t contain <em>odd length cycles</em></li>
+  <li>a <strong>complete bipartite graph</strong> is a bipartite graph where each vertex of $U$ is adjacent to every vertex of $W$, it’s denoted as $K_{\mid U \mid, \mid W \mid}$</li>
+  <li>a <strong>star</strong> is a complete bipartite graph where $K_{1, \mid W \mid}$ or $K_{\mid U \mid, 1}$</li>
+</ul>
+
+<h3 id="k-partite-graph">$k$-partite graph</h3>
+
+<p>A graph $G$ is $k$-partite when the set $V(G)$ can be partitioned into $k$ subsets $V_1, V_2, \ldots, V_k$ such that every edge of $G$ joins a vertex of $U$ and a vertex of $W$</p>
+
+<h3 id="biconnected-graph">Biconnected graph</h3>
+
+<p>A biconnected graph $G$ is a connected and “nonseparable” graph meaning that if any vertex (and its incident edges) is removed the graph will remain connected, therefore a biconnected graph doesn’t have cut-vertices</p>
+
+<div id="figure-biconnected-graph"></div>
+
+<h3 id="multigraphs">Multigraphs</h3>
+
+<p>A multigraph $M$ is a graph where every two vertices of $M$ are joined by a finite number of edges, when two or more edges join the same pair of distinct vertices those edges are called <strong>parallel edges</strong></p>
+
+<div id="figure-multigraph"></div>
+
+<h3 id="pseudographs">Pseudographs</h3>
+
+<p>A pseudograph $P$ is a graph where an edge is allowed to join a vertex with itself, such an edge is called a <strong>loop</strong></p>
+
+<div id="figure-pseudograph"></div>
+
+<h3 id="weighted-graph">Weighted graph</h3>
+
+<p>Let $G$ be a multigraph, let’s replace all the parallel edges joining a particular pair of vertices by a single edge which is assigned a positive integer representing the number of parallel edges, this new representation is refered as a <strong>weighted graph</strong></p>
+
+<div id="figure-weighted-graph"></div>
+
+<h3 id="digraphs">Digraphs</h3>
+
+<p>A <strong>directed graph</strong> $D$ is a finite nonempty set $V$ of vertices and a set $E$ of ordered pairs of distinct vertices, the elements of the set $E$ are called <strong>directed edges</strong> or arcs, arcs are represented with arrows instead of plain line segments</p>
+
+<div id="figure-directed-graph"></div>
+
+<ul>
+  <li>if $uv$ is a directed edge then $u$ is <strong>adjacent to</strong> $v$ and $v$ is <strong>adjacent from</strong> $u$</li>
+</ul>
+
+<h2 id="degrees">Degrees</h2>
+
+<p>The <strong>degree</strong> of a vertex $v$ is the number of edges incident with $v$ denoted by $deg \; v$ (with loops counted twice)</p>
+
+<ul>
+  <li>the minimum degree of a graph $G$ is the minimum degree among all the vertices of $G$ denoted as $\delta(G)$</li>
+  <li>the maximum degree of a graph $G$ is the maximum degree among all the vertices of $G$ denoted as $\Delta(G)$</li>
+  <li>a vertex of degree $0$ is called an <strong>isolated vertex</strong></li>
+  <li>a vertex of degree $1$ is called an <strong>end vertex</strong> (or <strong>leaf</strong>)</li>
+  <li>a vertex of even degree is called an <strong>even vertex</strong></li>
+  <li>a vertex of odd degree is called an <strong>odd vertex</strong></li>
+  <li>two vertices of $G$ that have the same degree are called <strong>regular vertices</strong></li>
+  <li>if a graph $G$ has the same degree $r$ for all its vertices it’s called an <strong>r-regular graph</strong></li>
+</ul>
+
+<p>In a graph $G$ of $n$ vertices the following equality relation holds</p>
+
+<script type="math/tex; mode=display">0 \leq \delta(G) \leq deg\; v \leq \Delta(G) \leq n - 1</script>
+
+<p><strong>First theorem of graph theory</strong></p>
+
+<blockquote>
+  <p>if $G$ is a graph of size $m$ then</p>
+
+  <script type="math/tex; mode=display">\sum_{v \in V(G)} deg \; v = 2m</script>
+</blockquote>
+
+<p>When summing the degrees of $G$ each edge is counted twice</p>
+
+<h3 id="degrees-in-a-bipartite-graph">Degrees in a bipartite graph</h3>
+
+<p>Suppose that $G$ is a bipartite graph with two partite sets $U$ and $W$, then</p>
+
+<script type="math/tex; mode=display">\sum_{u \in V(U)}deg \; u = \sum_{w \in V(W)} deg \; w = m</script>
+
+<p><strong>Corollary: every graph has an even number of odd vertices</strong></p>
+
+<p><em>Proof:</em> Let $G$ be a graph of size $m$, dividing $V(G)$ into two subsets $V_{even}$ which consists of even vertices and $V_{odd}$ which consists of odd vertices then by the first theorem of graph theory</p>
+
+<script type="math/tex; mode=display">\sum_{v \in V_{even}(G)} deg \; v + \sum_{v \in V_{odd}(G)} deg \; v = 2m</script>
+
+<p>the number $\sum_{v \in V_{even}(G)} deg \; v$ is even since it’s a sum of even numbers thus $\sum_{v \in V_{odd}(G)} deg \; v$ is also even and it can be even only if the number of odd vertices is even (a sum of two odd numbers gives an even number)</p>
+
+<h3 id="degree-sequences">Degree sequences</h3>
+
+<p>A deIf the degrees of a graph $G$ are listed in a sequence $s$ then $s$ is called a <em>sequence degree</em>, e.g.</p>
+
+<script type="math/tex; mode=display">s: 4, 3, 2, 2, 2, 1, 1, 1, 0</script>
+
+<div id="figure-degree-sequence"></div>
+
+<p>Suppose we’re given a finite sequence $s$ of nonnegative integers, a well known problem is if we can build a graph out of this sequence, to solve this problem let’s talk about some facts</p>
+
+<ul>
+  <li>the degree of any vertice can never be greater than $n - 1$ where $n$ is the order of the graph</li>
+  <li>a graph has an even number of odd vertices</li>
+</ul>
+
+<p>There’s a theorem called Havel-Hakimi which solves the problem above in polynomial time</p>
+
+<blockquote>
+  <p>A non-increasing sequence $s: d_1, d_2, \ldots, d_n$ where $d_1 \geq 1$ can form a graph only if the sequence</p>
+
+  <p><script type="math/tex">s_1: d_2 - 1, d_3 - 1, \ldots, d_{d_1 + 1} - 1, d_{d_1 + 2}, \ldots, d_n</script><br />
+forms a graph</p>
+</blockquote>
+
+<p>According to this theorem we can create a new sequence based on the one above that is also a graph, we can apply the theorem recursively to test if the original sequence forms a graph</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+s_1 &: 4, 3, 2, 2, 2, 1, 1, 1, 0 \\
+s_2 &: 2, 1, 1, 1, 1, 1, 1, 0 \quad \text{removing $d_1 = 4$ and subtracting $1$ from the following $4$ elements} \\
+s_3 &: 1, 1, 1, 1, 0 \quad \text{removing $d_1 = 2$ and subtracting $1$ from the following $2$ elements} \\
+s_4 &: 1, 1, 0 \quad \text{removing $d_1 = 1$ and subtracting $1$ from the following element} \\
+s_5 &: 0 \quad \text{removing $d_1 = 1$ and subtracting $1$ from the following element}
+\end{align*} %]]></script>
+
+<pre><code class="language-cpp">bool graph_from_sequence(vector&lt;int&gt; &amp;degrees) {
+  int sum = 0;
+  int size = degrees.size();
+  for (int i = 0; i &lt; size; i += 1) {
+    sum += degrees[i];
+    if (degrees[i] &gt;= size || degrees[i] &lt; 0) {
+      // a vertice can have a maximum degree of n - 1
+      // also none of the degrees can be negative
+      return false;
+    }
+  }
+
+  if (sum == 0) {
+    // trivial case
+    return true;
+  }
+
+  sort(degrees.begin(), degrees.end());
+
+  // removing d_1
+  int max_degree = degrees.back();
+  degrees.pop_back();
+  size -= 1;
+
+  // subtracting 1 from the next d_1 elements
+  for (int i = 0; i &lt; max_degree; i += 1) {
+    degrees[size - 1 - i] -= 1;
+  }
+  return graph_from_sequence(degrees);
+}
+
+</code></pre>
+
+<h2 id="graphs-and-matrices">Graphs and matrices</h2>
+
+<p>A graph can also be described using a matrix</p>
+
+<ul>
+  <li>The <strong>adjacency matrix</strong> of a graph $G$ of order $n$ and size $m$ is a $n \times n$ matrix $A = [a_{ij}]$ $where</li>
+</ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+a_{ij} =
+\begin{cases}
+1 & \text{if $v_iv_j \in G$} \\
+0 & \text{otherwise}
+\end{cases} %]]></script>
+
+<ul>
+  <li>The <strong>incidence matrix</strong> of a graph $G$ of order $n$ and size $m$ is a $n \times m$ matrix $B = [b_{ij}]$ where</li>
+</ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+b_{ij} =
+\begin{cases}
+1 & \text{if $v_i$ is incident with $e_j$} \\
+0 & \text{otherwise}
+\end{cases} %]]></script>
+
+<div id="figure-adjacency-incidence-matrix"></div>
+
+<script type="math/tex; mode=display">G = (V, E) \\
+V = \{0, 1, 2, 3, 4\} \\
+E = \{\{0, 1\}, \{0, 2\}, \{0, 3\}, \{1, 3\}, \{2, 3\}, \{3, 4\}\} \\</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+A = \begin{bmatrix}
+0 & 1 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+1 & 1 & 1 & 0 & 1 \\
+0 & 0 & 0 & 1 & 0
+\end{bmatrix} \quad
+B = \begin{bmatrix}
+1 & 1 & 1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0 & 1 & 0 \\
+0 & 0 & 1 & 1 & 1 & 1 \\
+0 & 0 & 0 & 0 & 0 & 1
+\end{bmatrix} %]]></script>
+
+<h3 id="useful-observations">Useful observations</h3>
+
+<ul>
+  <li>let $A^k$ be the adjacency matrix of a graph $G$ raised to the $k$-th power, the entry $a_{ij}^{(k)}$ is the number of distinct $v_i - v_j$ walks of length $k$ in $G$</li>
+</ul>
+
+<p><em>Proof:</em> assume for a positive integer $k$ that the number of $v_i - v_j$ walks of length $k$ is given by $a_{ij}^{(k)}$ in the matrix $A^k$, then $A^{k + 1} = A^k \times A$, now a cell $a_{ij}^{(k + 1)}$ is the dot product of row $i$ of $A^k$ and column $j$ of $A$</p>
+
+<script type="math/tex; mode=display">a_{ij}^{(k + 1)} = \sum_{t=1}^n a_{it}^{(k)} \cdot a_{tj}</script>
+
+<p>The first element of this sum is the number of walks of length $k$ from $v_i$ to $v_1$ (stored in $a_{i1}^{(k)}$) times the number of walks of length $1$ from $v_1$ to $v_j$ (stored in $a_{1j}$), the second element follows the same formula but using $v_2$ as the vertex used to “join” the walks of length $k$ and $1$</p>
+
+<script src="/js/graph/introduction.js"></script>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Mauricio Poppe</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Mauricio Poppe</li>
+          <li><a href="mailto:mauricio.poppe@gmail.com">mauricio.poppe@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/maurizzzio">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">maurizzzio</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/iMauricio">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">iMauricio</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Layout run failed ._.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: 'none',
+    tex2jax: {
+      // http://docs.mathjax.org/en/latest/options/tex2jax.html
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']]
+      // processEnvironments: false
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      },
+      Macros: {
+        edge: '\\mathrel{-}',
+        notedge: '\\not\\edge'
+      }
+    },
+    'HTML-CSS': {
+      imageFont: null
+    }
+  });
+</script>
+
+<script type="text/javascript">
+/*
+ * MathJax eqn preview for a tags
+ *
+ * Copyright (c) 2015 Mauricio Poppe
+ * Licensed under the MIT license.
+ */
+
+(function () {
+  var $container = $('.post-content');
+  var $tooltip = $('<div />').addClass('mathjax-tooltip');
+  $container.append($tooltip);
+
+  function onMouseOver(ev) {
+    var a = ev.currentTarget;
+    var $number = $(a.hash);
+    var $root = $number.closest('.MathJax_Display');
+    var bounds = $(a).offset();
+    var containerBounds = $container.offset();
+
+    $tooltip.stop(true, true);
+    $tooltip.empty();
+    $tooltip.append($root.clone());
+    $tooltip.css({
+      top: bounds.top - containerBounds.top - $tooltip.height() - 5,
+      left: -1
+    });
+    $tooltip.addClass('active');
+  }
+
+  function onMouseOut(a) {
+    $tooltip.removeClass('active');
+  }
+
+  MathJax.Hub.Queue(function () {
+    $container.on('mouseover', 'a[href*="mjx-eqn-"]', onMouseOver);
+    $container.on('mouseout', 'a[href*="mjx-eqn-"]', onMouseOut);
+  });
+
+})();
+</script>
+
+</footer>
+
+
+  </body>
+
+</html>

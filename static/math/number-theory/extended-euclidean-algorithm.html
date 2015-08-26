@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Extended Euclidean Algorithm</title>
+  <meta name="description" content="Layout run failed ._.
+">
+
+  <!-- syntax highlighter -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/math/number-theory/extended-euclidean-algorithm.html">
+  <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Mauricio Poppe</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/components.html">Components</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/derivative.html">Derivative</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/divisor-function.html">Divisor Function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/index.html">Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/integral.html">Integral</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/introduction.html">Introduction</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/introduction.html">Introduction</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/primality-test.html">Primality Test</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/topological-sorting.html">Topological sorting</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/traversal.html">Traversal</a>
+          
+        
+      </div>
+ -->
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="static-page-sidebar">
+        <ul><li><a href="/index.html"></a><ul><li>static<ul><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/graphs/traversal.html">Traversal</a><ul></ul></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a><ul></ul></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a><ul></ul></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a><ul></ul></li><li><a href="/static/graphs/components.html">Components</a><ul></ul></li><li><a href="/static/graphs/tree/index.html">Tree</a><ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a><ul></ul></li></ul></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a><ul></ul></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a><ul></ul></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a><ul></ul></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/math/calculus/derivative.html">Derivative</a><ul></ul></li><li><a href="/static/math/calculus/integral.html">Integral</a><ul></ul></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a><ul></ul></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a><ul></ul></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a><ul></ul></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a><ul></ul></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a><ul></ul></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a><ul></ul></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a><ul></ul></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a><ul></ul></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a><ul></ul></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a><ul></ul></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a><ul></ul></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a><ul></ul></li></ul></li></ul></li></ul></li></ul></li></ul>
+      </div>
+
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Extended Euclidean Algorithm</h1>
+  </header>
+
+  <article class="post-content">
+    <h2 id="bezouts-identity">Bezout’s identity</h2>
+
+<p>For <strong>non-zero integers</strong> $a$ and $b$, let $d$ be the greatest common divisor $d = gcd(a, b)$. Then there exists integers $x$ and $y$ such that</p>
+
+<script type="math/tex; mode=display">\begin{equation} \label{bezout}
+ax + by = d
+\end{equation}</script>
+
+<p>If $a$ and $b$ are relatively prime then $gcd(a, b) = 1$ and by Bezout’s Identity there are integers $x$ and $y$ such that</p>
+
+<script type="math/tex; mode=display">ax + by = 1</script>
+
+<p><em>Example:</em> $3x + 8y = 1$, one solution is $x = 3$ and $y = -1$</p>
+
+<h2 id="extended-euclidean-algorithm">Extended Euclidean Algorithm</h2>
+
+<p>By reversing the steps of the <a href="./euclidean-algorithm.html">Euclidean algorithm</a> it’s possible to find these integers $x$ and $y$, by repeated applications of the euclidean division algorithm we have</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+a &= b q_1 + r_1 \\
+b &= r_1 q_2 + r_2 \\
+& \; \vdots \\
+r_{n-3} &= r_{n - 2} q_{n - 1} + r_{n - 1} \\
+r_{n-2} &= r_{n - 1} q_{n} + r_{n} \\
+r_{n-1} &= r_n q_{n + 1}
+\end{align*} %]]></script>
+
+<p>Where $r_n = gcd(a, b)$, rewriting $r_n$ in terms of the previous $r_i$</p>
+
+<script type="math/tex; mode=display">r_n = r_{n - 2} - r_{n - 1} q_n</script>
+
+<p>Substituting for $r_{n - 1}$ from the previous equation</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+r_n &= r_{n - 2} - (r_{n - 3} - r_{n - 2} q_{n - 1}) q_n \\
+r_n &= r_{n - 2} (1 + q_n q_{n - 1}) - r_{n - 3} q_n \\
+r_n &= r_{n - 2}m + r_{n - 3}n \\
+\end{align*} %]]></script>
+
+<!--
+Substituting for $r_{n - 2}$
+$$
+\begin{align*}
+r_n &= (r_{n - 4} - r_{n - 3} q_{n - 2})m + r_{n - 3}n \\
+r_n &= r_{n - 3}(n - q_{n - 2}m) + r_{n - 4}m
+\end{align*}
+$$
+ -->
+
+<p>Where $m = 1 + q_n q_{n - 1}$ and $n = -q_n$, this process is repeated until $r_n = ax + by$ where $x$ and $y$ are integers</p>
+
+<p>Since $ax + by = gcd(a, b)$ it’s also true that</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{iteration}
+bx_1 + (a \% b)y_1 = gcd(a, b)
+\end{equation}</script>
+
+<p>Where $(x_1, y_1)$ are solutions to the new tuple $(b, a \% b)$, converting the value of $a \% b$</p>
+
+<script type="math/tex; mode=display">a \% b = a - \left \lfloor \frac{a}{b} \right \rfloor \cdot b</script>
+
+<p>Substituting this value in \eqref{iteration}</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+b \cdot x_1 + \Big(a - \left \lfloor \frac{a}{b} \right \rfloor \cdot b \Big) \cdot y_1 &= gcd(a, b) \\
+b \cdot x_1 + a \cdot y_1 - \left \lfloor \frac{a}{b} \right \rfloor \cdot b \cdot y_1 &= gcd(a, b) \\
+a \cdot y_1 + b \Big( x_1 - \left \lfloor \frac{a}{b} \right \rfloor \cdot y_1 \Big) &= gcd(a, b)
+\end{align*} %]]></script>
+
+<p>Comparing to the original expression \eqref{bezout} we obtain the required coefficients $x$ and $y$ based on subsequent values found</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+x =
+\begin{cases}
+1, & \text{when $a \% b = 0$} \\
+y_1, & \text{otherwise}
+\end{cases} %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+y =
+\begin{cases}
+0, & \text{when $a \% b = 0$} \\
+x_1 - \left \lfloor \frac{a}{b} \right \rfloor \cdot y_1, & \text{otherwise}
+\end{cases} %]]></script>
+
+<h3 id="implementation">Implementation</h3>
+
+<pre><code class="language-cpp">/**
+ * Computes the values `x` and `y` for the equation
+ *
+ *    ax + by = gcd(a, b)
+ *
+ * Given that `a` and `b` are positive integers
+ *
+ * @param {int} a
+ * @param {int} b
+ * @param {int} x
+ * @param {int} y
+ * @returns {int} gcd(a, b)
+ */
+int extended_euclidean(int a, int b, int &amp;x, int &amp;y) {
+  if (b == 0) {
+    x = 1;
+    y = 0;
+    return a;
+  }
+  int x1, y1;
+  int gcd = extended_euclidean(b, a % b, x1, y1);
+  x = y1;
+  y = x1 - a / b * y1;
+  return gcd;
+}
+
+/**
+ * Alternative version using a vector of ints
+ * Computes the values x and y for the equation
+ *
+ *    ax + by = gcd(a, b)
+ *
+ * @returns {vector&lt;int&gt;} A triplet with the values (gcd(a, b), x, y)
+ */
+vector&lt;int&gt; extended_euclidean(int a, int b) {
+  if (b == 0) {
+    // base case:
+    // b divides a so a(1) + b(0) = a
+    return vector&lt;int&gt; {a, 1, 0};
+  }
+  vector&lt;int&gt; t = extended_euclidean(b, a % b);
+  int gcd = t[0];
+  int x1 = t[1];
+  int y1 = t[2];
+  return vector&lt;int&gt; {gcd, y1, x1 - a / b * y1};
+}
+
+</code></pre>
+
+<h2 id="applications">Applications</h2>
+
+<h3 id="diophantine-equations">Diophantine equations</h3>
+
+<p>Equations with integer variables and coefficients are called <em>Diophantine equations</em>, the simplest non-trivial linear equation has the form</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{linear-diophantine-equation}
+ax + by = c
+\end{equation}</script>
+
+<p>Where $a, b, c$ are given integers and $x, y$ are unknown integers</p>
+
+<p>Using the <em>extended Euclidean algorithm</em> it’s possible to find $x$ and $y$ given that $c$ is divisible by $gcd(a, b)$ otherwise the equation has no solutions, this follows the fact that a linear combination of two numbers continue to be divided by their common divisor, starting with \eqref{bezout}</p>
+
+<script type="math/tex; mode=display">ax_g + by_g = gcd(a, b)</script>
+
+<p>multiplying it by $\tfrac{c}{gcd(a, b)}$</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{diophantine-equation-gcd}
+a \cdot x_g \cdot \Big( \frac{c}{gcd(a, b)} \Big) + b \cdot y_g \cdot \Big( \frac{c}{gcd(a, b)} \Big) = c
+\end{equation}</script>
+
+<p>then one of the solutions is given by</p>
+
+<script type="math/tex; mode=display">ax_0 + by_0 = c</script>
+
+<p>where</p>
+
+<script type="math/tex; mode=display">\begin{cases}
+x_0 = x_g \cdot \big( \frac{c}{gcd(a, b)} \big) \\
+y_0 = y_g \cdot \big( \frac{c}{gcd(a, b)} \big)
+\end{cases}</script>
+
+<p>we can find all of the solutions replacing $x_0$ by $x_0 + \tfrac{b}{gcd(a, b)}$ and $y_0$ by $y_0 - \tfrac{a}{gcd(a, b)}$</p>
+
+<script type="math/tex; mode=display">a \cdot \Big( x_0 + \tfrac{b}{gcd(a, b)} \Big) + b \cdot \Big( y_0 - \tfrac{a}{gcd(a, b)} \Big) = ax_0 + \tfrac{ab}{gcd(a, b)} + by_0 - \tfrac{ab}{gcd(a, b)} = ax_0 + by_0 = c</script>
+
+<p>This process could be repeated for any number in the form</p>
+
+<script type="math/tex; mode=display">\begin{cases}
+x = x_0 + k \cdot \big( \frac{b}{gcd(a, b)} \big) \\
+y = y_0 - k \cdot \big( \frac{a}{gcd(a, b)} \big)
+\end{cases}</script>
+
+<p>Where $k \in \mathbb{Z}$</p>
+
+<pre><code class="language-cpp">/**
+ * Computes the integer values `x` and `y` for the equation
+ *
+ *    ax + by = c
+ *
+ * if `c` is not divisible by `gcd(a, b)` then there isn't a valid solution,
+ * otherwise there's an infinite number of solutions, (`x`, `y`) form one pair
+ * of the set of possible solutions
+ *
+ * @param {int} a
+ * @param {int} b
+ * @param {int} c
+ * @param {int} x
+ * @param {int} y
+ * @returns {bool} True if the equation has solutions, false otherwise
+ */
+bool linear_diophantine_solution(int a, int b, int c, int &amp;x, int &amp;y) {
+  int gcd = extended_euclidean(abs(a), abs(b), x, y);
+  if (c % gcd != 0) {
+    // no solutions since c is not divisible by gcd(a, b)
+    return false;
+  }
+  x *= c / gcd;
+  y *= c / gcd;
+  if (a &lt; 0) { x *= -1; }
+  if (b &lt; 0) { y *= -1; }
+  return true;
+}
+
+</code></pre>
+
+<h3 id="modular-multiplicative-inverse">Modular multiplicative inverse</h3>
+
+<p>Discussed <a href="./modular-arithmetic.html#modular-multiplicative-inverse">here</a></p>
+
+<h3 id="linear-congruence-equations">Linear congruence equations</h3>
+
+<p>A linear congruence is a congruence $\pmod p$ of the form</p>
+
+<script type="math/tex; mode=display">ax \equiv b \pmod m</script>
+
+<p>By the definition of the congruence relation $m \mid ax - b$</p>
+
+<script type="math/tex; mode=display">ax - b = my</script>
+
+<p>Reordering the equation</p>
+
+<script type="math/tex; mode=display">ax - my = b</script>
+
+<p>Which is a linear diophantine equation discussed above, it’s solvable only if $b$ is divisible by $gcd(a, m)$, additionally $gcd(a, m)$ tells us the number of distinct solutions in the ring of integers modulo $m$</p>
+
+<hr />
+
+<p>https://brilliant.org/wiki/bezouts-identity/?subtopic=integers&amp;chapter=greatest-common-divisor-lowest-common-divisor#proof<br />
+http://www.ugrad.cs.ubc.ca/~cs490/Spring05/notes/nt1.pdf</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Mauricio Poppe</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Mauricio Poppe</li>
+          <li><a href="mailto:mauricio.poppe@gmail.com">mauricio.poppe@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/maurizzzio">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">maurizzzio</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/iMauricio">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">iMauricio</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Layout run failed ._.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: 'none',
+    tex2jax: {
+      // http://docs.mathjax.org/en/latest/options/tex2jax.html
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']]
+      // processEnvironments: false
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      },
+      Macros: {
+        edge: '\\mathrel{-}',
+        notedge: '\\not\\edge'
+      }
+    },
+    'HTML-CSS': {
+      imageFont: null
+    }
+  });
+</script>
+
+<script type="text/javascript">
+/*
+ * MathJax eqn preview for a tags
+ *
+ * Copyright (c) 2015 Mauricio Poppe
+ * Licensed under the MIT license.
+ */
+
+(function () {
+  var $container = $('.post-content');
+  var $tooltip = $('<div />').addClass('mathjax-tooltip');
+  $container.append($tooltip);
+
+  function onMouseOver(ev) {
+    var a = ev.currentTarget;
+    var $number = $(a.hash);
+    var $root = $number.closest('.MathJax_Display');
+    var bounds = $(a).offset();
+    var containerBounds = $container.offset();
+
+    $tooltip.stop(true, true);
+    $tooltip.empty();
+    $tooltip.append($root.clone());
+    $tooltip.css({
+      top: bounds.top - containerBounds.top - $tooltip.height() - 5,
+      left: -1
+    });
+    $tooltip.addClass('active');
+  }
+
+  function onMouseOut(a) {
+    $tooltip.removeClass('active');
+  }
+
+  MathJax.Hub.Queue(function () {
+    $container.on('mouseover', 'a[href*="mjx-eqn-"]', onMouseOver);
+    $container.on('mouseout', 'a[href*="mjx-eqn-"]', onMouseOut);
+  });
+
+})();
+</script>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Derivative</title>
+  <meta name="description" content="Layout run failed ._.
+">
+
+  <!-- syntax highlighter -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/math/calculus/derivative.html">
+  <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Mauricio Poppe</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/components.html">Components</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/derivative.html">Derivative</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/divisor-function.html">Divisor Function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/index.html">Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/integral.html">Integral</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/introduction.html">Introduction</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/introduction.html">Introduction</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/primality-test.html">Primality Test</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/topological-sorting.html">Topological sorting</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/traversal.html">Traversal</a>
+          
+        
+      </div>
+ -->
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="static-page-sidebar">
+        <ul><li><a href="/index.html"></a><ul><li>static<ul><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/graphs/traversal.html">Traversal</a><ul></ul></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a><ul></ul></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a><ul></ul></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a><ul></ul></li><li><a href="/static/graphs/components.html">Components</a><ul></ul></li><li><a href="/static/graphs/tree/index.html">Tree</a><ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a><ul></ul></li></ul></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a><ul></ul></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a><ul></ul></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a><ul></ul></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/math/calculus/derivative.html">Derivative</a><ul></ul></li><li><a href="/static/math/calculus/integral.html">Integral</a><ul></ul></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a><ul></ul></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a><ul></ul></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a><ul></ul></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a><ul></ul></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a><ul></ul></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a><ul></ul></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a><ul></ul></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a><ul></ul></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a><ul></ul></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a><ul></ul></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a><ul></ul></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a><ul></ul></li></ul></li></ul></li></ul></li></ul></li></ul>
+      </div>
+
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Derivative</h1>
+  </header>
+
+  <article class="post-content">
+    <style>
+  svg text {
+    font-size: 10px;
+  }
+  svg .title {
+    font-size: 25px;
+  }
+  .function-plot {
+    margin: 0px auto 20px;
+    display: block;
+  }
+</style>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
+<!-- brcdn link: https://www.brcdn.org/?module=simple-function-plot -->
+<!-- <script src="//brcdn.org/mv8UN3eh503yWlamNAqkLEpEA.js"></script> -->
+<script src="https://wzrd.in/standalone/function-plot@1.6.2"></script>
+
+<h2 id="physical-interpretation-of-the-derivative">Physical interpretation of the derivative</h2>
+
+<blockquote>
+  <p>The primary concept of the calculus deals with the rate of change of one variable with respect to another</p>
+</blockquote>
+
+<h3 id="instantaneous-speed">Instantaneous speed</h3>
+
+<p>Let’s imagine a person who traveles 90km in 3 hours, his <em>average speed</em> (rate of change of distance with respect to time) is 30km/h, of course he doesn’t need to travel at that fixed speed, he may slow down/speed up at different times during the time he traveled, for <em>many</em> purposes it suffices to know the average speed.</p>
+
+<p>However in many daily happenings the average speed is not a significant quantity, if a person traveling in an automobile strikes a tree the quantity that matters is the the speed at the <em>instant of collision</em> (this quantity might determine if he survives or not)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>concept</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>interval</td>
+      <td>happens over a <em>period</em> of time</td>
+    </tr>
+    <tr>
+      <td>instant</td>
+      <td>happens so fast that no time elapses</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Calculating the <em>average speed</em> is simple, by definition it’s the rate of change of distance with respect to time</p>
+
+<script type="math/tex; mode=display">\text{average speed} = \frac{\text{distance traveled}}{\text{interval of time}}</script>
+
+<p>The same computation process can’t be applied to get the <em>instantaneous speed</em> at some point in time since <em>instantaneous</em> means that the event happened in an infinitesimal or very short space of time, then distance and the time might be both zero hence using the <em>average speed</em> definition won’t help because $\frac{0}{0}$ is meaningless, we know that this is a physical reality but if we can’t calculate it it’s impossible to work with it matematically.</p>
+
+<p>We can’t compute it with the knowledge we have right now but we can surely approximate it, let’s say that there’s a ball dropped near the surface of the earth and we want to know its instantaneous speed after 4 seconds, to calculate the instantaneous speed at any point in time we need to know the distance it travels after some period of time, this relation could be expressed as a formula which relates distance and time traveled, the formula that relates the distance (in feet) with the time elapsed is</p>
+
+<script type="math/tex; mode=display">f(t) = s = 16t^2</script>
+
+<p>We can calculate the distance the ball traveled after 4 seconds by replacing $t$ with 4</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+s_4 &= 16 * 4^2 \\
+&= 256 \text{ feet}
+\end{align*} %]]></script>
+
+<p>Let’s also compute the distance the ball traveled after 5 seconds</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+s_5 &= 16 * 5^2 \\
+&= 400 \text{ feet}
+\end{align*} %]]></script>
+
+<p>The <em>average speed</em> for this interval of time is then</p>
+
+<script type="math/tex; mode=display">\text{average speed for the interval of time [4, 5]} = \frac{s_5 - s_4}{1} = \frac{400 - 256}{1} = 144 \;\text{feet/s}</script>
+
+<p>So the <em>average speed</em> during the fifth second is $144\;\text{feet/s}$, this quantity is no more than an approximation of the <em>instantaneous speed</em>, but we may improve the appoximation by calculating the average speed in the interval of time from 4 to 4.1 seconds which is</p>
+
+<script type="math/tex; mode=display">\text{average speed for the interval of time [4, 4.1]} = \frac{268.96 - 256}{0.1} = 129.6\;\text{feet/s}</script>
+
+<p>Let’s register more computations of the above process with smaller and smaller intervals of time in a table</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>time elapsed after 4 seconds</th>
+      <th>1</th>
+      <th>0.1</th>
+      <th>0.01</th>
+      <th>0.001</th>
+      <th>0.0001</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>average speed (in feet/s)</td>
+      <td>144</td>
+      <td>129.6</td>
+      <td>128.16</td>
+      <td>128.016</td>
+      <td>128.0016</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Of course no matter how small the interval is the result is not the instant speed at the instant $t=4$ however we now see that the average speed for the intervals seem to be approaching to the fixed number <strong>128 feet/s</strong></p>
+
+<h3 id="method-of-increments">Method of increments</h3>
+
+<p>Let’s redo the process described above over an <em>arbitrary</em> interval of time, to do so let’s introduce a quantity $h$ which represents an interval of time beggining at $t=4$ which extends before or after $t=4$ ($h$ is called an <em>increment</em> in $t$ because it’s some interval of time)</p>
+
+<p>The formula for the example above is</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\label{balldrop}
+s = 16t^2
+\end{equation}</script>
+
+<p>When calculated once by the end of the fourth second is</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\label{balldrop1}
+s_4 = 16 * 4^2 = 256
+\end{equation}</script>
+
+<p>When substituted with the interval $[4, 4 + h]$ is</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+s_4 + k &= 16 (4 + h) ^2 \notag \\
+  &= 256 + 128h + 16h^2 \label{balldrop2}
+\end{align} %]]></script>
+
+<p>Where $k$ is the additional distance the object falls $h$ seconds after the initial $4$ seconds, to obtain $k$ we have to subtract $\eqref{balldrop1}$ from $\eqref{balldrop2}$, the result is</p>
+
+<script type="math/tex; mode=display">k = 128h + 16h^2</script>
+
+<p>The average speed in this interval of time is then $\frac{k}{h}$, dividing both sides by $h$</p>
+
+<script type="math/tex; mode=display">\frac{k}{h} = 128 + 16h</script>
+
+<p>To compute the instantaneous speed the interval $h$ must become smaller and smaller until it reaches 0, if $h$ approaches 0 then $16h$ also approaches 0, we can conclude that the instantaneous speed when $t=4$ approaches <strong>128 feet/s</strong></p>
+
+<h4 id="generalization">Generalization</h4>
+
+<p>Let’s generalize the process above for \eqref{balldrop} for any value of $t$, to do so let’s apply the method of increments when $t$ is substituted with the interval $t + h$</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+s + k &= 16(t + h)^2 \\
+&= 16t^2 + 32th + h^2
+\end{align*} %]]></script>
+
+<p>Subtracting \eqref{balldrop} from the equation above</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+k &= 32th + h^2
+\end{align*} %]]></script>
+
+<p>Dividing both sides by $h$</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\label{balldrop-derivative}
+\frac{k}{h} = 32t + h
+\end{equation}</script>
+
+<p>Just like stated above to compute the instantaneous speed the interval $h$ must become smaller and smaller until it reaches 0, if $h$ approaches 0 then the instantaneous speed approaches $32t$ which is a function that will tell us the <em>instantaneous speed</em> of the falling object at any time $t$!</p>
+
+<p>It has been customarily since the days of Euler use $\Delta{t}$ (<em>delta</em> t) for the increment of $t$, $\Delta{t}$ means a “change in the value of $t$”. Thus $\Delta{t}$ has the same meaning as $h$, likewise $\Delta{s}$ has the same meaning as $k$, we can rewrite $\eqref{balldrop-derivative}$ as</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\label{balldrop3}
+\frac{\Delta{s}}{\Delta{t}} = 32t + 16\Delta{t}
+\end{equation}</script>
+
+<p>It’s desirable to have some short notation for the statement that we have evaluated the <em>limit</em> of as the values of $\Delta{t}$ approach 0 which can be expressed as</p>
+
+<script type="math/tex; mode=display">\lim_{\Delta{t} \to 0} \frac{\Delta{s}}{\Delta{t}}</script>
+
+<p>Where <em>lim</em> is an abbreviation for limit, replacing $\eqref{balldrop3}$ with this new notation</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\label{balldrop-limit}
+\lim_{\Delta{t} \to 0} \frac{\Delta{s}}{\Delta{t}} = 32t
+\end{equation}</script>
+
+<p>To some matematicians this notation is somewhat lengthy, hence matematicians replaced it with different variations</p>
+
+<script type="math/tex; mode=display">\lim_{\Delta{t} \to 0} \frac{\Delta{s}}{\Delta{t}} = \frac{ds}{dt} = s' = f'(t)</script>
+
+<p>The rate of change is not always related with time or distances, a generalization of the formulas above is needed, instead of the symbols $s$ and $t$ let’s use $x$ and $y$ without specifying what $x$ and $y$ mean physically</p>
+
+<p>Let’s calculate the instanteaneous rate of change of $y$ with respect to $x$ (the word <em>instantaneous</em> does not really apply because $x$ doesn’t represent time), using the <em>method of increments</em> on a function which depends on $x$</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+y &= f(x) \label{x-a} \\
+y + \Delta{y} &= f(x + \Delta{x}) \label{x-b}
+\end{align} %]]></script>
+
+<p>Subtracting \eqref{x-a} from \eqref{x-b}</p>
+
+<script type="math/tex; mode=display">\Delta{y} = f(x + \Delta{x}) - f(x)</script>
+
+<p>Dividing both sides by $\Delta{x}$</p>
+
+<script type="math/tex; mode=display">\frac{\Delta{y}}{\Delta{x}} = \frac{f(x + \Delta{x}) - f(x)}{\Delta{x}}</script>
+
+<p>The instantaneous rate of change of $y$ with respect to $x$ is reached when $\Delta{x}$ approaches 0</p>
+
+<script type="math/tex; mode=display">\begin{equation} \label{limit}
+\lim_{\Delta{x} \to 0} \frac{f(x + \Delta{x}) - f(x)}{\Delta{x}}
+\end{equation}</script>
+
+<p>We can also use the variations for the notation of the rate of change</p>
+
+<script type="math/tex; mode=display">\lim_{\Delta{t} \to 0} \frac{\Delta{y}}{\Delta{x}} = \frac{dy}{dx} = y' = f'(x)</script>
+
+<p>What we did with the process above was to <em>find the instantaneous rate of change of $y$ with respect to $x$</em>, we call this rate the <strong>derivative</strong> of $y$ with respect to $x$, the process of applying the method of increments to obtain the derivative is called <strong>differentiation</strong></p>
+
+<h2 id="geometric-interpretation-of-the-derivative">Geometric interpretation of the derivative</h2>
+
+<p>Let’s graph the following formula</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{yx2}
+y = x^2
+\end{equation}</script>
+
+<div id="geometric-representation"></div>
+
+<p>A point belonging to this geometrical representation of $y$ has the form $(x_1, f(x_1))$, e.g. when $x = 1, y = 1$ and when $x = 2, y = 4$</p>
+
+<div id="geometric-representation-two-points"></div>
+
+<p>Let’s say that $(x_1, f(x_1))$ is a fixed point on the curve (for the sake of this example the point will be $x_1 = 1, y_1 = 1$), any other point that belongs to the curve can make a line with the fixed point</p>
+
+<div id="geometric-representation-secant"></div>
+
+<p>The slope is a quantity that describes the direction and steepness of a line and is calculated by finding the ratio of the <em>vertical change</em> to the <em>horizontal change</em> between any <strong>distinct</strong> two points on the line, the previous statement expressed as a formula is</p>
+
+<script type="math/tex; mode=display">m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\Delta{y}}{\Delta{x}}</script>
+
+<p>What if the movable point get closer and closer to the fixed point such that $\Delta{x}$ reaches 0? That’s exactly the definition of the derivative which means that the derivative of a function will tell us the <em>slope</em> of the <a href="https://www.wikiwand.com/en/Tangent"><em>tangent</em> line</a> to the function (represented geometrically as a curve) at any derivable point!</p>
+
+<p>Let’s find the instantaneous rate of change of this function evaluated at $x=1$, using \eqref{limit}</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+m_1 = f'(1) &= \lim_{\Delta{x} \to 0} \frac{f(1 + \Delta{x}) - f(1)}{\Delta{x}} \\
+&= \lim_{\Delta{x} \to 0} \frac{(1 + \Delta{x}) ^ 2 - 1^2}{\Delta{x}} \\
+&= \lim_{\Delta{x} \to 0} \frac{1^2 + 2\Delta{x} - \Delta{x}^2 - 1^2}{\Delta{x}} \\
+&= \lim_{\Delta{x} \to 0} 2 - \Delta{x} \\
+&= 2
+\end{align*} %]]></script>
+
+<p>This fixed number is the value of the <em>slope</em> of the line tangent to the derivative function when it’s evaluated with $1$, let’s find out the <em>Point–slope</em> form of the <em>tangent</em> line whose <em>slope</em> is $m$</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{line-equation}
+y - y_1 = m(x - x_1)
+\end{equation}</script>
+
+<p>Substituting $y_1=1$, $m=2$ and $x_1=1$ computed above</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+y &= 2(x - 1) + 1 \\
+  &= 2x - 2 + 1 \\
+  &= 2x - 1
+\end{align*} %]]></script>
+
+<p>If we graph this line next to the geometric representation of $y = x^2$ we see that’s actually touching the curve at the point $(1, 1)$</p>
+
+<div id="slope-static-x-1"></div>
+
+<p>Before finding the equation of the slope for any value of $x$ let’s imagine the graph produced by the slope function, if we take a look at the graph produced by \eqref{yx2} we can see that for any point that belongs to the curve whose $x$ coordinate is negative the slope will be negative and for any point that belongs to the curve whose $x$ coordinate is positive the slope will be positive, expressed matematically</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+sgn(m) = \begin{cases}
+-1 & if x < 0, \\
+0 & if x = 0, \\
+1 & if x > 0.
+\end{cases} %]]></script>
+
+<p>Now that we have an idea of the values of the <em>slope</em> let’s find the value of $m$ for any value of $x$ that is the derivative of $y$ with respect to $x$, using \eqref{limit}</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+f'(x) &= \lim_{\Delta{x} \to 0} \frac{f(x + \Delta{x}) - f(x)}{\Delta{x}} \\
+&= \lim_{\Delta{x} \to 0} \frac{(x + \Delta{x}) ^ 2 - x^2}{\Delta{x}} \\
+&= \lim_{\Delta{x} \to 0} \frac{x^2 + 2x\Delta{x} - \Delta{x}^2 - x^2}{\Delta{x}} \\
+&= \lim_{\Delta{x} \to 0} 2x - \Delta{x} \\
+&= 2x
+\end{align*} %]]></script>
+
+<div id="slope-graph"></div>
+
+<p>By looking at the line we confirm our expectation of the values, any point which belongs to the line whose $x$ coordinate is negative has it’s $y$ coordinate (the value of the <em>slope</em>) negative as well, and any $x$ coordinate belonging to the line whose $x$ coordinate is positive has it’s $y$ coordinate positive as well.</p>
+
+<p>There are infinite tangent lines to the curve that represents \eqref{yx2}, in the following graph the equation of the line is computed dynamically based on the position of the mouse pointer (computed doing substitutions on \eqref{line-equation})</p>
+
+<div id="slope-dynamic"></div>
+
+<h3 id="second-derivative">Second Derivative</h3>
+
+<p>Going back to the falling object formula ($s$ is the distance the object moved after $t$ seconds have elapsed)</p>
+
+<script type="math/tex; mode=display">s = 16t^2</script>
+
+<p>The instantaneous rate of change of the distance with respect to time is</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\label{balldrop-first-derivative}
+s' = 32t
+\end{equation}</script>
+
+<p>$s’$ represents speed and is customarily to use $v$ (the first letter of velocity) instead of $s’$</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\label{balldrop-velocity}
+v = 32t
+\end{equation}</script>
+
+<p>Now $v$ is a function of $t$ and we can ask for the rate of change of the $v$ with respect to $t$, this is called <em>instantaneous acceleration</em>, <em>acceleration</em> is a change of speed that takes place during an interval of time, if there weren’t acceleration in a moving object the moving object will be moving the rest of his life with a constant speed, if the speed is given as a function of time then we can calculate the <em>instantaneous</em> rate of change of the velocity with respect to time</p>
+
+<script type="math/tex; mode=display">\begin{equation}
+\label{balldrop-second-derivative}
+v' = 32
+\end{equation}</script>
+
+<p>The <em>instantaneous acceleration</em> obtained above is the derived function of the <em>isntantaneous speed</em> which is the derived function of the <em>distance function</em>, then we can relate the <em>instantaneous acceleration</em> and the <em>distance function</em> with the following notation</p>
+
+<script type="math/tex; mode=display">s'' \quad or \quad \frac{d^2s}{dt^2}</script>
+
+<p>The function above is called the <em>second derived function</em> of \eqref{balldrop}, this notation applied to the generalized version using the variables $x$ and $y$ is</p>
+
+<script type="math/tex; mode=display">\frac{d^2y}{dx^2} \quad or \quad y'' \quad or \quad f''(x)</script>
+
+<h3 id="the-chain-rule">The chain rule</h3>
+
+<p>Physical problems lead to more complicated algebraic functions, for example $y = \sqrt{x^2 + 1}$ which arises when one want’s to work with the upper half of the parabola $y^2 = x^2 + 1$, we can express this function as a combination of two functions:</p>
+
+<script type="math/tex; mode=display">y = \sqrt{u}\;, \quad u = x^2 + 1</script>
+
+<p>If $y$ is a function of $u$ and $u$ is a function of $x$ then:</p>
+
+<script type="math/tex; mode=display">\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}</script>
+
+<p>Expressed in the function notation</p>
+
+<script type="math/tex; mode=display">y = f(u) \quad \text{and} \quad u = g(x)</script>
+
+<p>Then</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{chain-rule}
+\frac{dy}{dx} = f'(u) \cdot g'(x)
+\end{equation}</script>
+
+<p>Returning to the original problem, let’s find the derivative of $y = \sqrt{x^2 + 1}$ with respect to $x$ using the <em>chain rule</em></p>
+
+<p>Let $f(u) = u^{1/2}$ and $g(x) = x^2 + 1$</p>
+
+<script type="math/tex; mode=display">\frac{dy}{dx} = f'(u) \cdot g'(x) = \frac{u^{-1/2}}{2} \cdot 2x = \frac{x}{\sqrt{x^2 + 1}}</script>
+
+<h4 id="differentiation-of-implicit-functions">Differentiation of implicit functions</h4>
+
+<p>Going back to the definition of a function, it’s a relation between two variables such that given a value of one in some domain there’s a unique value determined for the second variable however functions often occur in forms where giving the independent variable some value will not result in a unique value, for example the equation of a circle of radius equal to 5 is:</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{implicit}
+x^2 + y^2 = 25
+\end{equation}</script>
+
+<p>Here $y$is not expressed in terms of $x$, solving for $x$ we have two equations:</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{explicit}
+y = \sqrt{25 - x^2} \quad y = -\sqrt{25 - x^2}
+\end{equation}</script>
+
+<p>\eqref{implicit} represents the circle <em>implicitly</em> and \eqref{explicit} represents the equation <em>explicitly</em></p>
+
+<p>We know that $y$ in \eqref{implicit} represents some function of $x$, if we recognize that the left side of \eqref{implicit} is only a set of terms in $x$ then we can differentiate it, the problem is to find the derivative of $y^2$ which should remind us of the chain rule ($y$ plays the role of $u$ in the chain rule)</p>
+
+<script type="math/tex; mode=display">\frac{d(y^2)}{dx} = 2y \frac{dy}{dx}</script>
+
+<p>Applying a differentiation process to \eqref{implicit}</p>
+
+<script type="math/tex; mode=display">2x + 2y \frac{dy}{dx} = 0</script>
+
+<p>Solving for $\frac{dy}{dx}$</p>
+
+<script type="math/tex; mode=display">\frac{dy}{dx} = -\frac{x}{y}</script>
+
+<h3 id="theorems-on-differentiation">Theorems on differentiation</h3>
+
+<p>The following theorems and their proofs can be found on “Calculus: An Intuitive and Physical Approach”</p>
+
+<p>Let $u,v,w$ be functions of $x$:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$y = cu$</td>
+      <td>$y’ = cu’$ where $c$ is some constant value</td>
+    </tr>
+    <tr>
+      <td>$y = u \pm v$</td>
+      <td>$y’ = u’ \pm v’$</td>
+    </tr>
+    <tr>
+      <td>$y = u_1 + u_2 + \ldots + u_n$</td>
+      <td>$y’ = u_1’ + u_2’ + \ldots + u_n’$</td>
+    </tr>
+    <tr>
+      <td>$y = uv$</td>
+      <td>$y’ = uv’ + u’v$</td>
+    </tr>
+    <tr>
+      <td>$y = uvw$</td>
+      <td>$y’ = uvw’ + uv’w + u’vw $</td>
+    </tr>
+    <tr>
+      <td>$y = \frac{u}{v}$</td>
+      <td>$y’ = \frac{u’v - uv’}{v^2} $</td>
+    </tr>
+    <tr>
+      <td>$y = x^n$</td>
+      <td>$y’ = nx^{n-1}$, <a href="http://ocw.mit.edu/courses/mathematics/18-01-single-variable-calculus-fall-2006/lecture-notes/unit1_sept08.pdf">proof (on page 6)</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="applications-of-the-derivative">Applications of the Derivative</h2>
+
+<ul>
+  <li>Determination of the velocity and acceleration of a particle given its distance as a function of time</li>
+  <li>Concentrate light, sound and radio waves in a particular direction (see the <a href="http://www.wikiwand.com/en/Parabola#/section_Proof_of_the_reflective_property">reflective property of the parabola</a>)</li>
+  <li>Finding the maximum/minimum value of a function, i.e. find the largest/smallest value of $f(x)$ when $a \leq x \leq b$, a well described solution to this problem can be found <a href="https://www.whitman.edu/mathematics/calculus/calculus_06_Applications_of_the_Derivative.pdf">here</a></li>
+  <li>Approximation of the roots of a polynomial with Newton’s method, described <a href="https://www.whitman.edu/mathematics/calculus/calculus_06_Applications_of_the_Derivative.pdf">here</a></li>
+</ul>
+
+<h3 id="maximaminima">Maxima/minima</h3>
+
+<p>Let’s say that we throw an object into the air and we want to know the maximum height it acquires, as it rises it’s velocity decreases and when it reaches the highest point its velocity is zero, we also know that the velocity is the instantaneous rate of change of height with respect to time hence the derivative is involved in this process and therefore we expect it to be involved in other maxima/minima problems</p>
+
+<p>More generally if $y$ is a function of $x$ it seems that to find the maximum value of $y$ we must find $y’$ and set it to 0</p>
+
+<p>Let’s graph a function and study its peaks</p>
+
+<script type="math/tex; mode=display">y = \frac{x^3}{3} - 2x^2 + 3x + 2</script>
+
+<div id="maxima-minima-f"></div>
+
+<p>We can see that the function has a maximum value of $3$ near $x = 1$ and a minimum value of $2$ near $x = 3$, if we analyze the slope of the function near those points we will see that on the left of $x = 1$ the slope is positive and on the right of $x = 1$ the slope is negative, since we know that the derivative represents the slope of a function we can also expect that the derivative of this function near $x = 1$ will go from a positive value to a negative value intersecting the x-axis, if we analyze the slope near $x = 3$ will will see the same behavior with the slope but it’s going from a negative value to a positive one</p>
+
+<p>Graphing the derivative function confirms our expectations</p>
+
+<script type="math/tex; mode=display">y' = x^2 - 4x + 3</script>
+
+<div id="maxima-minima-f-derivative"></div>
+
+<p>Now the problem reduces to finding the points where $y’ = 0$ in the derivative function, finding them will tell us exactly the maximum/minimum value of $y$, finding the values of $x$ when $y’ = 0$</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+0 &= x^2 - 4x + 3 \\
+0 &= (x - 1)(x - 3)
+\end{align*} %]]></script>
+
+<p>And we see that:</p>
+
+<script type="math/tex; mode=display">y' = 0 \quad when \quad x = 1 \quad and \quad x = 3</script>
+
+<p>The process didn’t actually find the maximum/minimum values since for $x &gt; 3$ the function increases indefinitely, same goes when $x &lt; 1$ but in this case the function decreases indefinitely, these values are called the <em>relative maxima/minima</em> because <strong>near</strong> $x = 3$ or $x = 1$ these points are the minimum/maximum that can be found</p>
+
+<h4 id="applications-of-maximaminima">Applications of maxima/minima</h4>
+
+<ul>
+  <li>refraction of light, we can build a function of time which relates the velocity/distance the light travels in different mediums, finding the derivative and making it equal to $0$ will find the relative minimum time needed to go from one point in the medium $a$ to a point in a medium $b$</li>
+  <li>finding the sides of the rectangle with the maximum perimeter</li>
+</ul>
+
+<h3 id="newthon-raphson-method">Newthon-Raphson method</h3>
+
+<p>The slope of the tangent line of a function $f(x)$ at any derivable point is given by $m = f’(x)$, let $x_1$ be a derivable point then the slope of the tangent line at $x_1$ is $m_1 = f’(x_1)$, the <em>Point–slope</em> form of the <em>tangent</em> line whose <em>slope</em> is $f’(x_1)$ is</p>
+
+<script type="math/tex; mode=display">y - y_1 = m_1(x - x_1) \\
+y - f(x_1) = f'(x_1) \cdot (x - x_1)</script>
+
+<p>Newton find out that if we find the intercept of this tangent line with the $x$-axis at some initial guess $x_1$, the value found approaches one of the roots of $f(x)$, i.e. when $f(x) = 0$ (obviously given that it has roots)</p>
+
+<p>if $y = f(x) = 0$ then the equation of the line is</p>
+
+<script type="math/tex; mode=display">0 - f(x_1) = f'(x_1) \cdot (x - x_1)</script>
+
+<p>Solving for $x$</p>
+
+<script type="math/tex; mode=display">\begin{equation}\label{newton-raphson}
+x = x_1 - \frac{f(x_1)}{f'(x_1)}
+\end{equation}</script>
+
+<p>$x$ in the last equation is the abscissa of the next approximation of one of the roots of $x$, if we run the algorithm above a few times with an acceptable initial guess then we’ll obtain a better approximation of one of the roots of $f(x)$</p>
+
+<div id="newton-raphson"></div>
+<p><button id="run-newton-raphson">Newton-Raphson</button></p>
+
+<h4 id="finding-the-square-root-of-a-number">Finding the square root of a number</h4>
+
+<p>Let’s say that we want to find the square root of a number $n$, this is equivalent to finding the solution to</p>
+
+<script type="math/tex; mode=display">x^2 = n</script>
+
+<p>The function to use is then</p>
+
+<script type="math/tex; mode=display">f(x) = x^2 - n</script>
+
+<p>whose derivative is</p>
+
+<script type="math/tex; mode=display">f'(x) = 2x</script>
+
+<p>Substituting in \eqref{newton-raphson}</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+x &= x_1 - \frac{x_1^2 - n}{2x_1} \\
+&= x_1 - \frac{x_1}{2} + \frac{n}{2x_1} \\
+&= \frac{x_1}{2} + \frac{n}{2x_1} \\
+&= \frac{1}{2} \cdot \big ( x_1 + \frac{n}{x_1} \big )
+\end{align*} %]]></script>
+
+<pre><code class="language-cpp">double square_root(double n) {
+  // initial guess
+  double EPS = 1e-15;
+  double x0 = 1;
+  while (true) {
+    double xi = (x0 + n / x0) / 2.0;
+    if (abs(x0 - xi) &lt; EPS) {
+      break;
+    }
+    x0 = xi;
+  }
+  return x0;
+}
+</code></pre>
+
+<script src="/js/calculus/derivative.js"></script>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Mauricio Poppe</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Mauricio Poppe</li>
+          <li><a href="mailto:mauricio.poppe@gmail.com">mauricio.poppe@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/maurizzzio">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">maurizzzio</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/iMauricio">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">iMauricio</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Layout run failed ._.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: 'none',
+    tex2jax: {
+      // http://docs.mathjax.org/en/latest/options/tex2jax.html
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']]
+      // processEnvironments: false
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      },
+      Macros: {
+        edge: '\\mathrel{-}',
+        notedge: '\\not\\edge'
+      }
+    },
+    'HTML-CSS': {
+      imageFont: null
+    }
+  });
+</script>
+
+<script type="text/javascript">
+/*
+ * MathJax eqn preview for a tags
+ *
+ * Copyright (c) 2015 Mauricio Poppe
+ * Licensed under the MIT license.
+ */
+
+(function () {
+  var $container = $('.post-content');
+  var $tooltip = $('<div />').addClass('mathjax-tooltip');
+  $container.append($tooltip);
+
+  function onMouseOver(ev) {
+    var a = ev.currentTarget;
+    var $number = $(a.hash);
+    var $root = $number.closest('.MathJax_Display');
+    var bounds = $(a).offset();
+    var containerBounds = $container.offset();
+
+    $tooltip.stop(true, true);
+    $tooltip.empty();
+    $tooltip.append($root.clone());
+    $tooltip.css({
+      top: bounds.top - containerBounds.top - $tooltip.height() - 5,
+      left: -1
+    });
+    $tooltip.addClass('active');
+  }
+
+  function onMouseOut(a) {
+    $tooltip.removeClass('active');
+  }
+
+  MathJax.Hub.Queue(function () {
+    $container.on('mouseover', 'a[href*="mjx-eqn-"]', onMouseOver);
+    $container.on('mouseout', 'a[href*="mjx-eqn-"]', onMouseOut);
+  });
+
+})();
+</script>
+
+</footer>
+
+
+  </body>
+
+</html>

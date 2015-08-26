@@ -1,0 +1,143 @@
+(function () {
+  var d3 = window.d3;
+  var functionPlot = window.functionPlot;
+  var chart;
+
+  functionPlot({
+    target: '#area-a-b',
+    xDomain: [0, 3],
+    yDomain: [0, 5],
+    data: [{
+      fn: 'x * x'
+    }],
+    annotations: [
+      { x: 1, text: 'a' },
+      { x: 2, text: 'b' }
+    ]
+  });
+
+  functionPlot({
+    target: '#area-first-approximation',
+    xDomain: [0, 3],
+    yDomain: [0, 5],
+    annotations: [
+      { x: 1, text: 'a' },
+      { x: 2, text: 'b' },
+      { y: 4, text: 'm_1' },
+    ],
+    data: [{
+      fn: 'x * x'
+    }, {
+      fn: 'x * x',
+      range: [1, 2],
+      samples: 2,
+      graphOptions: {
+        closed: true
+      }
+    }]
+  });
+
+  functionPlot({
+    target: '#area-second-approximation',
+    xDomain: [0, 3],
+    yDomain: [0, 5],
+    annotations: [
+      { x: 1, text: 'a' },
+      { x: 2, text: 'b' },
+      { y: 4, text: 'm_1' },
+      { y: 2.25, text: 'm_2' },
+    ],
+    data: [{
+      fn: 'x * x'
+    }, {
+      fn: 'x * x',
+      range: [1, 2],
+      samples: 3,
+      graphOptions: {
+        closed: true
+      }
+    }]
+  });
+
+  (function () {
+    var options = {
+      target: '#sum-area',
+      disableZoom: true,
+      xDomain: [0, 3],
+      yDomain: [0, 5],
+      annotations: [
+        { x: 1, text: 'a' },
+        { x: 2, text: 'b'  }
+      ],
+      data: [{
+        fn: 'x * x'
+      }, {
+        fn: 'x * x',
+        range: [1, 2],
+        samples: 30,
+        graphOptions: {
+          closed: true
+        }
+      }]
+    };
+
+    functionPlot(options);
+    var $el = document.querySelector('#sum-area-slider');
+    $el.addEventListener('change', function () {
+      var value = this.value;
+      options.data[1].samples = value;
+      functionPlot(options);
+    });
+
+  })();
+
+  functionPlot({
+    target: '#numerical-trapezoid',
+    xDomain: [-2.5, 2.5],
+    yDomain: [-1, 7],
+    disableZoom: true,
+    annotations: [
+      { x: -2, text: 'y_0' },
+      { x: -1.5, text: 'y_1' },
+      { x: -1, text: 'y_2' },
+      { x: -0.5, text: 'y_3' },
+      { x: 0.5, text: 'y_4' },
+      { x: 1, text: 'y_5' },
+      { x: 1.5, text: 'y_6' },
+      { x: 2 , text: 'y_7' }
+    ],
+    data: [{
+      fn: '-x * x + 4'
+    }, {
+      fn: '-x * x + 4',
+      range: [-2, 2],
+      samples: 9,
+      graphOptions: {
+        type: 'line',
+        closed: true
+      }
+    }]
+  });
+
+  functionPlot({
+    target: '#numerical-simpson',
+    xDomain: [-2, 2],
+    yDomain: [-1, 7],
+    annotations: [
+      { x: -1, text: '-h' },
+      { x: 0, text: '0' },
+      { x: 1, text: 'h' },
+      { y: 2, text: 'y_0' },
+      { y: 3, text: 'y_1' },
+      { y: 6, text: 'y_2' },
+    ],
+    data: [{
+      fn: 'x * x + 3 + 2 * x',
+      range: [-1, 1],
+      graphOptions: {
+        closed: true
+      }
+    }]
+  });
+
+})();
