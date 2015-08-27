@@ -538,96 +538,6 @@ bool euler_trail_directed(int n, vector&lt;pair&lt;int, int&gt; &gt; &amp;edges)
       });
     }
 
-    // function* dfs(v) {
-    //   yield function () {
-    //     instance.selector.getNode({ id: v })
-    //       .transition()
-    //       .attr('fill', 'black');
-    //   }
-
-    //   for (; edge_pointer[v] < g[v].length; edge_pointer[v] += 1) {
-    //     var edge = g[v][edge_pointer[v]];
-    //     if (edge_id[edge.id]) {
-    //       continue;
-    //     }
-
-    //     yield function () {
-    //       instance.selector.traverseAllEdgesBetween(
-    //         { source: v, target: edge.id }
-    //       )
-    //     }
-
-    //     edge_id[edge.id] = true;
-    //     yield* dfs(edge.to);
-    //   }
-    // }
-
-    // function euler() {
-    //   var i;
-    //   for (i = 0; i < data.nodes.length; i += 1) {
-    //     g[i] = [];
-    //     edge_pointer[i] = 0;
-    //   }
-    //   for (i = 0; i < data.links.length; i += 1) {
-    //     var u = data.links[i].source.index;
-    //     var v = data.links[i].target.index;
-    //     g[u].push({ to: v, id: data.links[i].id });
-    //     g[v].push({ to: u, id: data.links[i].id });
-    //   }
-
-    //   var iterator = dfs(0);
-
-    //   function run() {
-    //     var next = iterator.next();
-    //     if (!next.done) {
-    //       // highlight edge
-    //       if (next.value.command === 'edge') {
-    //         var edges = data.links;
-    //         var i;
-    //         var id = next.value.edge;
-    //         for (i = 0; i < edges.length; i += 1) {
-    //           if (edges[i].id === id) {
-    //             break;
-    //           }
-    //         }
-    //         edges[i]["class"] = "highlight";
-    //       } else {
-    //         if (next.value.command === 'push') {
-    //           stack.push(next.value.node);
-    //         } else {
-    //           trail.push(stack.pop());
-    //         }
-
-    //         // stack animations
-    //         var stackSelection = d3.select('#stack').selectAll('span')
-    //           .data(stack)
-    //         stackSelection.enter()
-    //           .append('span')
-    //           .style('opacity', 0)
-    //           .text(function (d) { return d; })
-    //         .transition()
-    //           .style('opacity', 1);
-    //         stackSelection.exit()
-    //           .transition()
-    //           .style('opacity', 0)
-    //           .remove();
-
-    //         d3.select('#trail').selectAll('span')
-    //           .data(trail)
-    //           .enter()
-    //           .append('span')
-    //           .style('opacity', 0)
-    //           .text(function (d) { return d; })
-    //         .transition()
-    //           .style('opacity', 1);
-    //       }
-    //       instance.update();
-    //       setTimeout(run, 1000);
-    //     }
-    //   }
-    //   run();
-    // }
-
     var root = d3.select(options.target).node();
     var trackRun = false;
     document.addEventListener('scroll', function (e) {
@@ -672,7 +582,7 @@ bool euler_trail_directed(int n, vector&lt;pair&lt;int, int&gt; &gt; &amp;edges)
       <div class="footer-col  footer-col-1">
         <ul class="contact-list">
           <li>Mauricio Poppe</li>
-          <li><a href="mailto:mauricio.poppe@gmail.com">mauricio.poppe@gmail.com</a></li>
+          <li><a href="mailto:mauricio.poppe [at] gmail [dot] com">mauricio.poppe [at] gmail [dot] com</a></li>
         </ul>
       </div>
 
