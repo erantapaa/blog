@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Integer Factorization</title>
+  <title>Complex numbers</title>
   <meta name="description" content="Layout run failed ._.
 ">
 
@@ -16,7 +16,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://maurizzzio.github.io/static/math/number-theory/integer-factorization.html">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/math/numeral-systems/complex-numbers.html">
   <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
 
 </head>
@@ -189,253 +189,302 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Integer Factorization</h1>
+    <h1 class="post-title">Complex numbers</h1>
   </header>
 
   <article class="post-content">
-    <p>Integer factorization is the process of decomposing a <em>composite</em> number into a product of smaller integers, if these integers are restricted to be prime numbers then the process is called <strong>prime factorization</strong></p>
-
-<p>The fundamental theorem of arithmetic states that ever positive integer can be written uniquely as a product of primes</p>
-
-<p>example:</p>
-
-<script type="math/tex; mode=display">65340 = 2^2 \cdot 3^3 \cdot 5 \cdot 11^2</script>
-
-<h2 id="trial-division">Trial division</h2>
-
-<p>Trial division is the simplest algorithm for factoring an integer, we assume that $s$ and $t$ are factors of a number $n$ such that $n = st$ and $s \leq t$ (note that $s$ and $t$ do not need to be prime numbers), when a divisor $s$ is found then $n / s$ is also a factor</p>
-
-<pre><code class="language-cpp">vector&lt;int&gt; trial_division(int n) {
-  for (int i = 2; i * i &lt;= n; i += 1) {
-    if (n % i == 0) {
-      // `n` is a composite number
-      return vector&lt;int&gt; {i, n / i};
-    }
+    <style>
+  svg text {
+    font-size: 10px;
   }
-  // n is a prime number
-  return vector&lt;int&gt; {n};
-}
-</code></pre>
+  svg .title {
+    font-size: 25px;
+  }
+  .function-plot {
+    margin: 0px auto 20px;
+    display: block;
+  }
+</style>
 
-<h2 id="fermat-factorization">Fermat factorization</h2>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 
-<p>Fermat’s observation was to write an integer as the difference of squares</p>
+<!-- brcdn link: https://www.brcdn.org/?module=simple-function-plot -->
+<!-- <script src="//brcdn.org/mv8UN3eh503yWlamNAqkLEpEA.js"></script> -->
+<script src="https://wzrd.in/standalone/function-plot@1.12.2"></script>
+
+<h2 id="imaginary-numbers">Imaginary numbers</h2>
+
+<ul>
+  <li>Invented to solve problems where an equation has no real roots e.g. $x^2 + 16 = 0$, the idea of declaring the existence of a quantity $i$ such that $i^2 = -1$ allows us to express the solution as</li>
+</ul>
+
+<script type="math/tex; mode=display">x = \sqrt{-16} = \sqrt{16i^2} = \pm4i</script>
+
+<p>The set represented by $\mathbb{I}$ defines an imaginary number as</p>
+
+<script type="math/tex; mode=display">i^2 = -1</script>
+
+<h3 id="powers-of-i">Powers of $i$</h3>
+
+<p>If $i^2 = -1$ then $i^4 = i^2i^2 = -1 * -1 = 1$</p>
+
+<p>Therefore we have the sequence</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
-\begin{align}
-n &= x^2 - y^2 \label{fermat} \\
-&= (x + y)(x - y)
-\end{align} %]]></script>
+\begin{array}{ccccc}
+\hline
+i & i^2 & i^3 & i^4 & i^5 & \ldots \\
+\hline
+i & -1 & -i & 1 & i & \ldots \\
+\hline
+\end{array} %]]></script>
 
-<p>Assuming that $s$ and $t$ are <strong>odd</strong> factors of $n$ such that $n = st$ and $s \leq t$ we can find $x$ and $y$ such that</p>
+<h2 id="complex-numbers">Complex numbers</h2>
+
+<p>A complex number is just the sum of a real and an imaginary number</p>
+
+<script type="math/tex; mode=display">z = a + bi  \quad a,b \in \mathbb{R}, \quad i^2 = -1</script>
+
+<h3 id="operations-on-complex-numbers">Operations on complex numbers</h3>
+
+<p>Given two complex numbers</p>
+
+<script type="math/tex; mode=display">z_1 = a_1 + b_1i \\
+z_2 = a_2 + b_2i</script>
+
+<h4 id="addition-and-subtraction">Addition and subtraction</h4>
+
+<script type="math/tex; mode=display">z_1 \pm z_2 = a_1 \pm a_2 + (b_1 \pm b_2)i</script>
+
+<h4 id="product">Product</h4>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align*}
-s &= x - y \\
-t &= x + y
+z_1z_2 &= a_1a_2 + a_1b_2i + a_2b_1i + b_1b_2i^2 \quad \text{given that $i^2 = -1$} \\
+&= (a_1a_2 - b_1b_2) + (a_1b_2 + b_1a_2)i
 \end{align*} %]]></script>
 
-<p>Adding both equations</p>
+<hr />
 
-<script type="math/tex; mode=display">s + t = 2x \\
-x = \frac{s + t}{2}</script>
+<p>Given the complex number</p>
 
-<p>Also</p>
+<script type="math/tex; mode=display">z = a + bi</script>
 
-<script type="math/tex; mode=display">y = \frac{t - s}{2}</script>
+<h4 id="norm-modulus-or-absolute-value">Norm (modulus or absolute value)</h4>
 
-<p>Since we assumed that $s$ and $t$ are odd numbers, their difference is an even number which is divisible by $2$ therefore $x$ and $y$ are integers, since $s &gt; 1$ and $t \geq s$ we find that $x \geq 1$ and $y \geq 0$</p>
+<script type="math/tex; mode=display">|z| = \sqrt{a^2 + b^2}</script>
 
-<p>From \eqref{fermat} we also know that $x = \sqrt{n + y^2}$ and hence $x \geq \sqrt{n}$, also $x = \tfrac{s + t}{2}$ and we know that the upper bound of $s$ happens when $s$ is as close as $t$ as possible, given that $s \leq t$, $x \leq \tfrac{t + t}{2} \leq n$</p>
+<h4 id="complex-conjugate">Complex conjugate</h4>
 
-<p>Implementation notes: since $s$ and $t$ are odd numbers, their product $n$ is also an odd number, therefore the implementation below works with odd values of $n$</p>
+<p>The product of two complex numbers where the only difference between them is the <strong>sign</strong> of the imaginary part is</p>
 
-<pre><code class="language-cpp">/**
- * Factorization of an odd number `n` based on Fermat's
- * factorization algorithm
- *
- * @param  {int} n
- * @return {vector&lt;int&gt;} a vector with two odd integers if `n` is not a
- * prime number, a single integer if `n` is a prime number
- */
-vector&lt;int&gt; fermat_factorization(int n) {
-  for (int x = (int) ceil(sqrt(n)); x &lt;= n; x += 1) {
-    int ySquared = x * x - n;
-    // check if `y` is the square of some number
-    int y = (int) sqrt(ySquared);
-    if (y * y == ySquared) {
-      int s = x - y;
-      int t = x + y;
-      // `s` must be &gt; 1
-      if (s != 1 &amp;&amp; t != n) {
-        return vector&lt;int&gt; {s, t};
-      }
-    }
-  }
-  // n is a prime number
-  return vector&lt;int&gt; {n};
-}
-</code></pre>
+<script type="math/tex; mode=display">(a + bi)(a - bi) = a^2 - abi + abi - b^2i^2 = a^2 + b^2</script>
 
-<h3 id="pollards-rho-factorization">Pollard’s Rho factorization</h3>
+<p>This quantity $a - bi$ is called the <em>complex conjugate</em> of $z$ (denoted as $z^*$), it implies that</p>
 
-<p>Pollard’s Rho factorization is a probabilistic factorization algorithm based on the assumption that a number $n$ is a composite number and the following facts:</p>
+<script type="math/tex; mode=display">zz^* = |z|^2</script>
 
-<ul>
-  <li>since $n$ is a <strong>composite number</strong> there must be a factor $d$</li>
-  <li>let $a$, $b$ two positive integers, if $a \equiv b \pmod{d}$ then the difference $a - b$ is a multiple of $d$, since $n$ is also a multiple of $d$ some multiple of $d$ is a divisor of $n$ and $a - b$, particularly $gcd(a - b, n)$ is a divisor of $n$, let $gcd(a - b, n) &gt; 1$ then we have found two factors of $n$ ($gcd(a - b, n), \tfrac{n}{gcd(a - b, n)}$)</li>
-</ul>
+<h4 id="inverse">Inverse</h4>
 
-<p>Now the problem is reduced to find $a$ and $b$ such that $gcd(a - b, n) &gt; 1$, we can use the following algorithm which picks random numbers in the range $[1, n - 1]$</p>
+<script type="math/tex; mode=display">z^{-1} = \frac{1}{z}</script>
 
-<pre><code class="language-text">let `n` be the number to be factorized
-let `x` be an array of integers
+<p>Multiplying the numerator and denominator with the conjugate of $z$ (so that we have a real part on the denominator)</p>
 
-x[0] = random integer in the range [1, n - 1]
-while we haven't two numbers such that `gcd(x_i, x_j, n) &gt; 1`
-  x[i] = random integer in the range [1, n - 1]
-  for all `j &lt; i` and `j &gt;= 0`
-    if `gcd(x[i] - x[j], n) &gt; 1`
-      return x[i], x[j]
-</code></pre>
+<script type="math/tex; mode=display">z^{-1} = \frac{1}{z} \frac{z^*}{z^*} = \frac{z^*}{zz^*} = \frac{z^*}{|z|^2}</script>
 
-<p><a href="http://www.cs.colorado.edu/~srirams/classes/doku.php/pollard_rho_tutorial">This page</a> has a good explanation on how this algorithm will find $a$ and $b$ with a probability $~50\%$ after $\sqrt{n}$ iterations, the algorithm above is not very helpful though since at the $k$ iteration we have to do $k - 1$ pairwise checks</p>
+<h4 id="square-root-of-i">Square root of $i$</h4>
 
-<p>Here’s another algorithm to pick random numbers, let $x$ be an integer in the range $[1, n - 1]$, a function that will generate a number in the range $[1, n - 1]$ based on a previous number is</p>
+<p>We’re trying to find a complex number $z$ such that</p>
 
-<script type="math/tex; mode=display">f(x) = x^2 + c \pmod{n}</script>
+<script type="math/tex; mode=display">\sqrt{i} = z \\
+i = z^2</script>
 
-<p>Because there are only $n - 1$ possible values our generator will eventually fall into a cycle, for example let $n = 55, c = 2, x = 2$</p>
+<p>Assuming that $z$ is the complex number $z = a + bi$</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align*}
-x_0 &= 2 \\
-x_1 &= (2^2 + 2) \pmod{55} = 6 \\
-x_2 &= (6^2 + 2) \pmod{55} = 38 \\
-x_3 &= (38^2 + 2) \pmod{55} = 16 \\
-x_4 &= (16^2 + 2) \pmod{55} = 38 \text{ which is equal to $x_2$ }
+i &= (a + bi)^2 \\
+&= (a + bi)(a + bi) \\
+&= a^2 - b^2 + 2abi
 \end{align*} %]]></script>
 
-<p>Pollard detected the cycle using <a href="https://www.wikiwand.com/en/Cycle_detection#/Tortoise_and_hare">Floyd’s cycle-finding algorithm</a> which is based on two pointers which move through a sequence at different speeds, one moves a unit and the other moves two units each time, if there’s a cycle eventually the two pointers will encounter at some element belonging to the cycle, if we’ve analyzed all the elements of the sequence and saw not a single contiguous pair fullfills $gcd(x_i - x_{i + 1}, n) &gt; 1$ we need to choose other values for $x_0, a$ and rerun the algorithm</p>
+<p>Therefore</p>
 
-<pre><code class="language-cpp">// C++11
-#include &lt;random&gt;
+<p>$(a^2 - b^2) + (2ab)i = 0 + 1i$</p>
 
-/**
- * Computes a factor of `n` which is greater than `1`
- * @param {long long} n The number to be factorized
- * @return {long long} A positive integer which is a factor of `n`
- * when the algorithm successfully finds a factor of `n`, -1 otherwise
- */
-long long pollard_rho(long long n) {
-  if (n % 2 == 0) {
-    return 2;
-  }
+<p>Equaling reeal and imaginary parts</p>
 
-  std::random_device rd;
-  std::mt19937 engine(rd());
-  std::uniform_int_distribution&lt;long long&gt; dis(1, n - 1);
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+a^2 - b^2 &= 0 \\
+2ab = 1
+\end{align*} %]]></script>
 
-  long long x = dis(engine);
-  long long c = dis(engine);
-  long long y = x;   // y = x^2 + c (mod n)
-  do {
-    // tortoise goes x = f(x)
-    x = ((x * x) % n + c) % n;
+<p>Therefore $a = \pm b$, replacing $a = -b$ in the second equation we obtain $-2b^2 = 1$ which is not satisfied by any real number $b$ therefore the case $a = -b$ is impossible,<br />
+replacing $a = b$ in the second equation we obtain $2a^2 = 1$ so</p>
 
-    // hare goes y = f(f(y))
-    y = ((y * y) % n + c) % n;
-    y = ((y * y) % n + c) % n;
+<script type="math/tex; mode=display">2a^2 = 1 \\
+a^2 = \frac{1}{2} \\
+a = b = \pm \sqrt{\frac{1}{2}} = \pm \frac{1}{\sqrt{2}}</script>
 
-    long long gcd = __gcd(abs(x - y), n);
-    if (gcd &gt; 1) {
-      return gcd;
-    }
-  } while (x != y);
+<p>Finally the value of $\sqrt{i}$ is</p>
 
-  return -1;
-}
+<script type="math/tex; mode=display">\sqrt{i} = (a + bi) = \pm{\frac{1}{\sqrt{2}}} (1 + i)</script>
 
-/**
- * Pollard rho factorization runner, it makes multiple calls to
- * `pollard_rho` until a factor is found
- * @param {long long} n The number to be factorized
- * @return {long long} A factor of `n` (it is `n` when `n` is a prime number)
- */
-long long pollard_rho_factorization(long long n) {
-  long long factor;
-  do {
-    factor = pollard_rho(n);
-  } while(factor &lt; 0);
-  return factor;
-}
+<h3 id="matrix-representation-of-a-complex-number">Matrix representation of a complex number</h3>
 
-</code></pre>
+<p>The matrix $C$ for a complex number is the sum of two other matrices representing the real $R$ and imaginary $I$ parts:</p>
 
-<h3 id="eratosthenes-sieve-factorization-of-a-range">Eratosthenes Sieve factorization of a range</h3>
+<script type="math/tex; mode=display">C = R + I</script>
 
-<p>We can also compute the factorization of a number by modifying the sieve of Erathostenes, remember that each state of the sieve hold a boolean telling if the number is prime or not, this time each state of the sieve will hold a pair of numbers</p>
+<p>which can be written as</p>
 
-<ul>
-  <li>the lowest prime that is a divisor of any index <code>i</code></li>
-  <li>the maximum power of the lowest prime computed above (optional)</li>
-</ul>
+<script type="math/tex; mode=display">C = a \hat{R} + b \hat{I} \quad\quad a, b \in \mathbb{R}</script>
 
-<p>Let’s represent $n$ as $p_1^{a_1} \cdot p_2^{a_2} \ldots p_n^{a_n}$, since we’re hold for each position the lowest prime and its the maximum power, the state stored at the position $n$ of the sieve will be $p_1^{a_1}$, if we divide $n$ by this number we will move to the state $p_2^{a_2} \ldots p_n^{a_n}$, this recursive process is run until the current state reached in the sieve is $1$</p>
+<p>Where $R = 1$ and $I = i$</p>
 
-<pre><code class="language-cpp">// let `p` be the smallest prime factor of the index `i`, each element
-// contains a pair `(p, x)` such that `p^x` is a divisor of `i`
-// e.g.
-//
-//    8 = (2, 3)
-//    15 = (3, 1)
-//    6 = (2, 1)
-//
-vector&lt;pair&lt;int, int&gt; &gt; lp;
+<p>The matrix representation of $R = 1$ in 2d is the identity matrix</p>
 
-void eratosthenes_sieve_factorization(long long n) {
-  pair&lt;int, int&gt; unvisited(-1, -1);
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix} %]]></script>
 
-  // (-1, -1) is an unvisited state
-  lp.assign(n + 1, unvisited);
+<p>To find the matrix representation of $i$ we have to analyze the definition of $i$ which is <strong>something</strong><br />
+which squares to $-1$, given that we already know the value of $1$ in matrix form</p>
 
-  for (int i = 2; i * i &lt;= n; i += 1) {
-    if (lp[i] == unvisited) {
-      // if an index is in an unvisited state it's a prime number
-      pair&lt;int, int&gt; base(i, 1);
-      lp[i] = base;
-      for (int j = i * i; j &lt;= n; j += i) {
-        if (lp[j] == unvisited) {
-          // if a multiple of the prime number is in an unvisited
-          // state that means that it's lowest prime divisor is
-          // the current index `i`
-          lp[j] = base;
-          if (lp[j / i] != unvisited) {
-            // `j` is a multiple of `i`, in fact `j = i^x` because
-            // only numbers which don't have other factors but `i`
-            // reach this point, to accumulate the powers it's enough
-            // find out the power of `j / i`
-            lp[j].second += lp[j / i].second;
-          }
-        }
-      }
-    }
-  }
+<script type="math/tex; mode=display">% <![CDATA[
+i^2 = -1 * \begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix} %]]></script>
 
-  // all the prime numbers &gt; sqrt(n) will have an unvisited state
-  // changing the unvisited state to prime_number^1
-  int sqrtN = sqrt(n);
-  if (sqrtN % 2 == 0) {
-    sqrtN += 1;
-  }
-  for (int i = sqrtN; i &lt;= n; i += 2) {
-    if (lp[i] == unvisited) {
-      lp[i] = pair&lt;int, int&gt;(i, 1);
-    }
+<p>Then the value of $i$ expressed in matrix form is</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+I = \begin{bmatrix}
+0 & -1 \\
+1 & 0
+\end{bmatrix} %]]></script>
+
+<p>Finally the value of $C$ is</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+C = a \begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix} + b \begin{bmatrix}
+0 & -1 \\
+1 & 0
+\end{bmatrix} =
+\begin{bmatrix}
+a & -b \\
+b & a
+\end{bmatrix} %]]></script>
+
+<h3 id="the-complex-plane">The complex plane</h3>
+
+<p>The powers of $i$ give rise to the sequence $(1, i, -1, -i, 1, \ldots)$ which is quite similar to the pattern<br />
+$(x, y, -x, -y, x, \ldots)$, the resemblance is no coincidence as complex number belong to a 2-dimensional plane, this complex plane allows us to visualize complex numbers using the horizontal axis for the real part and the vertical axis for the imaginary part</p>
+
+<div id="complex-plane"></div>
+<div class="center">$1, i, -1, -i$</div>
+
+<p>We can see that the positions of $i^0 = 1, i^1 = i, i^2 = -1, i^3 = -i, \ldots$ suggest that the multiplication of a complex number by $i$ is equivalent to rotating through 90 degrees</p>
+
+<p>e.g.</p>
+
+<script type="math/tex; mode=display">z_1 = 2 + i \\
+z_2 = (2 + i)(i) = -1 + 2i \\
+z_3 = (-1 + 2i)(i) = -2 - i \\
+z_4 = (-2 - i)(i) = 1 - 2i \\
+z_5 = (1 - 2i)(i) = 2 + i = z_1</script>
+
+<div id="complex-2-i"></div>
+
+<blockquote>
+  <p>A complex number is rotated $\pm 90^{\circ}$ by multiplying it by $\pm i$</p>
+</blockquote>
+
+<p>Let’s graph the roots of $\sqrt{i} = \pm \frac{1}{\sqrt{2}} (1 + i)$</p>
+
+<div id="complex-square-root"></div>
+
+<script>
+function unitCircle() {
+  return {
+    x: 'cos(t)',
+    y: 'sin(t)',
+    color: 'lightgrey',
+    parametric: true,
+    graphOptions: { type: 'line' }
   }
 }
 
-</code></pre>
+function updateFormat(instance) {
+  var format = instance.meta.yAxis.tickFormat()
+  var imaginaryFormat = function (d) {
+    return format(d) + ' i'
+  }
+  instance.meta.yAxis.tickFormat(imaginaryFormat)
+  instance.draw()
+}
+
+;(function () {
+  var instance = functionPlot({
+    target: '#complex-plane',
+    xLabel: 'real',
+    yLabel: 'imaginary',
+    grid: true,
+    xDomain: [-6, 6],
+    data: [
+      { vector: [1, 0] },
+      { vector: [0, 1] },
+      { vector: [-1, 0] },
+      { vector: [0, -1] },
+      unitCircle()
+    ]
+  })
+  updateFormat(instance)
+})()
+
+;(function () {
+  var instance = functionPlot({
+    target: '#complex-2-i',
+    xLabel: 'real',
+    yLabel: 'imaginary',
+    grid: true,
+    xDomain: [-6, 6],
+    data: [
+      { vector: [2, 1] },
+      { vector: [-1, 2] },
+      { vector: [-2, -1] },
+      { vector: [1, -2] },
+      unitCircle()
+    ]
+  })
+  updateFormat(instance)
+})()
+
+;(function () {
+  var n = 1 / Math.sqrt(2)
+  var instance = functionPlot({
+    target: '#complex-square-root',
+    xLabel: 'real',
+    yLabel: 'imaginary',
+    grid: true,
+    xDomain: [-6, 6],
+    data: [
+      { vector: [n, n] },
+      { vector: [-n, -n] },
+      unitCircle()
+    ]
+  })
+  updateFormat(instance)
+})()
+</script>
+
 
   </article>
 
