@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Topological sorting</title>
+  <title>Resources</title>
   <meta name="description" content="Layout run failed ._.
 ">
 
@@ -16,7 +16,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://maurizzzio.github.io/static/graphs/topological-sorting.html">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/computer-graphics/resources.html">
   <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
 
 </head>
@@ -209,149 +209,23 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Topological sorting</h1>
+    <h1 class="post-title">Resources</h1>
   </header>
 
   <article class="post-content">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <p>http://www.scratchapixel.com/</p>
 
-<script src="//maurizzzio.github.io/greuler/scripts/lib/cola.v3.js"></script>
-
-<script src="//maurizzzio.github.io/greuler/greuler.js"></script>
-
-<p>Let $G$ be a digraph, the <strong>topological sorting</strong> algorithm is a linear ordering of the vertices of $G$ such that for every directed edge $u \rightarrow v$ where $u,v \in V(G)$, $u$ comes before $v$ in the ordering, the ordering is possible only if the graph <em>has no directed cycles</em></p>
+<h3 id="ray-tracing">Ray tracing</h3>
 
 <ul>
-  <li>since the graph has no directed cycles, at least one of the vertices has no incoming edges</li>
+  <li>Ray-sphere intersection</li>
+  <li>Ray-triangle intersection
+    <ul>
+      <li>http://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle/moller-trumbore-ray-triangle-intersection</li>
+      <li>http://tavianator.com/a-beautiful-raytriangle-intersection-method/</li>
+    </ul>
+  </li>
 </ul>
-
-<div id="figure-topological-sorting"></div>
-
-<pre><code class="language-cpp">vector&lt;bool&gt; visited;
-// adjacency list of G
-vector&lt;vector&lt;int&gt; &gt; g;
-vector&lt;int&gt; order;
-
-void dfs(int v) {
-  visited[v] = true;
-  for (int i = 0; i &lt; g[v].size(); i += 1) {
-    int next = g[v][i];
-    if (!visited[next]) {
-      dfs(next);
-    }
-  }
-  order.push_back(v);
-}
-
-/**
- * Given a graph `G` of order `n` and size `m` computes a linear ordering
- * of the vertices such that for every edge u -&gt; v, `u` comes earlier than `v`
- * in the ordering
- *
- * Time complexity: O(n + m)
- * Space complexity: O(n)
- *
- */
-void topological_sort() {
-  int n = g.size();
-  visited.assign(n, false);
-
-  for (int i = 0; i &lt; visited.size(); i += 1) {
-    if (!visited[i]) {
-      dfs(i);
-    }
-  }
-
-  reverse(order.begin(), order.end());
-}
-
-</code></pre>
-
-<h2 id="applications">Applications</h2>
-
-<h3 id="shortest-path-in-a-directed-acyclic-graph">Shortest path in a Directed Acyclic Graph</h3>
-
-<pre><code class="language-cpp">// adjacency list of G
-// (to, weight)
-vector&lt;vector&lt;pair&lt;int, int&gt; &gt; &gt; g;
-
-// topological sort states
-vector&lt;bool&gt; visited;
-vector&lt;int&gt; order;
-
-// shortest path state
-vector&lt;int&gt; dist;
-
-void dfs(int v) {
-  visited[v] = true;
-  for (int i = 0; i &lt; g[v].size(); i += 1) {
-    int next = g[v][i];
-    if (!visited[next]) {
-      dfs(next);
-    }
-  }
-  order.push_back(v);
-}
-
-void topological_sort() {
-  int n = g.size();
-  visited.assign(n, false);
-
-  for (int i = 0; i &lt; visited.size(); i += 1) {
-    if (!visited[i]) {
-      dfs(i);
-    }
-  }
-
-  reverse(order.begin(), order.end());
-}
-
-/**
- * Given a weighted graph `G` of order `n` and size `m` and a source vertex `source`
- * it computes the shortest distance between `source` and every other reachable
- * vertex from `source`
- *
- * Time complexity: O(n + m)
- * Space complexity: O(n)
- *
- */
-void shortest_path_dag(int source) {
-  int n = g.size();
-  dist.assign(n, -1);
-
-  topological_sort();
-  dist[source] = 0;
-
-  for(int i = 0; i &lt; order.size(); i += 1) {
-    int v = order[i];
-    if (dist[v] &gt;= 0) {
-      for (int j = 0; j &lt; g[v].size(); j += 1) {
-        int to = g[v][j].first;
-        int weight = g[v][j].second;
-        int path_distance = dist[v] + weight;
-        if (dist[to] &lt; 0 || dist[to] &gt; path_distance) {
-          dist[to] = path_distance;
-        }
-      }
-    }
-  }
-}
-
-</code></pre>
-
-<script>
-(function () {
-  d3.json('/js/graph/data/topological-sorting.json', function (err, data) {
-    if (err) { throw err }
-    greuler({
-      directed: true,
-      target: '#figure-topological-sorting',
-      data: data
-    }).update({ iterations: [30, 30, 30] })
-  })
-})()
-</script>
-
 
   </article>
 

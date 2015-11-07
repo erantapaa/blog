@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Quaternions</title>
+  <title>Scale</title>
   <meta name="description" content="Layout run failed ._.
 ">
 
@@ -16,7 +16,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://maurizzzio.github.io/static/computer-graphics/math/quaternions.html">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/computer-graphics/math/scale.html">
   <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
 
 </head>
@@ -122,11 +122,11 @@
           
         
           
-          <a class="page-link" href="/static/math/calculus/introduction.html">Introduction</a>
+          <a class="page-link" href="/static/graphs/introduction.html">Introduction</a>
           
         
           
-          <a class="page-link" href="/static/graphs/introduction.html">Introduction</a>
+          <a class="page-link" href="/static/math/calculus/introduction.html">Introduction</a>
           
         
           
@@ -144,11 +144,31 @@
           
         
           
-          <a class="page-link" href="/static/computer-graphics/math/quaternions.html">Quaternions</a>
+          <a class="page-link" href="/static/computer-graphics/math/projection.html">Projections</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/numeral-systems/quaternions.html">Quaternions</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/resources.html">Resources</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/rotation.html">Rotations</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/scale.html">Scale</a>
           
         
           
           <a class="page-link" href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/space-coordinates.html">Space coordinates</a>
           
         
           
@@ -182,208 +202,87 @@
 
     <div class="page-content">
       <div class="static-page-sidebar">
-        <ul><li><a href="/index.html"></a><ul><li>static<ul><li>computer-graphics<ul><li>math<ul><li><a href="/static/computer-graphics/math/quaternions.html">Quaternions</a><ul></ul></li></ul></li></ul></li><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/graphs/traversal.html">Traversal</a><ul></ul></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a><ul></ul></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a><ul></ul></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a><ul></ul></li><li><a href="/static/graphs/components.html">Components</a><ul></ul></li><li><a href="/static/graphs/tree/index.html">Tree</a><ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a><ul></ul></li></ul></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a><ul></ul></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a><ul></ul></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a><ul></ul></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/math/calculus/derivative.html">Derivative</a><ul></ul></li><li><a href="/static/math/calculus/integral.html">Integral</a><ul></ul></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a><ul></ul></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a><ul></ul></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a><ul></ul></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a><ul></ul></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a><ul></ul></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a><ul></ul></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a><ul></ul></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a><ul></ul></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a><ul></ul></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a><ul></ul></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a><ul></ul></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a><ul></ul></li></ul></li><li>numeral-systems<ul><li><a href="/static/math/numeral-systems/complex-numbers.html">Complex numbers</a><ul></ul></li></ul></li></ul></li></ul></li></ul></li></ul>
+        <ul><li><a href="/index.html"></a><ul><li>static<ul><li>computer-graphics<ul><li><a href="/static/computer-graphics/resources.html">Resources</a><ul></ul></li><li>math<ul><li><a href="/static/computer-graphics/math/space-coordinates.html">Space coordinates</a><ul></ul></li><li><a href="/static/computer-graphics/math/rotation.html">Rotations</a><ul></ul></li><li><a href="/static/computer-graphics/math/scale.html">Scale</a><ul></ul></li><li><a href="/static/computer-graphics/math/projection.html">Projections</a><ul></ul></li></ul></li></ul></li><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/graphs/traversal.html">Traversal</a><ul></ul></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a><ul></ul></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a><ul></ul></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a><ul></ul></li><li><a href="/static/graphs/components.html">Components</a><ul></ul></li><li><a href="/static/graphs/tree/index.html">Tree</a><ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a><ul></ul></li></ul></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a><ul></ul></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a><ul></ul></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a><ul></ul></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/math/calculus/derivative.html">Derivative</a><ul></ul></li><li><a href="/static/math/calculus/integral.html">Integral</a><ul></ul></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a><ul></ul></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a><ul></ul></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a><ul></ul></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a><ul></ul></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a><ul></ul></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a><ul></ul></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a><ul></ul></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a><ul></ul></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a><ul></ul></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a><ul></ul></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a><ul></ul></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a><ul></ul></li></ul></li><li>numeral-systems<ul><li><a href="/static/math/numeral-systems/complex-numbers.html">Complex numbers</a><ul></ul></li><li><a href="/static/math/numeral-systems/quaternions.html">Quaternions</a><ul></ul></li></ul></li></ul></li></ul></li></ul></li></ul>
       </div>
 
       <div class="wrapper">
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Quaternions</h1>
+    <h1 class="post-title">Scale</h1>
   </header>
 
   <article class="post-content">
-    <style>
-  svg text {
-    font-size: 10px;
-  }
-  svg .title {
-    font-size: 25px;
-  }
-  .function-plot {
-    margin: 0px auto 20px;
-    display: block;
-  }
-</style>
+    <h2 id="scaling-along-an-arbitrary-axis">Scaling along an arbitrary axis</h2>
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<p>Let $\unit{n}$ be the unit vector parallel to the direction of scale and $k$ to be the scale factor, a vector transformed by this scale operations can be represented as</p>
 
-<!-- brcdn link: https://www.brcdn.org/?module=simple-function-plot -->
-<!-- <script src="//brcdn.org/mv8UN3eh503yWlamNAqkLEpEA.js"></script> -->
-<script src="https://wzrd.in/standalone/function-plot@1.12.2"></script>
-
-<h2 id="imaginary-numbers">Imaginary numbers</h2>
+<script type="math/tex; mode=display">\mathbf{v'} = \mathbf{v} \mathbf{S}(\unit{n}, k)</script>
 
 <ul>
-  <li>Invented to solve problems where an equation has no real roots e.g. $x^2 + 16 = 0$, the idea of declaring the existence of a quantity $i$ such that $i^2 = -1$ allows us to express the solution as</li>
+  <li>Separate $\mbold{v}$ in two vectors, a vector parallel to $\unit{v}$ called $\mbold{v_{\parallel}}$ and a vector perpendicular to $\unit{v}$ called $\mbold{v_{\perp}}$ such that</li>
 </ul>
 
-<script type="math/tex; mode=display">x = \sqrt{-16} = \sqrt{16i^2} = \pm4i</script>
+<script type="math/tex; mode=display">\mbold{v} = \mbold{v_{\parallel}} + \mbold{v_{\perp}}</script>
 
-<p>The set represented by $\mathbb{I}$ defines an imaginary number as</p>
-
-<script type="math/tex; mode=display">ib \in \mathbb{I}, \quad b \in \mathbb{R}, \quad i^2 = -1</script>
-
-<h3 id="powers-of-i">Powers of $i$</h3>
-
-<p>If $i^2 = -1$ then $i^4 = i^2i^2 = -1 * -1 = 1$</p>
-
-<p>Therefore we have the sequence</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{array}{ccccc}
-\hline
-i & i^2 & i^3 & i^4 & i^5 & \ldots \\
-\hline
-i & -1 & -i & 1 & i & \ldots \\
-\hline
-\end{array} %]]></script>
-
-<h3 id="complex-numbers">Complex numbers</h3>
-
-<p>A complex number is just the sum of a real and an imaginary number</p>
-
-<script type="math/tex; mode=display">z = a + bi  \quad a,b \in \mathbb{R}, \quad i^2 = -1</script>
-
-<h3 id="operations-on-complex-numbers">Operations on complex numbers</h3>
-
-<p>Given two complex numbers</p>
-
-<script type="math/tex; mode=display">z_1 = a_1 + b_1i \\
-z_2 = a_2 + b_2i</script>
-
-<h4 id="addition-and-subtraction">Addition and subtraction</h4>
-
-<script type="math/tex; mode=display">z_1 \pm z_2 = a_1 \pm a_2 + (b_1 \pm b_2)i</script>
-
-<h4 id="product">Product</h4>
+<p>Where</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align*}
-z_1z_2 &= a_1a_2 + a_1b_2i + a_2b_1i + b_1b_2i^2 \quad \text{given that $i^2 = -1$} \\
-&= (a_1a_2 - b_1b_2) + (a_1b_2 + b_1a_2)i
+\mbold{v_{\parallel}} &= (\mbold{v} \cdot \unit{n}) \unit{n} \\
+\mbold{v_{\perp}} &= \mbold{v} - \mbold{v_{\parallel}}
 \end{align*} %]]></script>
 
-<hr />
-
-<p>Given the complex number</p>
-
-<script type="math/tex; mode=display">z = a + bi</script>
-
-<h4 id="norm-modulus-or-absolute-value">Norm (modulus or absolute value)</h4>
-
-<script type="math/tex; mode=display">|z| = \sqrt{a^2 + b^2}</script>
-
-<h4 id="complex-conjugate">Complex conjugate</h4>
-
-<p>The product of two complex numbers where the only difference between them is the <strong>sign</strong> of the imaginary part is</p>
-
-<script type="math/tex; mode=display">(a + bi)(a - bi) = a^2 - abi + abi - b^2i^2 = a^2 + b^2</script>
-
-<p>This quantity $a - bi$ is called the <em>complex conjugate</em> of $z$ (denoted as $z^*$), it implies that</p>
-
-<script type="math/tex; mode=display">zz^* = |z|^2</script>
-
-<h4 id="inverse">Inverse</h4>
-
-<script type="math/tex; mode=display">z^{-1} = \frac{1}{z}</script>
-
-<p>Multiplying the numerator and denominator with the conjugate of $z$ (so that we have a real part on the denominator)</p>
-
-<script type="math/tex; mode=display">z^{-1} = \frac{1}{z} \frac{z^*}{z^*} = \frac{z^*}{zz^*} = \frac{z^*}{|z|^2}</script>
-
-<h3 id="matrix-representation-of-a-complex-number">Matrix representation of a complex number</h3>
-
-<p>The matrix $C$ for a complex number is the sum of two other matrices representing the real $R$ and imaginary $I$ parts:</p>
-
-<script type="math/tex; mode=display">C = R + I</script>
-
-<p>which can be written as</p>
-
-<script type="math/tex; mode=display">C = a \hat{R} + b \hat{I} \quad\quad a, b \in \mathbb{R}</script>
-
-<p>Where $R = 1$ and $I = i$</p>
-
-<p>The matrix representation of $R = 1$ in 2d is the identity matrix</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{bmatrix}
-1 & 0 \\
-0 & 1
-\end{bmatrix} %]]></script>
-
-<p>To find the matrix representation of $i$ we have to analyze the definition of $i$ which is <strong>something</strong><br />
-which squares to $-1$, given that we already know the value of $1$ in matrix form</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-i^2 = -1 * \begin{bmatrix}
-1 & 0 \\
-0 & 1
-\end{bmatrix} %]]></script>
-
-<p>Then the value of $i$ expressed in matrix form is</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-I = \begin{bmatrix}
-0 & -1 \\
-1 & 0
-\end{bmatrix} %]]></script>
-
-<p>Finally the value of $C$ is</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-C = a \begin{bmatrix}
-1 & 0 \\
-0 & 1
-\end{bmatrix} + b \begin{bmatrix}
-0 & -1 \\
-1 & 0
-\end{bmatrix} =
-\begin{bmatrix}
-a & -b \\
-b & a
-\end{bmatrix} %]]></script>
-
-<h3 id="the-complex-plane">The complex plane</h3>
-
-<p>The powers of $i$ give rise to the sequence $(1, i, -1, -i, 1, \ldots)$ which is quite similar to the pattern<br />
-$(x, y, -x, -y, x, \ldots)$, the resemblance is no coincidence as complex number belong to a 2-dimensional plane</p>
-
-<div id="complex-plane"></div>
-<div class="center">$1, i, -1, -i$</div>
-
-<h3 id="to-read">To Read</h3>
-
 <ul>
-  <li>Quaternions for Computer Graphics by John Vince</li>
-  <li><a href="http://www.essentialmath.com/GDC2013/GDC13_quaternions_final.pdf">Understanding Quaternions - Jim Van Verth</a></li>
+  <li>We can also represent $\mathbf{v’}$ as a sum of two vectors parallel and perpendicular to $\unit{n}$</li>
 </ul>
 
-<script>blog
-(function () {
-  var instance = functionPlot({
-    target: '#complex-plane',
-    xLabel: 'real',
-    yLabel: 'imaginary',
-    grid: true,
-    xDomain: [-6, 6],
-    data: [
-      { vector: [1, 0] },
-      { vector: [0, 1] },
-      { vector: [-1, 0] },
-      { vector: [0, -1] }
-    ]
-  })
-  var format = instance.meta.yAxis.tickFormat()
-  var imaginaryFormat = function (d) {
-    return format(d) + ' i'
-  }
-  instance.meta.yAxis
-    .tickFormat(imaginaryFormat)
-  instance.draw()
-})()
-</script>
+<script type="math/tex; mode=display">\mbold{v'} = \mbold{v_{\parallel}'} + \mbold{v_{\perp}'}</script>
 
+<ul>
+  <li>Note that any vector that lies in the 2d line or 3d plane perpendicular to $\unit{n}$ will not be affected by the scale operation so $\mbold{v’} = \mbold{v_{\parallel}’} + \mbold{v_{\perp}}$</li>
+  <li>Since $\mbold{v_{\parallel}}$ is parallel to the direction of scale then $\mbold{v_{\parallel}’} = k\mbold{v_{\parallel}}$</li>
+</ul>
+
+<p>Reconstructing the solution from the observations above</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+
+\mbold{v_{\parallel}} &= (\mbold{v} \cdot \unit{n}) \unit{n} \\
+\mbold{v_{\perp}'} &= \mbold{v_{\perp}} \\
+&= \mbold{v} - \mbold{v_{\parallel}} \\
+&= \mbold{v} - (\mbold{v} \cdot \unit{n}) \unit{n} \\
+\mbold{v_{\parallel}'} &= k\mbold{v_{\parallel}} \\
+&= k(\mbold{v} \cdot \unit{n}) \unit{n}  \\
+\mbold{v'} &= \mbold{v_{\perp}'} + \mbold{v_{\parallel}'} \\
+&= \mbold{v} - (\mbold{v} \cdot \unit{n}) \unit{n} + k(\mbold{v} \cdot \unit{n}) \unit{n} \\
+&= \mbold{v} + (k - 1) (\mbold{v} \cdot \unit{n}) \unit{n}
+\end{align*} %]]></script>
+
+<p>Computing the basis vectors resulting after the scale operation</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mbold{p} &= \begin{bmatrix}1 & 0 & 0\end{bmatrix} \quad \quad \quad \quad \mbold{p'} = \begin{bmatrix}
+1 + (k - 1) {n_x}^2 \\
+(k - 1)n_xn_y \\
+(k - 1)n_xn_z
+\end{bmatrix}^T\\
+\\
+\mbold{q} &= \begin{bmatrix}0 & 1 & 0\end{bmatrix} \quad \quad \quad \quad \mbold{q'} = \begin{bmatrix}
+(k - 1)n_yn_x \\
+1 + (k - 1) {n_y}^2 \\
+(k - 1)n_yn_z
+\end{bmatrix}^T\\
+\\
+\mbold{r} &= \begin{bmatrix}0 & 0 & 1\end{bmatrix} \quad \quad \quad \quad \mbold{r'} = \begin{bmatrix}
+(k - 1)n_zn_x \\
+(k - 1)n_zn_y \\
+1 + (k - 1) {n_z}^2
+\end{bmatrix}^T\\
+
+\end{align*} %]]></script>
 
   </article>
 
@@ -396,7 +295,7 @@ $(x, y, -x, -y, x, \ldots)$, the resemblance is no coincidence as complex number
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Mauricio Poppe</h2>
+    <!-- <h2 class="footer-heading">Mauricio Poppe</h2> -->
 
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
@@ -465,7 +364,12 @@ $(x, y, -x, -y, x, \ldots)$, the resemblance is no coincidence as complex number
       },
       Macros: {
         edge: '\\mathrel{-}',
-        notedge: '\\not\\edge'
+        notedge: '\\not\\edge',
+        deg: ['#1^{\\circ}', 1],
+        tbold: ['\\textbf{#1}', 1],
+        mbold: ['\\mathbf{#1}', 1],
+        unit: ['\\hat{\\mathbf{#1}}', 1],
+        magnitude: ['\\left \\| #1 \\right \\|', 1]
       }
     },
     'HTML-CSS': {

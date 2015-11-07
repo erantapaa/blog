@@ -1,10 +1,8 @@
 (function () {
-  var d3 = window.d3;
   var functionPlot = window.functionPlot;
-  var chart;
 
-  functionPlot.constants.DEFAULT_WIDTH = 600;
-  functionPlot.constants.DEFAULT_HEIGHT = 350;
+  functionPlot.globals.DEFAULT_WIDTH = 600;
+  functionPlot.globals.DEFAULT_HEIGHT = 350;
 
   functionPlot({
     target: '#geometric-representation',
@@ -15,7 +13,7 @@
   });
 
   (function () {
-    instance = functionPlot({
+    var instance = functionPlot({
       target: '#geometric-representation-two-points',
       yDomain: [-1, 9],
       data: [{
@@ -23,23 +21,18 @@
       }, {
         fn: 'x * x',
         range: [1, 1],
-        samples: 2,
-        graphOptions: {
-          type: 'scatter'
-        }
+        nSamples: 2,
+        graphType: 'scatter'
       }, {
         fn: 'x * x',
-        samples: 2,
         range: [2, 2],
-        graphOptions: {
-          type: 'scatter'
-        }
+        nSamples: 2,
+        graphType: 'scatter'
       }]
     });
     instance.root.selectAll('circle')
       .attr('r', 3);
   })();
-
 
   functionPlot({
     target: '#geometric-representation-secant',
@@ -63,13 +56,11 @@
     data: [{
       fn: 'x * x'
     }, {
-      title: 'y = 2x - 1; ',
+      title: 'y = 2x - 1',
       fn: '2 * x - 1',
-      samples: 2,
-      skipTip: true,
-      graphOptions: {
-        type: 'line'
-      }
+      graphType: 'polyline',
+      nSamples: 2,
+      skipTip: true
     }]
   });
 
@@ -112,9 +103,7 @@
       }],
       data: [{
         fn: '(x^3) / 3 - 2 * x * x + 3 * x + 2',
-        graphOptions: {
-          type: 'line'
-        },
+        graphType: 'polyline',
         derivative: {
           fn: 'x * x - 4 * x + 3',
           updateOnMouseMove: true
@@ -134,9 +123,7 @@
       }],
       data: [{
         fn: 'x * x - 4 * x + 3',
-        graphOptions: {
-          type: 'line'
-        }
+        graphType: 'polyline'
       }]
     });
     a.addLink(b);
@@ -150,9 +137,6 @@
       annotations: [],
       data: [{
         fn: 'x * x - 2',
-        graphOptions: {
-          type: 'line'
-        },
         derivative: {
           fn: '2 * x'
         }
@@ -177,7 +161,7 @@
       var n = 0;
       var limit = 5;
 
-      function run() {
+      function run () {
         options.annotations.push({
           x: x0,
           text: (n !== limit)

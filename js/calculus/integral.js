@@ -30,10 +30,8 @@
     }, {
       fn: 'x * x',
       range: [1, 2],
-      samples: 2,
-      graphOptions: {
-        closed: true
-      }
+      nSamples: 2,
+      closed: true
     }]
   });
 
@@ -52,10 +50,8 @@
     }, {
       fn: 'x * x',
       range: [1, 2],
-      samples: 3,
-      graphOptions: {
-        closed: true
-      }
+      nSamples: 3,
+      closed: true
     }]
   });
 
@@ -74,10 +70,8 @@
       }, {
         fn: 'x * x',
         range: [1, 2],
-        samples: 30,
-        graphOptions: {
-          closed: true
-        }
+        nSamples: 30,
+        closed: true
       }]
     };
 
@@ -85,7 +79,7 @@
     var $el = document.querySelector('#sum-area-slider');
     $el.addEventListener('change', function () {
       var value = this.value;
-      options.data[1].samples = value;
+      options.data[1].nSamples = value;
       functionPlot(options);
     });
 
@@ -111,11 +105,9 @@
     }, {
       fn: '-x * x + 4',
       range: [-2, 2],
-      samples: 9,
-      graphOptions: {
-        type: 'line',
-        closed: true
-      }
+      nSamples: 9,
+      closed: true,
+      graphType: 'polyline'
     }]
   });
 
@@ -134,9 +126,7 @@
     data: [{
       fn: 'x * x + 3 + 2 * x',
       range: [-1, 1],
-      graphOptions: {
-        closed: true
-      }
+      closed: true
     }]
   });
 

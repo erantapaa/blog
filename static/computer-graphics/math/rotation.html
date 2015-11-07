@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Complex numbers</title>
+  <title>Rotations</title>
   <meta name="description" content="Layout run failed ._.
 ">
 
@@ -16,7 +16,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://maurizzzio.github.io/static/math/numeral-systems/complex-numbers.html">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/computer-graphics/math/rotation.html">
   <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
 
 </head>
@@ -209,7 +209,7 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Complex numbers</h1>
+    <h1 class="post-title">Rotations</h1>
   </header>
 
   <article class="post-content">
@@ -232,311 +232,303 @@
 <!-- <script src="//brcdn.org/mv8UN3eh503yWlamNAqkLEpEA.js"></script> -->
 <script src="https://wzrd.in/standalone/function-plot@1.13.0"></script>
 
-<script type="math/tex; mode=display">\newcommand{sqrti}{\frac{1}{\sqrt{2}}}</script>
+<script type="math/tex; mode=display">\newcommand{\cost}{\cos{\theta}}
+\newcommand{\sint}{\sin{\theta}}</script>
 
-<h2 id="imaginary-numbers">Imaginary numbers</h2>
+<h2 id="d-rotation">2d rotation</h2>
 
-<ul>
-  <li>Invented to solve problems where an equation has no real roots e.g. $x^2 + 16 = 0$, the idea of declaring the existence of a quantity $i$ such that $i^2 = -1$ allows us to express the solution as</li>
-</ul>
+<p>A 2d rotation has only one parameter $\theta$, when the basis vectors $\unit{i} = [1, 0]$ and $\unit{j} = [0, 1]$ are rotated by an angle $\theta$</p>
 
-<script type="math/tex; mode=display">x = \sqrt{-16} = \sqrt{16i^2} = \pm4i</script>
+<script type="math/tex; mode=display">\mbold{p} = \cos{\theta} \unit{i} + \sin{\theta} \unit{j} \\
+\mbold{q} = -\sin{\theta} \unit{i} + \cos{\theta} \unit{j}</script>
 
-<p>The set represented by $\mathbb{I}$ defines an imaginary number as</p>
+<div id="two-dimensions"></div>
 
-<script type="math/tex; mode=display">i^2 = -1</script>
-
-<h3 id="powers-of-i">Powers of $i$</h3>
-
-<p>If $i^2 = -1$ then $i^4 = i^2i^2 = -1 * -1 = 1$</p>
-
-<p>Therefore we have the sequence</p>
+<p>Which builds the rotation matrix</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
-\begin{array}{ccccc}
-\hline
-i & i^2 & i^3 & i^4 & i^5 & \ldots \\
-\hline
-i & -1 & -i & 1 & i & \ldots \\
-\hline
-\end{array} %]]></script>
+\mbold{R}(\theta) = \begin{bmatrix}
+\textbf{p} \\
+\textbf{q}
+\end{bmatrix} = \begin{bmatrix}
+\cos{\theta} & \sin{\theta} \\
+-\sin{\theta} & \cos{\theta}
+\end{bmatrix} %]]></script>
 
-<h2 id="complex-numbers">Complex numbers</h2>
-
-<p>A complex number is just the sum of a real and an imaginary number</p>
-
-<script type="math/tex; mode=display">z = a + bi  \quad a,b \in \mathbb{R}, \quad i^2 = -1</script>
-
-<h3 id="operations-on-complex-numbers">Operations on complex numbers</h3>
-
-<p>Given two complex numbers</p>
-
-<script type="math/tex; mode=display">z_1 = a_1 + b_1i \\
-z_2 = a_2 + b_2i</script>
-
-<h4 id="addition-and-subtraction">Addition and subtraction</h4>
-
-<script type="math/tex; mode=display">z_1 \pm z_2 = a_1 \pm a_2 + (b_1 \pm b_2)i</script>
-
-<h4 id="product">Product</h4>
+<p>When a vector $\mbold{v}$ is transformed by this matrix we know that the vector will be a <em>linear combination of the basis</em>  which are $\mbold{p}$ and $\mbold{q}$</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align*}
-z_1z_2 &= a_1a_2 + a_1b_2i + a_2b_1i + b_1b_2i^2 \quad \text{given that $i^2 = -1$} \\
-&= (a_1a_2 - b_1b_2) + (a_1b_2 + b_1a_2)i
+\mbold{v'} = \mbold{vR}(\theta) &= v_x \mbold{p} + v_y \mbold{q} \\
+&= v_x \begin{bmatrix}\cos{\theta} & \sin{\theta}\end{bmatrix} + v_y \begin{bmatrix}-\sin{\theta} & \cos{\theta}\end{bmatrix} \\
+&= \begin{bmatrix}
+v_x \cos{\theta} - v_y \sin{\theta} \\
+v_x \sin{\theta} + v_y \cos{\theta}
+\end{bmatrix}^T
 \end{align*} %]]></script>
 
-<hr />
+<p>Using a matrix to encode this operation</p>
 
-<p>Given the complex number</p>
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mbold{v'} = \mbold{vR}(\theta) &= \begin{bmatrix}v_x & v_y\end{bmatrix} \begin{bmatrix}
+\cos{\theta} & \sin{\theta} \\
+-\sin{\theta} & \cos{\theta}
+\end{bmatrix} \\
 
-<script type="math/tex; mode=display">z = a + bi</script>
+&= \begin{bmatrix}
+v_x \cos{\theta} - v_y \sin{\theta} \\
+v_x \sin{\theta} + v_y \cos{\theta}
+\end{bmatrix}^T
 
-<h4 id="norm-modulus-or-absolute-value">Norm (modulus or absolute value)</h4>
+\end{align*} %]]></script>
 
-<script type="math/tex; mode=display">|z| = \sqrt{a^2 + b^2}</script>
+<p>See also <a href="../../math/numeral-systems/complex-numbers.html">complex numbers</a></p>
 
-<h4 id="complex-conjugate">Complex conjugate</h4>
+<h2 id="d-rotation-1">3d rotation</h2>
 
-<p>The product of two complex numbers where the only difference between them is the <strong>sign</strong> of the imaginary part is</p>
+<h3 id="about-cardinal-axes">About cardinal axes</h3>
 
-<script type="math/tex; mode=display">(a + bi)(a - bi) = a^2 - abi + abi - b^2i^2 = a^2 + b^2</script>
+<p>See</p>
 
-<p>This quantity $a - bi$ is called the <em>complex conjugate</em> of $z$ (denoted as $z^*$), it implies that</p>
+<ul>
+  <li><a href="http://www.wikiwand.com/en/Rotation_matrix#/In_three_dimensions">3d rotation on wikipedia.org</a></li>
+  <li><a href="https://www.siggraph.org/education/materials/HyperGraph/modeling/mod_tran/3drota.htm">3d rotation - siggraph.org</a></li>
+</ul>
 
-<script type="math/tex; mode=display">zz^* = |z|^2</script>
+<h3 id="about-an-arbitrary-axis">About an arbitrary axis</h3>
 
-<h4 id="inverse">Inverse</h4>
+<p>Given an axis $\unit{n}$ and an amount of rotation around it $\theta$ our goal is to find a rotation matrix that rotates about $\unit{n}$ by th angle $\theta$</p>
 
-<script type="math/tex; mode=display">z^{-1} = \frac{1}{z}</script>
+<script type="math/tex; mode=display">\mathbf{v'} = \mathbf{v} \mathbf{R}(\unit{n}, \theta)</script>
 
-<p>Multiplying the numerator and denominator with the conjugate of $z$ (so that we have a real part on the denominator)</p>
+<p>The basic idea is to solve this problem in a plane perpendicular to $\unit{n}$ which becomes a 2d problem</p>
 
-<script type="math/tex; mode=display">z^{-1} = \frac{1}{z} \frac{z^*}{z^*} = \frac{z^*}{zz^*} = \frac{z^*}{|z|^2}</script>
+<ul>
+  <li>Separate $\mbold{v}$ in two vectors, a vector parallel to $\unit{v}$ called $\mbold{v_{\parallel}}$ and a vector perpendicular to $\unit{v}$ called $\mbold{v_{\perp}}$ such that $\mbold{v_{\parallel}} + \mbold{v_{\perp}} = \mbold{v}$</li>
+</ul>
 
-<h4 id="square-root-of-i">Square root of $i$</h4>
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mbold{v_{\parallel}} &= (\mbold{v} \cdot \unit{n}) \unit{n} \\
+\mbold{v_{\perp}} &= \mbold{v} - \mbold{v_{\parallel}}
+\end{align*} %]]></script>
 
-<p>We’re trying to find a complex number $z$ such that</p>
+<ul>
+  <li>After the rotation it’s obvious that the $\mbold{v_{\parallel}}$ component will be the same and only the vector $\mbold{v_{\perp}}$ will be rotated</li>
+  <li>A plane can be defined with two vectors that lie on it, since we have $\mbold{v_{\perp}}$ and we also know the normal of the plane (which is $\unit{n}$) any vector perpendicular to both vectors will also lie in the plane, we can use the cross product to find this vector</li>
+</ul>
 
-<script type="math/tex; mode=display">\sqrt{i} = z \\
-i = z^2</script>
+<script type="math/tex; mode=display">\mbold{w} = \unit{n} \times \mbold{v_{\perp}}</script>
 
-<p>Assuming that $z$ is the complex number $z = a + bi$</p>
+<ul>
+  <li>The length of $\mbold{w}$ is</li>
+</ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\left \| \mbold{w} \right \| &= \left \| \unit{n} \right \| \left \| \mbold{v_{\perp}}\right \| \sin{\deg{90}} \\
+&= \left \| \mbold{v_{\perp}}\right \|
+\end{align*} %]]></script>
+
+<ul>
+  <li>Which means that $\mbold{w}$ has the same length as $\mbold{v_{\perp}}$, note that even though they have the same length they don’t neccesarily have unit length</li>
+  <li>$\mbold{w}$ and $\mbold{v_{\perp}}$ form now a 2d coordinate space where the $x$-axis is $\mbold{v_{\perp}}$ and the $y$-axis is $\mbold{v_{\perp}}$</li>
+  <li>Let $\mbold{v_{\perp}’}$ be a vector that is the result of rotating $\mbold{v_{\perp}}$ by an angle $\theta$, we can find the projection of it onto the $x$-axis and the $y$-axis as follows</li>
+</ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mbold{v_{\perp,x}'} &= (\magnitude{ \mbold{v_{\perp}} } \cos{\theta}) \unit{v_{\perp}} = \cos{\theta} \mbold{v_{\perp}}\\
+\mbold{v_{\perp,y}'} &= (\magnitude{ \mbold{v_{\perp}} } \sin{\theta}) \unit{w} = \sin{\theta} \mbold{w}
+\end{align*} %]]></script>
+
+<ul>
+  <li>Expressing $\mbold{v_{\perp}’}$ as a linear combination of the basis</li>
+</ul>
+
+<script type="math/tex; mode=display">\mbold{v_{\perp}'} = \cos{\theta} \mbold{v_{\perp}} + \sin{\theta} \mbold{w}</script>
+
+<p>Reconstructing the solution from the observations above</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mbold{v_{\parallel}} &= (\mbold{v} \cdot \unit{n}) \unit{n} \\
+\mbold{v_{\perp}} &= \mbold{v} - \mbold{v_{\parallel}} \\
+&= \mbold{v} - (\mbold{v} \cdot \unit{n}) \unit{n} \\
+\mbold{w} &= \unit{n} \times \mbold{v_{\perp}} \\
+&= \unit{n} \times (\mbold{v} - \mbold{v_{\parallel}}) \\
+&= \unit{n} \times \mbold{v} - \unit{n} \times \mbold{v_{\parallel}} \\
+&= \unit{n} \times \mbold{v}
+\end{align*} %]]></script>
+
+<p>Finally</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align}
-i &= (a + bi)^2 \nonumber \\
-&= (a + bi)(a + bi) \nonumber \\
-&= a^2 - b^2 + 2abi \label{square-imaginary}
+\mbold{v'} &= \mbold{v_{\perp}'} + \mbold{v_{\parallel}'} \nonumber \\
+&= \cos{\theta} \mbold{v_{\perp}} + \sin{\theta} \mbold{w} + (\mbold{v} \cdot \unit{n}) \unit{n} \nonumber \\
+&= \cos{\theta} (\mbold{v - (\mbold{v} \cdot \unit{n}) \unit{n}}) + \sin{\theta} (\unit{n} \times \mbold{v}) + (\mbold{v} \cdot \unit{n}) \unit{n} \label{3d-rotation} \\
 \end{align} %]]></script>
+
+<p>Now we can compute what the basis vectors are after the transformation above (by using each of the basis vectors as $\mbold{v}$ on \eqref{3d-rotation}) to construct a rotation matrix</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mbold{p} &= \begin{bmatrix}1 & 0 & 0\end{bmatrix} \quad \quad \quad \quad \mbold{p'} = \begin{bmatrix}
+n_x^2(1 - \cost) + \cost \\
+n_xn_y(1 - \cost) + n_z \sint \\
+n_xn_z(1 - \cost) - n_z \sint
+\end{bmatrix}^T\\
+\\
+\mbold{q} &= \begin{bmatrix}0 & 1 & 0\end{bmatrix} \quad \quad \quad \quad \mbold{q'} = \begin{bmatrix}
+n_yn_x(1 - \cost) - n_z \sint \\
+n_y^2(1 - \cost) + \cost \\
+n_yn_z(1 - \cost) + n_x \sint
+\end{bmatrix}^T\\
+\\
+\mbold{r} &= \begin{bmatrix}0 & 0 & 1\end{bmatrix} \quad \quad \quad \quad \mbold{r'} = \begin{bmatrix}
+n_zn_x(1 - \cost) + n_y \sint \\
+n_zn_y(1 - \cost) - n_x \sint \\
+n_z^2(1 - \cost) + \cost
+\end{bmatrix}^T\\
+
+\end{align*} %]]></script>
+
+<p>Constructing the matrix from these vectors</p>
+
+<script type="math/tex; mode=display">\mathbf{R}(\unit{n}, \theta) =
+\begin{bmatrix}
+\mbold{p'} \\
+\mbold{q'} \\
+\mbold{r'}
+\end{bmatrix}</script>
+
+<h3 id="d-rotations-using-quaternions">3d rotations using quaternions</h3>
+
+<p>See <a href="/static/math/numeral-systems/complex-numbers.html">complex numbers</a> and <a href="/static/math/numeral-systems/quaternions.html">quaternions</a></p>
+
+<p>A complex rotor is a unit norm complex number which rotates another complex number by the angle $\theta$ and has the form</p>
+
+<script type="math/tex; mode=display">e^{i\theta} = \cost + i \sint</script>
+
+<p>Hamilton had hoped that a unit-norm quaternion $q$ could be used to rotate a vector which is stored as a pure quaternion $p$, the unit quaternion norm is given by</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+q &= [s, \lambda \unit{v}] \quad s,\lambda \in \mathbb{R}, \unit{v} \in \mathbb{R}^3 \label{unit-norm-quaternion}\\
+\left | \unit{v} \right | &= 1 \nonumber \\
+s^2 + \lambda^2 &= 1 \nonumber
+\end{align} %]]></script>
+
+<script type="math/tex; mode=display">p = [0, \mbold{p}] \quad \mbold{p} \in \mathbb{R}^3</script>
+
+<p>Let’s compute the product $p’ = qp$</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+p' &= qp \nonumber \\
+&= [s, \lambda \unit{v}][0, \mathbf{p}] \nonumber \\
+&= [-\lambda \unit{v} \cdot \mathbf{p}, s \mathbf{p} + \lambda \unit{v} \times \mathbf{p}] \label{p-prime}
+\end{align} %]]></script>
+
+<h4 id="special-case">Special case</h4>
+
+<p>What if $\unit{v}$ is <em>perpendicular</em> to $p$?  Then the scalar quantity of \eqref{p-prime} is zero and we are left with the pure quaternion</p>
+
+<script type="math/tex; mode=display">\begin{equation} \label{p-prime-perpendicular}
+p' = [0, s \mathbf{p} + \lambda \unit{v} \times \mathbf{p}] \quad\quad \text{given that $\mathbf{p}$ is perpendicular to $\unit{v}$}
+\end{equation}</script>
+
+<p>Let’s analyze the vector part of $\eqref{p-prime-perpendicular}$ (which is now a 3d entity because it’s a pure quaternion), since $\unit{v}$ is perpendicular to $\mathbf{p}$ then the vector $\unit{v} \times \mathbf{p}$ will have a norm equal to $\magnitude{ \unit{v} \times \mathbf{p} } = \magnitude{ \unit{v} } \magnitude { \mathbf{p} } \sin{\deg{90}}$ and also since $\unit{v}$ is a unit vector then $\magnitude{\unit{v} \times \mathbf{p}} = \magnitude{\mathbf{p}}$ which means that we have two orthogonal vectors with the same length</p>
+
+<p>To rotate the vector $\mathbf{p}$ about $\unit{v}$ let’s transform $\mathbf{p}$ to the 2d space whose basis vectors are $\mathbf{p}$ and $\unit{v} \times \mathbf{p}$ and perform the rotation there which is trivially $[\cost, \sint]$, therefore all we have to do in \eqref{p-prime-perpendicular} is make the scalar quantities multiplying each vector equal the projection of the rotated vector over the basis</p>
+
+<script type="math/tex; mode=display">p' = [0, \cost \mathbf{p} + \sint \unit{v} \times \mathbf{p}]</script>
+
+<p>Which makes the quaternion $\mathbf{q}$ have the form</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+q &= [\cost, \sint \unit{v}] \label{q-rotor}
+\end{align} %]]></script>
+
+<p>And it acts as a rotor <strong>only when $\unit{v}$ is perpendicular to $\mathbf{p}$</strong></p>
+
+<p>Important notes/facts about orthogonal quaternions</p>
+
+<ul>
+  <li>If $q$ is a rotor about the unit vector $\unit{v}$ by an angle $\theta$ whose vector term is perpendicular to the pure quaternion $p$
+    <ul>
+      <li>$qp$ and $pq^{-1}$ rotate $p$ by an angle $\theta$ about $\unit{v}$</li>
+      <li>$pq$ and $q^{-1}p$ rotate $p$ by an angle $-\theta$ about $\unit{v}$</li>
+      <li>Each of these products leave $p’$ unscaled (because $q$ is a unit norm quaternion)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="general-case">General case</h4>
+
+<p>Let’s use \eqref{unit-norm-quaternion} as the starting point, note that this time its vector part it’s not necessarily perpendicular to the pure quaternion $p$, the product $qp$ yields</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+qp &= [s, \lambda \unit{v}][0, \mathbf{p}] \\
+&= [-\lambda \unit{v} \cdot \mathbf{p}, s \mathbf{p} + \lambda \unit{v} \times \mathbf{p}]
+\end{align*} %]]></script>
+
+<p>Note that the term $-\lambda \unit{v} \cdot \mathbf{p}$ does not vanish since for the general case $\unit{v}$ and $\mathbf{p}$ are no longer perpendicular, what’s more important is that $p’$ is no longer a pure quaternion, multiplying a vector by a non-orthogonal quaternion has converted some of the vector information into the quaternion’s scalar component</p>
+
+<p>What happens if we post-multiply $qp$ by $q^{-1}$, could it reverse the operation?  (Note that since $q$ is a norm quaternion $q^{-1} = q^*$)</p>
+
+<script type="math/tex; mode=display">qpq^{-1} = [-\lambda \unit{v} \cdot \mathbf{p}, s \mathbf{p} + \lambda \unit{v} \times \mathbf{p}][s, -\lambda \unit{v}]</script>
+
+<p>Let’s first check if doing this multiplication makes the scalar component vanish</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+qpq^{-1} &= [-\lambda s \unit{v} \cdot \mathbf{p} - (s \mathbf{p} + \lambda \unit{v} \times \mathbf{p}) \cdot (-\lambda \unit{v}), \ldots] \\
+&= [-\lambda s \unit{v} \cdot \mathbf{p} + (s \mathbf{p}) \cdot (\lambda \unit{v}) + (\lambda \unit{v} \times \mathbf{p}) \cdot (\lambda \unit{v}), \ldots] \\
+&= [-\lambda s \unit{v} \cdot \mathbf{p} + (s \mathbf{p}) \cdot (\lambda \unit{v}) + 0, \ldots] \quad \text {since $\unit{v}$ is perpendicular to $\unit{v} \times \mathbf{p}$ }\\
+&= [-\lambda s \unit{v} \cdot \mathbf{p} + \lambda s \mathbf{p} \cdot \unit{v}), \ldots] \\
+&= [0, \ldots]
+\end{align*} %]]></script>
+
+<p>Indeed it magically made the scalar component vanish! Now let’s look at the vector component of $qpq^{-1}$</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+qpq^{-1} &= [0, s (s \mathbf{p} + \lambda \unit{v} \times \mathbf{p}) + (-\lambda \unit{v} \cdot \mathbf{p})(-\lambda \unit{v}) + (s \mathbf{p} + \lambda \unit{v} \times \mathbf{p}) \times (-\lambda \unit{v})] \\
+&= [0, s^2(\mathbf{p}) + s \lambda (\unit{v} \times \mathbf{p}) + \lambda^2 \unit{v} \cdot \mathbf{p}(\unit{v}) - s \lambda (\mathbf{p} \times \unit{v}) - \lambda^2 (\unit{v} \times \mathbf{p} \times \unit{v})]
+\end{align*} %]]></script>
+
+<p>Let’s expand the cross product</p>
+
+<script type="math/tex; mode=display">(\unit{v} \times \mathbf{p}) \times \unit{v} = (\unit{v} \cdot \unit{v}) \mathbf{p} - (\mathbf{p} \cdot \unit{v}) \unit{v} = \mathbf{p} - (\mathbf{p} \cdot \unit{v}) \unit{v}</script>
 
 <p>Therefore</p>
 
-<script type="math/tex; mode=display">(a^2 - b^2) + (2ab)i = 0 + 1i</script>
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+qpq^{-1} &= [0, s^2 \mathbf{p} + s \lambda (\unit{v} \times \mathbf{p}) + \lambda^2 \unit{v} \cdot \mathbf{p}(\unit{v}) - s \lambda (\mathbf{p} \times \unit{v}) - \lambda^2 (\mathbf{p} - (\mathbf{p} \cdot \unit{v}) \unit{v})] \\
+&= [0, s^2 \mathbf{p} + s \lambda (\unit{v} \times \mathbf{p}) + \lambda^2 \unit{v} \cdot \mathbf{p}(\unit{v}) - s \lambda (\mathbf{p} \times \unit{v}) - \lambda^2 \mathbf{p} + \lambda^2 (\mathbf{p} \cdot \unit{v}) \unit{v})] \\
+&= [0, s^2 \mathbf{p} + 2 s \lambda (\unit{v} \times \mathbf{p}) + \lambda^2 \unit{v} \cdot \mathbf{p}(\unit{v}) - \lambda^2 \mathbf{p} + \lambda^2 (\mathbf{p} \cdot \unit{v}) \unit{v})] \\
+&= [0, (s^2 - \lambda^2) \mathbf{p} + 2 s \lambda (\unit{v} \times \mathbf{p}) + 2 \lambda^2 \unit{v} \cdot \mathbf{p}(\unit{v})] \\
+\end{align*} %]]></script>
 
-<p>Equaling reeal and imaginary parts</p>
+<p>Let’s make $s = \cost$ and $\lambda = \sint$ just like in \eqref{q-rotor}</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align*}
-a^2 - b^2 &= 0 \\
-2ab = 1
+qpq^{-1} &= [0, (\cos^2{\theta} - \sin^2{\theta}) \mathbf{p} + 2 \cost \sint (\unit{v} \times \mathbf{p}) + 2 \sin^2{\theta} \unit{v} \cdot \mathbf{p}(\unit{v})] \\
+&= [0, \cos{2\theta} \mathbf{p} + \sin{2\theta} (\unit{v} \times \mathbf{p}) + (1 - \cos{2\theta}) \unit{v} \cdot \mathbf{p}(\unit{v})] \\
 \end{align*} %]]></script>
 
-<p>Therefore $a = \pm b$, replacing $a = -b$ in the second equation we obtain $-2b^2 = 1$ which is not satisfied by any real number $b$ therefore the case $a = -b$ is impossible,<br />
-replacing $a = b$ in the second equation we obtain $2a^2 = 1$ so</p>
+<p>Which is a pure quaternion which rotated by an angle $2\theta$, if we want to rotate a vector by $\theta$ we must build a half angle $\theta$ quaternion</p>
 
-<script type="math/tex; mode=display">2a^2 = 1 \\
-a^2 = \frac{1}{2} \\
-a = b = \pm \sqrt{\frac{1}{2}} = \pm \frac{1}{\sqrt{2}}</script>
-
-<p>Finally the value of $\sqrt{i}$ is</p>
-
-<script type="math/tex; mode=display">\sqrt{i} = (a + bi) = \pm{\frac{1}{\sqrt{2}}} (1 + i)</script>
-
-<p>The value of $\sqrt{-i}$ is found in the same way (by replacing $b = -a$ in the equation $-2ab = 1$ found from multiplying \eqref{square-imaginary} by $-1$)</p>
-
-<script type="math/tex; mode=display">\sqrt{-i} = (a + bi) = \pm{\frac{1}{\sqrt{2}}} (1 - i)</script>
-
-<h3 id="matrix-representation-of-a-complex-number">Matrix representation of a complex number</h3>
-
-<p>The matrix $C$ for a complex number is the sum of two other matrices representing the real $R$ and imaginary $I$ parts:</p>
-
-<script type="math/tex; mode=display">C = R + I</script>
-
-<p>which can be written as</p>
-
-<script type="math/tex; mode=display">C = a \hat{R} + b \hat{I} \quad\quad a, b \in \mathbb{R}</script>
-
-<p>Where $R = 1$ and $I = i$</p>
-
-<p>The matrix representation of $R = 1$ in 2d is the identity matrix</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{bmatrix}
-1 & 0 \\
-0 & 1
-\end{bmatrix} %]]></script>
-
-<p>To find the matrix representation of $i$ we have to analyze the definition of $i$ which is <strong>something</strong><br />
-which squares to $-1$, given that we already know the value of $1$ in matrix form</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-i^2 = -1 * \begin{bmatrix}
-1 & 0 \\
-0 & 1
-\end{bmatrix} %]]></script>
-
-<p>Then the value of $i$ expressed in matrix form is</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-I = \begin{bmatrix}
-0 & -1 \\
-1 & 0
-\end{bmatrix} %]]></script>
-
-<p>Finally the value of $C$ is</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-C = a \begin{bmatrix}
-1 & 0 \\
-0 & 1
-\end{bmatrix} + b \begin{bmatrix}
-0 & -1 \\
-1 & 0
-\end{bmatrix} =
-\begin{bmatrix}
-a & -b \\
-b & a
-\end{bmatrix} %]]></script>
-
-<h3 id="the-complex-plane">The complex plane</h3>
-
-<p>The powers of $i$ give rise to the sequence $(1, i, -1, -i, 1, \ldots)$ which is quite similar to the pattern<br />
-$(x, y, -x, -y, x, \ldots)$, the resemblance is no coincidence as complex number belong to a 2-dimensional plane, this complex plane allows us to visualize complex numbers using the horizontal axis for the real part and the vertical axis for the imaginary part</p>
-
-<div id="complex-plane"></div>
-<div class="center">$1, i, -1, -i$</div>
-
-<p>We can see that the positions of $i^0 = 1, i^1 = i, i^2 = -1, i^3 = -i, \ldots$ suggest that the multiplication of a complex number by $i$ is equivalent to rotating through 90 degrees</p>
-
-<p>e.g.</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{align*}
-z_1 &= 2 + i \\
-z_2 &= (2 + i)(i) = -1 + 2i \\
-z_3 &= (-1 + 2i)(i) = -2 - i \\
-z_4 &= (-2 - i)(i) = 1 - 2i \\
-z_5 &= (1 - 2i)(i) = 2 + i = z_1
-\end{align*} %]]></script>
-
-<div id="complex-2-i"></div>
-
-<blockquote>
-  <p>A complex number is rotated $\pm 90^{\circ}$ by multiplying it by $\pm i$</p>
-</blockquote>
-
-<p>Let’s graph the roots of $\sqrt{i} = \pm \frac{1}{\sqrt{2}} (1 + i)$</p>
-
-<div id="complex-square-root"></div>
-
-<p>We can see that $\tfrac{1}{\sqrt{2}} (1 + i)$ is exactly at $45^{\circ}$ and $- \tfrac{1}{\sqrt{2}} (1 + i)$ is exactly at $225^{\circ}$</p>
-
-<p>Let’s multiply the complex number $2 + i$ by $\sqrt{i}$ (it should rotate it by $45^{\circ}$)</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{align*}
-z_1 &= 2 + i \\
-z_2 &= (2 + i)(\sqrti + \sqrti i) = \sqrti + 3 \sqrti i
-\end{align*} %]]></script>
-
-<div id="complex-45"></div>
-
-<p>Multiplying $z_2$ by $\sqrt{i}$ again should be equal to multiplying $z_1$ by $i$ (because $z_2$ is already rotated by $45^{\circ}$)</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{align*}
-z_2 &= \sqrti + 3 \sqrti i \\
-z_3 &= (\sqrti + 3 \sqrti i)(\sqrti + \sqrti i) \\
-&= (\frac{1}{2} - \frac{3}{2}) + (\frac{1}{2} + \frac{3}{2})i \\
-&= -1 + 2i
-\end{align*} %]]></script>
-
-<p>Which is exactly what we find if we multiply $z_i$ by $i$, these observations suggest that we can build a complex number which can rotate another complex number by any angle</p>
-
-<blockquote>
-  <p>A complex number is rotated $45^{\circ}$ by multiplying it by $\sqrti + \sqrti i$</p>
-</blockquote>
-
-<blockquote>
-  <p>A complex number is rotated $225^{\circ}$ by multiplying it by $-\sqrti + \sqrti i$</p>
-</blockquote>
-
-<h3 id="polar-representation">Polar representation</h3>
-
-<p>Instead of using coordinates in the complex plane we can represent a polar number with the length of the vector from the origin to the complex coordinate and the angle between the complex vector and the positive real axis</p>
-
-<script type="math/tex; mode=display">r = |z| = \sqrt{a^2 + b^2} \\
-\theta = arctan(\frac{b}{a})</script>
-
-<p>The horizontal component of $z$ is then $r * cos(\theta)$ and the vectical component is $r * sin(\theta)$, expressing the complex number using these quantities</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{align*}
-z &= a + bi \\
-&= r * \cos \theta + ri\; \sin \theta \\
-&= r \; (\cos \theta + i \sin \theta)
-\end{align*} %]]></script>
-
-<p>Euler provided the identity</p>
-
-<script type="math/tex; mode=display">\begin{equation}\label{rotor}
-e^{i\theta} = \cos \theta + i \sin \theta
-
+<script type="math/tex; mode=display">\begin{equation} \label{rotor}
+q = [\cos{\frac{1}{2}\theta}, \sin{\frac{1}{2}\theta}\unit{v}]
 \end{equation}</script>
-
-<p>Which allows us to represent any complex number as</p>
-
-<script type="math/tex; mode=display">z = r\,e^{i\theta}</script>
-
-<p>Given two polar numbers</p>
-
-<script type="math/tex; mode=display">z = r\,e^{i\theta} \\
-w = s\,e^{i\phi} \\</script>
-
-<p>Their product is</p>
-
-<script type="math/tex; mode=display">zw = rs\, e^{i(\theta + \phi)} = rs [ \cos (\theta + \phi) + i \sin (\theta + \phi)]</script>
-
-<p>Which effectively rotated the complex number $z$ by $\phi$ angles! However the quantity $zw$ was scaled $s$ units, to avoid scalling we can normalize $w$ (i.e. making $r = 1$ which is equal to \eqref{rotor})</p>
-
-<blockquote>
-  <p>A <em>rotor</em> is a complex number that rotates another complex number by an angle $\theta$ (through multiplication) and has the form</p>
-
-  <script type="math/tex; mode=display">e^{i\theta} = \cos \theta + i \sin \theta</script>
-</blockquote>
-
-<p>Rotating a complex number $x + yi$ by an angle $\theta$</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{align*}
-x' + y'i &= (\cos \theta + i \sin \theta)(x + yi) \\
-&= (x \cos \theta - y \sin \theta) + (x \sin \theta + y \cos \theta)i
-\end{align*} %]]></script>
-
-<p>Which in matrix form is</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{bmatrix}
-x' & -y' \\
-y' & x'
-\end{bmatrix} = \begin{bmatrix}
-\cos \theta & -\sin \theta \\
-\sin \theta & \cos \theta
-\end{bmatrix} \begin{bmatrix}
-x & -y \\
-y & x
-\end{bmatrix} %]]></script>
 
 <script>
 function unitCircle() {
@@ -544,97 +536,24 @@ function unitCircle() {
     x: 'cos(t)',
     y: 'sin(t)',
     color: 'lightgrey',
-    graphType: 'polyline',
-    fnType: 'parametric'
-  }
-}
-
-function vector (ends, offset) {
-  return {
-    vector: ends,
-    offset: offset,
-    fnType: 'vector',
+    fnType: 'parametric',
     graphType: 'polyline'
   }
 }
 
-function updateFormat(instance) {
-  var format = instance.meta.yAxis.tickFormat()
-  var imaginaryFormat = function (d) {
-    return format(d) + ' i'
-  }
-  instance.meta.yAxis.tickFormat(imaginaryFormat)
-  instance.draw()
-}
-
 ;(function () {
-  var instance = functionPlot({
-    target: '#complex-plane',
-    xLabel: 'real',
-    yLabel: 'imaginary',
+  functionPlot({
+    target: '#two-dimensions',
     grid: true,
     xDomain: [-6, 6],
     data: [
-      vector([1, 0]),
-      vector([0, 1]),
-      vector([-1, 0]),
-      vector([0, -1]),
+      { vector: [1, 0], color: '#FFCCCB', fnType: 'vector', graphType: 'polyline' },
+      { vector: [0, 1], color: '#add8e6', fnType: 'vector', graphType: 'polyline' },
+      { vector: [0.86602540378, 0.5], color: 'red', fnType: 'vector', graphType: 'polyline'},
+      { vector: [-0.5, 0.86602540378], color: 'blue', fnType: 'vector', graphType: 'polyline' },
       unitCircle()
     ]
   })
-  updateFormat(instance)
-})()
-
-;(function () {
-  var instance = functionPlot({
-    target: '#complex-2-i',
-    xLabel: 'real',
-    yLabel: 'imaginary',
-    grid: true,
-    xDomain: [-6, 6],
-    data: [
-      vector([2, 1]),
-      vector([-1, 2]),
-      vector([-1, 2]),
-      vector([1, -2]),
-      unitCircle()
-    ]
-  })
-  updateFormat(instance)
-})()
-
-;(function () {
-  var n = 1 / Math.sqrt(2)
-  var instance = functionPlot({
-    target: '#complex-square-root',
-    xLabel: 'real',
-    yLabel: 'imaginary',
-    grid: true,
-    xDomain: [-6, 6],
-    data: [
-      vector([n, n]), 
-      vector([-n, n]), 
-      unitCircle()
-    ]
-  })
-  updateFormat(instance)
-})()
-
-;(function () {
-  var n = 1 / Math.sqrt(2)
-  var instance = functionPlot({
-    target: '#complex-45',
-    xLabel: 'real',
-    yLabel: 'imaginary',
-    grid: true,
-    xDomain: [-6, 6],
-    data: [
-      vector([2, 1]),
-      vector([n, 3 * n]),
-      unitCircle()
-    ]
-  })
-  updateFormat(instance)
 })()
 </script>
 

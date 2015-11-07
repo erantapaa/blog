@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Topological sorting</title>
+  <title>Projections</title>
   <meta name="description" content="Layout run failed ._.
 ">
 
@@ -16,7 +16,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://maurizzzio.github.io/static/graphs/topological-sorting.html">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/computer-graphics/math/projection.html">
   <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
 
 </head>
@@ -209,149 +209,98 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Topological sorting</h1>
+    <h1 class="post-title">Projections</h1>
   </header>
 
   <article class="post-content">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <h2 id="orthographic-projection">Orthographic projection</h2>
 
-<script src="//maurizzzio.github.io/greuler/scripts/lib/cola.v3.js"></script>
+<p>A projection is a <em>dimension-reducing</em> operation, if we apply a scale operation with $k = 0$ all the points are projected onto the perpendicular axis in 2d or the perpendicular plane in 3d of $\unit{n}$, this type of projection is called <em>orthographic projection</em></p>
 
-<script src="//maurizzzio.github.io/greuler/greuler.js"></script>
+<h3 id="projection-on-a-cardinal-axisplane">Projection on a cardinal axis/plane</h3>
 
-<p>Let $G$ be a digraph, the <strong>topological sorting</strong> algorithm is a linear ordering of the vertices of $G$ such that for every directed edge $u \rightarrow v$ where $u,v \in V(G)$, $u$ comes before $v$ in the ordering, the ordering is possible only if the graph <em>has no directed cycles</em></p>
+<p>The simplest type of projection just discards a coordinate of the vectors transformed, e.g. in 2d the vector $v = [v_x, v_y]$ projected onto the $x$ axis will discard its $y$ coordinate and make $v’ = [v_x, 0]$</p>
 
-<ul>
-  <li>since the graph has no directed cycles, at least one of the vertices has no incoming edges</li>
-</ul>
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{P_x} = \mathbf{S}(\begin{bmatrix}
+0 & 1
+\end{bmatrix}, 0) = \begin{bmatrix}
+1 & 0 \\
+0 & 0
+\end{bmatrix} %]]></script>
 
-<div id="figure-topological-sorting"></div>
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{P_y} = \mathbf{S}(\begin{bmatrix}
+1 & 0
+\end{bmatrix}, 0) = \begin{bmatrix}
+0 & 0 \\
+0 & 1
+\end{bmatrix} %]]></script>
 
-<pre><code class="language-cpp">vector&lt;bool&gt; visited;
-// adjacency list of G
-vector&lt;vector&lt;int&gt; &gt; g;
-vector&lt;int&gt; order;
+<p>When a 3d vector $v = [v_x, v_y, v_z]$ is projected onto the $xy$ plane then the $v_z$ coordinate will be discarded by copying just $v_x$ and $v_y$ i.e. $v’ = [v_x, v_y, 0]$</p>
 
-void dfs(int v) {
-  visited[v] = true;
-  for (int i = 0; i &lt; g[v].size(); i += 1) {
-    int next = g[v][i];
-    if (!visited[next]) {
-      dfs(next);
-    }
-  }
-  order.push_back(v);
-}
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{P_{xy}} = \mathbf{S}(\begin{bmatrix}
+0 & 0 & 1
+\end{bmatrix}, 0) = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 0
+\end{bmatrix} %]]></script>
 
-/**
- * Given a graph `G` of order `n` and size `m` computes a linear ordering
- * of the vertices such that for every edge u -&gt; v, `u` comes earlier than `v`
- * in the ordering
- *
- * Time complexity: O(n + m)
- * Space complexity: O(n)
- *
- */
-void topological_sort() {
-  int n = g.size();
-  visited.assign(n, false);
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{P_{xz}} = \mathbf{S}(\begin{bmatrix}
+0 & 1 & 0
+\end{bmatrix}, 0) = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix} %]]></script>
 
-  for (int i = 0; i &lt; visited.size(); i += 1) {
-    if (!visited[i]) {
-      dfs(i);
-    }
-  }
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{P_{yz}} = \mathbf{S}(\begin{bmatrix}
+1 & 0 & 0
+\end{bmatrix}, 0) = \begin{bmatrix}
+0 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix} %]]></script>
 
-  reverse(order.begin(), order.end());
-}
+<h3 id="projection-onto-an-arbitrary-axisplane">Projection onto an arbitrary axis/plane</h3>
 
-</code></pre>
+<p>We can apply a zero factor scale along the direction of the vector perpendicular to the axis/plane</p>
 
-<h2 id="applications">Applications</h2>
+<p>In 2d</p>
 
-<h3 id="shortest-path-in-a-directed-acyclic-graph">Shortest path in a Directed Acyclic Graph</h3>
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mathbf{P(\unit{n})} = \mathbf{S}(\unit{n}, 0) &= \begin{bmatrix}
+1 + (0 - 1){n_x}^2 & (0 - 1)n_xn_y \\
+(0 - 1)n_xn_y & 1 + (0 - 1{n_y}^2
+\end{bmatrix} \\
+\\
+&= \begin{bmatrix}
+1 - {n_x}^2 & -n_xn_y \\
+-n_xn_y & 1 - {n_y}^2
+\end{bmatrix}
+\end{align*} %]]></script>
 
-<pre><code class="language-cpp">// adjacency list of G
-// (to, weight)
-vector&lt;vector&lt;pair&lt;int, int&gt; &gt; &gt; g;
+<p>In 3d</p>
 
-// topological sort states
-vector&lt;bool&gt; visited;
-vector&lt;int&gt; order;
-
-// shortest path state
-vector&lt;int&gt; dist;
-
-void dfs(int v) {
-  visited[v] = true;
-  for (int i = 0; i &lt; g[v].size(); i += 1) {
-    int next = g[v][i];
-    if (!visited[next]) {
-      dfs(next);
-    }
-  }
-  order.push_back(v);
-}
-
-void topological_sort() {
-  int n = g.size();
-  visited.assign(n, false);
-
-  for (int i = 0; i &lt; visited.size(); i += 1) {
-    if (!visited[i]) {
-      dfs(i);
-    }
-  }
-
-  reverse(order.begin(), order.end());
-}
-
-/**
- * Given a weighted graph `G` of order `n` and size `m` and a source vertex `source`
- * it computes the shortest distance between `source` and every other reachable
- * vertex from `source`
- *
- * Time complexity: O(n + m)
- * Space complexity: O(n)
- *
- */
-void shortest_path_dag(int source) {
-  int n = g.size();
-  dist.assign(n, -1);
-
-  topological_sort();
-  dist[source] = 0;
-
-  for(int i = 0; i &lt; order.size(); i += 1) {
-    int v = order[i];
-    if (dist[v] &gt;= 0) {
-      for (int j = 0; j &lt; g[v].size(); j += 1) {
-        int to = g[v][j].first;
-        int weight = g[v][j].second;
-        int path_distance = dist[v] + weight;
-        if (dist[to] &lt; 0 || dist[to] &gt; path_distance) {
-          dist[to] = path_distance;
-        }
-      }
-    }
-  }
-}
-
-</code></pre>
-
-<script>
-(function () {
-  d3.json('/js/graph/data/topological-sorting.json', function (err, data) {
-    if (err) { throw err }
-    greuler({
-      directed: true,
-      target: '#figure-topological-sorting',
-      data: data
-    }).update({ iterations: [30, 30, 30] })
-  })
-})()
-</script>
-
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mathbf{P(\unit{n})} = \mathbf{S}(\unit{n}, 0) &= \begin{bmatrix}
+1 + (0 - 1){n_x}^2 & (0 - 1)n_xn_y & (0 - 1)n_xn_z \\
+(0 - 1)n_xn_y & 1 + (0 - 1{n_y}^2 & (0 - 1)n_yn_z \\
+(0 - 1)n_xn_z & (0 - 1)n_yn_z & 1 + (0 - 1){n_z}^2
+\end{bmatrix} \\
+\\
+&= \begin{bmatrix}
+1 - {n_x}^2 & -n_xn_y & -n_xn_z \\
+-n_xn_y & 1 - {n_y}^2 & -n_yn_z \\
+-n_xn_z & -n_yn_z & 1 - {n_z}^2 \\
+\end{bmatrix}
+\end{align*} %]]></script>
 
   </article>
 

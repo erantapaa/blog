@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Topological sorting</title>
+  <title>Space coordinates</title>
   <meta name="description" content="Layout run failed ._.
 ">
 
@@ -16,7 +16,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://maurizzzio.github.io/static/graphs/topological-sorting.html">
+  <link rel="canonical" href="http://maurizzzio.github.io/static/computer-graphics/math/space-coordinates.html">
   <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
 
 </head>
@@ -209,149 +209,172 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Topological sorting</h1>
+    <h1 class="post-title">Space coordinates</h1>
   </header>
 
   <article class="post-content">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <h2 id="coordinates-of-a-vector">Coordinates of a vector</h2>
 
-<script src="//maurizzzio.github.io/greuler/scripts/lib/cola.v3.js"></script>
+<p>The numeric coordinates of a vector expressed with respect to some basis are the coefficients of the representation of the vector as a linear combination of the basis</p>
 
-<script src="//maurizzzio.github.io/greuler/greuler.js"></script>
+<script type="math/tex; mode=display">\mbold{v} = v_x \mbold{i} + v_y \mbold{j} + v_z \mbold{k}</script>
 
-<p>Let $G$ be a digraph, the <strong>topological sorting</strong> algorithm is a linear ordering of the vertices of $G$ such that for every directed edge $u \rightarrow v$ where $u,v \in V(G)$, $u$ comes before $v$ in the ordering, the ordering is possible only if the graph <em>has no directed cycles</em></p>
+<p>In other words the numeric coordinates are the quantities that multiply each basis vector which are $v_x$, $v_y$ and $v_z$</p>
+
+<p>When the basis vectors are $\mbold{i} = [1, 0, 0]$, $\mbold{j} = [0, 1, 0]$ and $\mbold{k} = [0, 0, 1]$ then</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mbold{v} &= v_x \begin{bmatrix} 1 & 0 & 0 \end{bmatrix} + v_y \begin{bmatrix} 0 & 1 & 0 \end{bmatrix} + v_z \begin{bmatrix} 0 & 0 & 1 \end{bmatrix} \\
+&= \begin{bmatrix} v_x & v_y & v_z \end{bmatrix}
+\end{align*} %]]></script>
+
+<h2 id="world-space-upright-space-object-space">World space, upright space, object space</h2>
+
+<p>why bother having multiple spaces?</p>
+
+<blockquote>
+  <p>information is given only in the context of a particular reference frame</p>
+</blockquote>
 
 <ul>
-  <li>since the graph has no directed cycles, at least one of the vertices has no incoming edges</li>
+  <li><strong>world space</strong>: global reference frame
+    <ul>
+      <li>the position of other coordinates spaces can be expressed in terms of this space</li>
+      <li>this space cannot be expressed in terms of any larger/outer space</li>
+      <li>note that there’s no “absolute” space however this space is the largest one we care about</li>
+    </ul>
+  </li>
+  <li><strong>object space</strong>: space associated with each object that belongs to the world space
+    <ul>
+      <li><strong>camera space</strong>: object space associated with the viewport used for rendering</li>
+    </ul>
+  </li>
+  <li><strong>upright space</strong>: special space associated with each object, it’s halfway between world space and object space in the sense that the axes of this space are <strong>parallel</strong> to the one of the world space but the origin of this space is coincident with the origin of the object space</li>
 </ul>
 
-<div id="figure-topological-sorting"></div>
+<p>Why do we have an upright space?</p>
 
-<pre><code class="language-cpp">vector&lt;bool&gt; visited;
-// adjacency list of G
-vector&lt;vector&lt;int&gt; &gt; g;
-vector&lt;int&gt; order;
+<p>Thanks to this space the problem of transforming a point between object space -&gt; world space (and viceversa) can be divided in two subproblems</p>
 
-void dfs(int v) {
-  visited[v] = true;
-  for (int i = 0; i &lt; g[v].size(); i += 1) {
-    int next = g[v][i];
-    if (!visited[next]) {
-      dfs(next);
-    }
-  }
-  order.push_back(v);
-}
+<ul>
+  <li>object space -&gt; upright space (a rotation)</li>
+  <li>upright space -&gt; world space (a change of location)</li>
+</ul>
 
-/**
- * Given a graph `G` of order `n` and size `m` computes a linear ordering
- * of the vertices such that for every edge u -&gt; v, `u` comes earlier than `v`
- * in the ordering
- *
- * Time complexity: O(n + m)
- * Space complexity: O(n)
- *
- */
-void topological_sort() {
-  int n = g.size();
-  visited.assign(n, false);
+<h3 id="from-object-space-to-upright-space">From object space to upright space</h3>
 
-  for (int i = 0; i &lt; visited.size(); i += 1) {
-    if (!visited[i]) {
-      dfs(i);
-    }
-  }
+<p>Let $\mbold{v}$ be some vector expressed in a space whose basis vectors are $\mbold{p}, \mbold{q}, \mbold{r}$ (expressed in terms of the upright space), the vector $\mbold{v}$ expressed in upright coordinates is</p>
 
-  reverse(order.begin(), order.end());
-}
+<script type="math/tex; mode=display">\begin{equation}\label{object-upright}
+\mathbf{ v_{upright} } = v_x \mbold{p} + v_y \mbold{q} + v_z \mbold{r}
+\end{equation}</script>
 
-</code></pre>
+<p>i.e.</p>
 
-<h2 id="applications">Applications</h2>
+<script type="math/tex; mode=display">v_{upright,x} = v_x p_x + v_y q_x + v_z r_x \\
+v_{upright,y} = v_x p_y + v_y q_y + v_z r_y \\
+v_{upright,z} = v_x p_z + v_y q_z + v_z r_z</script>
 
-<h3 id="shortest-path-in-a-directed-acyclic-graph">Shortest path in a Directed Acyclic Graph</h3>
+<p>It’s just a sum of scaled vectors that uniquely determine $v_{upright}$, note that if $\mbold{p}, \mbold{q}, \mbold{r}$ were not orthogonal then $v_{upright}$ couldn’t be uniquely determined</p>
 
-<pre><code class="language-cpp">// adjacency list of G
-// (to, weight)
-vector&lt;vector&lt;pair&lt;int, int&gt; &gt; &gt; g;
+<p>The coordinates of $\mbold{p}, \mbold{q}, \mbold{r}$ are always equal to $[1, 0, 0], [0, 1, 0]$ and $[0, 0, 1]$ respectively <strong>when expressed using the coordinate system for which they are the basis</strong>, relative to other larger/outer coordinate systems they will have arbitrary coordinates</p>
 
-// topological sort states
-vector&lt;bool&gt; visited;
-vector&lt;int&gt; order;
+<h3 id="from-upright-space-to-object-space">From upright space to object space</h3>
 
-// shortest path state
-vector&lt;int&gt; dist;
+<p>What if $v_{upright}$ is known and we want to know $\mbold{v}$? The dot product is the key as it’s used to measure distance in a particular direction, since we know that the basis vectors $\mbold{p}, \mbold{q}, \mbold{r}$ are expressed in terms of the upright space perspective we just have to calculate the projection of $v_{upright}$ in the direction of each $\mbold{p}, \mbold{q}, \mbold{r}$</p>
 
-void dfs(int v) {
-  visited[v] = true;
-  for (int i = 0; i &lt; g[v].size(); i += 1) {
-    int next = g[v][i];
-    if (!visited[next]) {
-      dfs(next);
-    }
-  }
-  order.push_back(v);
-}
+<script type="math/tex; mode=display">v_x = v_{upright} \cdot \mbold{p} \\
+v_y = v_{upright} \cdot \mbold{q} \\
+v_z = v_{upright} \cdot \mbold{r}</script>
 
-void topological_sort() {
-  int n = g.size();
-  visited.assign(n, false);
+<p><strong>Note:</strong> this only works when $\mbold{p}, \mbold{q}, \mbold{r}$ are orthonormal, for the general case we have to solve this using linear algebra</p>
 
-  for (int i = 0; i &lt; visited.size(); i += 1) {
-    if (!visited[i]) {
-      dfs(i);
-    }
-  }
+<h3 id="from-upright-space-to-world-space">From upright space to world space</h3>
 
-  reverse(order.begin(), order.end());
-}
+<p>Since the axes of the upright space are parallel to the axes of the world space the only difference between these spaces is the translation of these axes with respect to the origin of the axes of the world space, let $\mbold{o}$ be the translation of the upright basis axes then</p>
 
-/**
- * Given a weighted graph `G` of order `n` and size `m` and a source vertex `source`
- * it computes the shortest distance between `source` and every other reachable
- * vertex from `source`
- *
- * Time complexity: O(n + m)
- * Space complexity: O(n)
- *
- */
-void shortest_path_dag(int source) {
-  int n = g.size();
-  dist.assign(n, -1);
+<script type="math/tex; mode=display">\mathbf{v_{world}} = \mathbf{o} + \mathbf{v_{upright}}</script>
 
-  topological_sort();
-  dist[source] = 0;
+<h3 id="from-world-space-to-upright-space">From world space to upright space</h3>
 
-  for(int i = 0; i &lt; order.size(); i += 1) {
-    int v = order[i];
-    if (dist[v] &gt;= 0) {
-      for (int j = 0; j &lt; g[v].size(); j += 1) {
-        int to = g[v][j].first;
-        int weight = g[v][j].second;
-        int path_distance = dist[v] + weight;
-        if (dist[to] &lt; 0 || dist[to] &gt; path_distance) {
-          dist[to] = path_distance;
-        }
-      }
-    }
-  }
-}
+<p>We just have to translate the whole space so that the origin lies exactly on the origin of the upright space, if $\mathbf{o}$ is the origin of the upright space expressed in world space then</p>
 
-</code></pre>
+<script type="math/tex; mode=display">\mathbf{v_{upright}} = \mathbf{v_{world}} - \mathbf{o}</script>
 
-<script>
-(function () {
-  d3.json('/js/graph/data/topological-sorting.json', function (err, data) {
-    if (err) { throw err }
-    greuler({
-      directed: true,
-      target: '#figure-topological-sorting',
-      data: data
-    }).update({ iterations: [30, 30, 30] })
-  })
-})()
-</script>
+<h2 id="transformation-matrix">Transformation matrix</h2>
 
+<p>Let’s say that we’re given the standard basis vectors $\mbold{i} = [1, 0, 0], \; \mbold{j} = [0, 1, 0], \; \mbold{k} = [0, 0, 1]$ and we multipy each of these vectors by an <em>arbitrary</em> matrix $\mbold{M}$</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+
+\mbold{iM} &= \begin{bmatrix}1 & 0 & 0\end{bmatrix}
+\begin{bmatrix}
+m_{11} & m_{12} & m_{13} \\
+m_{21} & m_{22} & m_{23} \\
+m_{31} & m_{32} & m_{33} \\
+\end{bmatrix} = \begin{bmatrix} m_{11} & m_{12} & m_{13} \end{bmatrix} = \mbold{p} \\
+
+\\
+
+\mbold{jM} &= \begin{bmatrix}0 & 1 & 0\end{bmatrix}
+\begin{bmatrix}
+m_{11} & m_{12} & m_{13} \\
+m_{21} & m_{22} & m_{23} \\
+m_{31} & m_{32} & m_{33} \\
+\end{bmatrix} = \begin{bmatrix} m_{21} & m_{22} & m_{23} \end{bmatrix} = \mbold{q} \\
+
+\\
+
+\mbold{kM} &= \begin{bmatrix}0 & 0 & 1\end{bmatrix}
+\begin{bmatrix}
+m_{11} & m_{12} & m_{13} \\
+m_{21} & m_{22} & m_{23} \\
+m_{31} & m_{32} & m_{33} \\
+\end{bmatrix} = \begin{bmatrix} m_{31} & m_{32} & m_{33} \end{bmatrix} = \mbold{r}
+
+\end{align*} %]]></script>
+
+<p>The first row of $\mbold{M}$ contains the result of <em>performing a transformation on the vector $\mbold{i}$</em>, the second row is the result of transforming $\mbold{j}$ and third row to $\mbold{k}$</p>
+
+<p>Let $\mbold{v}$ be some vector expressed under this coordinate space which means that it can be represented as a linear combination of the basis</p>
+
+<script type="math/tex; mode=display">\mathbf{v} = v_x \mathbf{i} + v_y \mathbf{j} + v_z \mathbf{k}</script>
+
+<p>If we multiply this vector by the matrix $\mbold{M}$</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\mathbf{vM} &= (v_x \mathbf{i} + v_y \mathbf{j} + v_z \mathbf{k}) \mathbf{M} \\
+&= v_x (\mathbf{iM}) + v_y (\mathbf{jM}) + v_z (\mathbf{kM}) \\
+&= v_x \begin{bmatrix} m_{11} & m_{12} & m_{13} \end{bmatrix} + v_y \begin{bmatrix} m_{21} & m_{22} & m_{23} \end{bmatrix} + v_z \begin{bmatrix} m_{31} & m_{32} & m_{33} \end{bmatrix} \\
+&= v_x \mbold{p} + v_y \mbold{q} + v_z \mbold{r}
+\end{align*} %]]></script>
+
+<p>$\mbold{vM}$ is then a <em>linear combination</em> of the rows of $\mbold{M}$, if we interpret these row vectos as the <em>basis vectors</em> of some coordinate system expressed in terms of the coordinate system whose basis vectors are $\mathbf{i}$, $\mathbf{j}$ and $\mathbf{k}$ then we have successfully created a structure that encodes a coordinate space transformation seen in \eqref{object-upright} in the form of a matrix</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{vM} = \begin{bmatrix}v_x & v_y & v_z\end{bmatrix}
+\begin{bmatrix}
+\textbf{p} \\
+\textbf{q} \\
+\textbf{r}
+\end{bmatrix} = v_x \mbold{p} + v_y \mbold{q} + v_z \mbold{r} %]]></script>
+
+<p>$\mbold{M}$ encodes in its rows a transformation made to the standard basis vectors, let’s multiply it by an arbitrary matrix $\mathbf{N}$</p>
+
+<script type="math/tex; mode=display">\mathbf{MN} = \begin{bmatrix}
+\mathbf{p} \\
+\mathbf{q} \\
+\mathbf{r}
+\end{bmatrix} \mathbf{N} = \begin{bmatrix}
+\mathbf{pN} \\
+\mathbf{qN} \\
+\mathbf{rN}
+\end{bmatrix}</script>
+
+<p>We can see that the rows of the product $\mathbf{MN}$ are the result of transforming the basis vectors in $\mathbf{M}$ by $\mathbf{N}$ so matrix multiplication encodes a basis vectors transformation</p>
 
   </article>
 
