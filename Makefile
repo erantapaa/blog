@@ -1,5 +1,5 @@
 all:
-	jekyll serve --draft
+	jekyll serve --draft --incremental
 	# if there are errors add the --trace flag
 
 deploy:

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Projective Geometry</title>
+  <meta name="description" content="Layout run failed ._.
+">
+
+  <!-- syntax highlighter -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://maurizzzio.github.io//static/math/geometry/projective-geometry.html">
+  <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io//feed.xml" />
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Mauricio Poppe</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+<!--       <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/combining-transformations.html">Combining transformations</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/numeral-systems/complex-numbers.html">Complex numbers</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/components.html">Components</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/derivative.html">Derivative</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/divisor-function.html">Divisor Function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/">Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/integral.html">Integral</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/introduction.html">Introduction</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/introduction.html">Introduction</a>
+          
+        
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/orthographic-projection.html">Orthographic projection</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/perspective-projection.html">Perspective projection</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/primality-test.html">Primality Test</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/opengl/projection-matrix.html">Projection matrix</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/geometry/projective-geometry.html">Projective Geometry</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/numeral-systems/quaternions.html">Quaternions</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/rotation/quaternions.html">Quaternions</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/fundamentals/ray-tracing.html">Ray tracing</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/fundamentals/rendering.html">Rendering</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/resources.html">Resources</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/rotation.html">Rotations</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/scale.html">Scale</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/shearing.html">Shearing</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/space-coordinates.html">Space coordinates</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/topological-sorting.html">Topological sorting</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/translation.html">Translation</a>
+          
+        
+          
+          <a class="page-link" href="/static/graphs/traversal.html">Traversal</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/opengl/view-matrix.html">View matrix</a>
+          
+        
+      </div>
+ -->
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="static-page-sidebar">
+        <ul><li><li><ul><li>static<ul><li>computer-graphics<ul><li><a href="/static/computer-graphics/resources.html">Resources</a></li><li>fundamentals<ul><li><a href="/static/computer-graphics/fundamentals/rendering.html">Rendering</a></li><li><a href="/static/computer-graphics/fundamentals/ray-tracing.html">Ray tracing</a></li></ul></li><li>math<ul><li><a href="/static/computer-graphics/math/space-coordinates.html">Space coordinates</a></li><li><a href="/static/computer-graphics/math/scale.html">Scale</a></li><li><a href="/static/computer-graphics/math/shearing.html">Shearing</a></li><li><a href="/static/computer-graphics/math/rotation.html">Rotations</a></li><li><a href="/static/computer-graphics/math/translation.html">Translation</a></li><li><a href="/static/computer-graphics/math/orthographic-projection.html">Orthographic projection</a></li><li><a href="/static/computer-graphics/math/perspective-projection.html">Perspective projection</a></li><li><a href="/static/computer-graphics/math/combining-transformations.html">Combining transformations</a></li><li>rotation<ul><li><a href="/static/computer-graphics/math/rotation/quaternions.html">Quaternions</a></li></ul></li></ul></li><li>opengl<ul><li><a href="/static/computer-graphics/opengl/view-matrix.html">View matrix</a></li><li><a href="/static/computer-graphics/opengl/projection-matrix.html">Projection matrix</a></li></ul></li></ul></li><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a></li><li><a href="/static/graphs/traversal.html">Traversal</a></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a></li><li><a href="/static/graphs/components.html">Components</a></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a></li></ul></li><li>tree<ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a></li><li><a href="/static/math/calculus/derivative.html">Derivative</a></li><li><a href="/static/math/calculus/integral.html">Integral</a></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a></li></ul></li><li>geometry<ul><li><a href="/static/math/geometry/projective-geometry.html">Projective Geometry</a></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a></li></ul></li><li>numeral-systems<ul><li><a href="/static/math/numeral-systems/complex-numbers.html">Complex numbers</a></li><li><a href="/static/math/numeral-systems/quaternions.html">Quaternions</a></li></ul></li></ul></li></ul></li></ul></li></li></ul>
+      </div>
+
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Projective Geometry</h1>
+  </header>
+
+  <article class="post-content">
+    <p>In Euclidean geometry two lines are said to be parallel if they lie in the same plane and never meet, moreover properties like this one do not change when an Euclidean transformation is applied (translation/rotation), however what we perceive in reality is different from what’s described with Euclidean geometry, in reality the length of an object/angles between lines for example are not preserved and therefore <em>parallel lines</em> may intersect</p>
+
+<p>This problem coincided with the one the renaissance artist had which is related to <strong>perspective</strong> i.e. how you represent the objects of a 3D world on a 2D canvas</p>
+
+<p>They realized the following rules while trying to draw tiles in perspective</p>
+
+<blockquote>
+  <p>parallel lines meet on the horizon</p>
+</blockquote>
+
+<blockquote>
+  <p>straight lines must be represented on the page by straight lines</p>
+</blockquote>
+
+<blockquote>
+  <p>the image of a conic is also a conic (for example a circle is drawn as an<br />
+ellipse depending on the perspective)</p>
+</blockquote>
+
+<p><img src="/images/projective-geometry!perspective.jpg" alt="projection" class="center-image" /></p>
+
+<p>A French mathematician called <a href="https://www.wikiwand.com/en/Girard_Desargues">Girard Desargues</a> which researched more on this new type of geometry had the necessity to have a <em>point at infinity</em>, he introduced the concept of a <em>line at infinity</em> which helped defined the point infinity as follows</p>
+
+<blockquote>
+  <p>for every family of parallel lines on some ordinary plane there’s one point at infinity where they all meet which lies on the line at infinity</p>
+</blockquote>
+
+<p><img src="/images/projective-geometry!projective-plane.png" alt="projective plane" class="center-image" /></p>
+
+<p>An ordinary plane + the line at infinity is called a <strong>projective plane</strong></p>
+
+<p>Projective geometry exists in any number of dimensions (just like Euclidean geometry), When we take a picture using a camera the imaging process makes a projection from $P^3$ to $P^2$, such a process is called <em>projective trasnformation</em></p>
+
+<p>Properties of projective transformations</p>
+
+<ul>
+  <li>Preservation of type (points remain points and lines remain lines)</li>
+  <li>Incidence (a point remains on a line after transformation)</li>
+</ul>
+
+<p>In 1D there’s the <strong>projective line</strong> which is an ordinary line + one point at infinity which can be reached by moving towards each end of the line</p>
+
+<h2 id="formal-definitions">Formal definitions</h2>
+
+<h3 id="projective-line">Projective line</h3>
+
+<blockquote>
+  <p>spaces of 1-dimensional subspaces that exist in 2-dimensions i.e. <em>any line that passes through the origin in a 2-dimensional space</em></p>
+</blockquote>
+
+<p>Let $w$ be the vertical axis in this 2-dimensional space, the picture of a line at infinity is shown by looking at the line $w = 1$ and its relation with $w = 0$, almost all the lines that pass through the origin intercept $w = 1$ <strong>except</strong> the line $w = 0$, therefore we can see that the set of points that exists in the line $w = 1$ is the same as the interception of 1-dimensional subspaces and $w = 1$ however the line $w = 0$ (which is also part of the 1-dimensional subspaces) doesn’t meet $w = 1$, so the $w = 0$ <em>plays the role of infinity</em> with respect to $w = 1$</p>
+
+<p>Any 1D point is represented in projective geometry as the pair $(x, w)$, we can see that such a pair can be projected to $w = 1$ by dividing both coordinates by $w$ so any 1D point projected to this plane is represented by the pair $(\tfrac{x}{w}, 1)$ unless $w = 0$ which is in the <em>line at infinity</em>, any point at infinity has then the form $(x, 0)$</p>
+
+<p><img src="/images/projective-geometry!projective-line.png" alt="projective line" class="center-image" /></p>
+
+<h3 id="projective-plane">Projective plane</h3>
+
+<blockquote>
+  <p>spaces of 1-dimensional subspaces that exist in 3-dimensions i.e. <em>any line that passes through the origin in a 3-dimensional space</em></p>
+</blockquote>
+
+<p>A similar situation is seen on a 3-dimensional space, in this space any line that passes through the origin intercepts the <em>plane</em> $w = 1$ except the set of lines that pass through the plane $w = 0$, so $w = 0$ plays the role of infinity with respect to $w = 1$</p>
+
+<p>Any 2D point is represented in this space as the triplet $(x, y, w)$, just like 1D we can project any point to the plane $w = 1$ by dividing the triplet by $w$ which has the form $(\tfrac{x}{w}, \tfrac{y}{w}, 1)$ unless $w = 0$ which means that any point at infinity has the form $(x, y, 0)$</p>
+
+<p><img src="/images/projective-geometry!projective-plane-3d.png" alt="projective plane" class="center-image" /></p>
+
+<h3 id="additional-resources">Additional resources</h3>
+
+<p><a href="https://www.youtube.com/watch?v=NYK0GBQVngs">Projective geometry lecture by N.J. Wildberger</a><br />
+<a href="http://robotics.stanford.edu/~birch/projective/projective.pdf">http://robotics.stanford.edu/~birch/projective/projective.pdf</a></p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!-- <h2 class="footer-heading">Mauricio Poppe</h2> -->
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Mauricio Poppe</li>
+          <li><a href="mailto:"></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/maurizzzio">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">maurizzzio</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/iMauricio">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">iMauricio</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Layout run failed ._.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: 'none',
+    tex2jax: {
+      // http://docs.mathjax.org/en/latest/options/tex2jax.html
+      inlineMath: [['$','$']],
+      displayMath: [['$$','$$']]
+      // processEnvironments: false
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      },
+      Macros: {
+        edge: '\\mathrel{-}',
+        notedge: '\\not\\edge',
+        deg: ['#1^{\\circ}', 1],
+        tbold: ['\\textbf{#1}', 1],
+        mbold: ['\\mathbf{#1}', 1],
+        unit: ['\\widehat{\\mathbf{#1}}', 1],
+
+        magnitude: ['\\left \\| #1 \\right \\|', 1],
+        norm: ['\\left \\| #1 \\right \\|', 1]
+      }
+    },
+    'HTML-CSS': {
+      imageFont: null
+    }
+  });
+</script>
+
+<script type="text/javascript">
+/*
+ * MathJax eqn preview for a tags
+ *
+ * Copyright (c) 2015 Mauricio Poppe
+ * Licensed under the MIT license.
+ */
+
+(function () {
+  var $container = $('.post-content');
+  var $tooltip = $('<div />').addClass('mathjax-tooltip');
+  $container.append($tooltip);
+
+  function onMouseOver(ev) {
+    var a = ev.currentTarget;
+    var $number = $(a.hash);
+    var $root = $number.closest('.MathJax_Display');
+    var bounds = $(a).offset();
+    var containerBounds = $container.offset();
+
+    $tooltip.stop(true, true);
+    $tooltip.empty();
+    $tooltip.append($root.clone());
+    $tooltip.css({
+      top: bounds.top - containerBounds.top - $tooltip.height() - 5,
+      left: -1
+    });
+    $tooltip.addClass('active');
+  }
+
+  function onMouseOut(a) {
+    $tooltip.removeClass('active');
+  }
+
+  MathJax.Hub.Queue(function () {
+    $container.on('mouseover', 'a[href*="mjx-eqn-"]', onMouseOver);
+    $container.on('mouseout', 'a[href*="mjx-eqn-"]', onMouseOut);
+  });
+
+})();
+</script>
+
+</footer>
+
+
+  </body>
+
+</html>

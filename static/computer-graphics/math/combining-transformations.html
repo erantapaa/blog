@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Projections</title>
+  <title>Combining transformations</title>
   <meta name="description" content="Layout run failed ._.
 ">
 
@@ -16,8 +16,8 @@
   <script>hljs.initHighlightingOnLoad();</script>
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://maurizzzio.github.io/static/computer-graphics/math/projection.html">
-  <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io/feed.xml" />
+  <link rel="canonical" href="http://maurizzzio.github.io//static/computer-graphics/math/combining-transformations.html">
+  <link rel="alternate" type="application/rss+xml" title="Mauricio Poppe" href="http://maurizzzio.github.io//feed.xml" />
 
 </head>
 
@@ -51,6 +51,10 @@
         
           
           <a class="page-link" href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/combining-transformations.html">Combining transformations</a>
           
         
           
@@ -110,7 +114,7 @@
           
         
           
-          <a class="page-link" href="/static/graphs/tree/index.html">Tree</a>
+          <a class="page-link" href="/static/graphs/tree/">Tree</a>
           
         
           
@@ -136,6 +140,14 @@
           
         
           
+          <a class="page-link" href="/static/computer-graphics/math/orthographic-projection.html">Orthographic projection</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/perspective-projection.html">Perspective projection</a>
+          
+        
+          
           <a class="page-link" href="/static/math/number-theory/primality-test.html">Primality Test</a>
           
         
@@ -144,11 +156,27 @@
           
         
           
-          <a class="page-link" href="/static/computer-graphics/math/projection.html">Projections</a>
+          <a class="page-link" href="/static/computer-graphics/opengl/projection-matrix.html">Projection matrix</a>
+          
+        
+          
+          <a class="page-link" href="/static/math/geometry/projective-geometry.html">Projective Geometry</a>
           
         
           
           <a class="page-link" href="/static/math/numeral-systems/quaternions.html">Quaternions</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/rotation/quaternions.html">Quaternions</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/fundamentals/ray-tracing.html">Ray tracing</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/fundamentals/rendering.html">Rendering</a>
           
         
           
@@ -161,6 +189,10 @@
         
           
           <a class="page-link" href="/static/computer-graphics/math/scale.html">Scale</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/math/shearing.html">Shearing</a>
           
         
           
@@ -188,7 +220,15 @@
           
         
           
+          <a class="page-link" href="/static/computer-graphics/math/translation.html">Translation</a>
+          
+        
+          
           <a class="page-link" href="/static/graphs/traversal.html">Traversal</a>
+          
+        
+          
+          <a class="page-link" href="/static/computer-graphics/opengl/view-matrix.html">View matrix</a>
           
         
       </div>
@@ -202,105 +242,127 @@
 
     <div class="page-content">
       <div class="static-page-sidebar">
-        <ul><li><a href="/index.html"></a><ul><li>static<ul><li>computer-graphics<ul><li><a href="/static/computer-graphics/resources.html">Resources</a><ul></ul></li><li>math<ul><li><a href="/static/computer-graphics/math/space-coordinates.html">Space coordinates</a><ul></ul></li><li><a href="/static/computer-graphics/math/rotation.html">Rotations</a><ul></ul></li><li><a href="/static/computer-graphics/math/scale.html">Scale</a><ul></ul></li><li><a href="/static/computer-graphics/math/projection.html">Projections</a><ul></ul></li></ul></li></ul></li><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/graphs/traversal.html">Traversal</a><ul></ul></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a><ul></ul></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a><ul></ul></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a><ul></ul></li><li><a href="/static/graphs/components.html">Components</a><ul></ul></li><li><a href="/static/graphs/tree/index.html">Tree</a><ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a><ul></ul></li></ul></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a><ul></ul></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a><ul></ul></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a><ul></ul></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a><ul></ul></li><li><a href="/static/math/calculus/derivative.html">Derivative</a><ul></ul></li><li><a href="/static/math/calculus/integral.html">Integral</a><ul></ul></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a><ul></ul></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a><ul></ul></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a><ul></ul></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a><ul></ul></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a><ul></ul></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a><ul></ul></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a><ul></ul></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a><ul></ul></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a><ul></ul></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a><ul></ul></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a><ul></ul></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a><ul></ul></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a><ul></ul></li></ul></li><li>numeral-systems<ul><li><a href="/static/math/numeral-systems/complex-numbers.html">Complex numbers</a><ul></ul></li><li><a href="/static/math/numeral-systems/quaternions.html">Quaternions</a><ul></ul></li></ul></li></ul></li></ul></li></ul></li></ul>
+        <ul><li><li><ul><li>static<ul><li>computer-graphics<ul><li><a href="/static/computer-graphics/resources.html">Resources</a></li><li>fundamentals<ul><li><a href="/static/computer-graphics/fundamentals/rendering.html">Rendering</a></li><li><a href="/static/computer-graphics/fundamentals/ray-tracing.html">Ray tracing</a></li></ul></li><li>math<ul><li><a href="/static/computer-graphics/math/space-coordinates.html">Space coordinates</a></li><li><a href="/static/computer-graphics/math/scale.html">Scale</a></li><li><a href="/static/computer-graphics/math/shearing.html">Shearing</a></li><li><a href="/static/computer-graphics/math/rotation.html">Rotations</a></li><li><a href="/static/computer-graphics/math/translation.html">Translation</a></li><li><a href="/static/computer-graphics/math/orthographic-projection.html">Orthographic projection</a></li><li><a href="/static/computer-graphics/math/perspective-projection.html">Perspective projection</a></li><li><a href="/static/computer-graphics/math/combining-transformations.html">Combining transformations</a></li><li>rotation<ul><li><a href="/static/computer-graphics/math/rotation/quaternions.html">Quaternions</a></li></ul></li></ul></li><li>opengl<ul><li><a href="/static/computer-graphics/opengl/view-matrix.html">View matrix</a></li><li><a href="/static/computer-graphics/opengl/projection-matrix.html">Projection matrix</a></li></ul></li></ul></li><li>graphs<ul><li><a href="/static/graphs/introduction.html">Introduction</a></li><li><a href="/static/graphs/traversal.html">Traversal</a></li><li><a href="/static/graphs/topological-sorting.html">Topological sorting</a></li><li><a href="/static/graphs/cut-edges.html">Cut-edges (bridges)</a></li><li><a href="/static/graphs/cut-vertices.html">Cut-vertices (articulation points)</a></li><li><a href="/static/graphs/components.html">Components</a></li><li><a href="/static/graphs/single-source-shortest-path.html">Single Source Shortest Path (SSSP)</a></li><li>special<ul><li><a href="/static/graphs/special/eulerian-graphs.html">Eulerian Graph</a></li><li><a href="/static/graphs/special/hamiltonian_graphs.html">Hamiltonian Graphs</a></li></ul></li><li>tree<ul><li><a href="/static/graphs/tree/spanning-tree.html">Spanning Tree</a></li></ul></li></ul></li><li>math<ul><li>calculus<ul><li><a href="/static/math/calculus/introduction.html">Introduction</a></li><li><a href="/static/math/calculus/derivative.html">Derivative</a></li><li><a href="/static/math/calculus/integral.html">Integral</a></li><li><a href="/static/math/calculus/taylor-theorem-infinite-series.html">Taylor's Theorem and Infinite Series</a></li></ul></li><li>geometry<ul><li><a href="/static/math/geometry/projective-geometry.html">Projective Geometry</a></li></ul></li><li>number-theory<ul><li><a href="/static/math/number-theory/eulers-phi.html">Euler's phi function</a></li><li><a href="/static/math/number-theory/binary-exponentiation.html">Binary Exponentiation</a></li><li><a href="/static/math/number-theory/erathostenes-sieve.html">Erathostenes Sieve</a></li><li><a href="/static/math/number-theory/euclidean-algorithm.html">Euclidean Algorithm</a></li><li><a href="/static/math/number-theory/extended-euclidean-algorithm.html">Extended Euclidean Algorithm</a></li><li><a href="/static/math/number-theory/modular-arithmetic.html">Modular Arithmetic</a></li><li><a href="/static/math/number-theory/chinese-remainder-theorem.html">Chinese Remainder Theorem</a></li><li><a href="/static/math/number-theory/discrete-logarithm.html">Discrete Logarithm</a></li><li><a href="/static/math/number-theory/special-factorial-modulo-m.html">Special factorial modulo p</a></li><li><a href="/static/math/number-theory/prime-factors-factorial.html">Prime factors of a factorial</a></li><li><a href="/static/math/number-theory/primality-test.html">Primality Test</a></li><li><a href="/static/math/number-theory/divisor-function.html">Divisor Function</a></li><li><a href="/static/math/number-theory/integer-factorization.html">Integer Factorization</a></li></ul></li><li>numeral-systems<ul><li><a href="/static/math/numeral-systems/complex-numbers.html">Complex numbers</a></li><li><a href="/static/math/numeral-systems/quaternions.html">Quaternions</a></li></ul></li></ul></li></ul></li></ul></li></li></ul>
       </div>
 
       <div class="wrapper">
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Projections</h1>
+    <h1 class="post-title">Combining transformations</h1>
   </header>
 
   <article class="post-content">
-    <h2 id="orthographic-projection">Orthographic projection</h2>
-
-<p>A projection is a <em>dimension-reducing</em> operation, if we apply a scale operation with $k = 0$ all the points are projected onto the perpendicular axis in 2d or the perpendicular plane in 3d of $\unit{n}$, this type of projection is called <em>orthographic projection</em></p>
-
-<h3 id="projection-on-a-cardinal-axisplane">Projection on a cardinal axis/plane</h3>
-
-<p>The simplest type of projection just discards a coordinate of the vectors transformed, e.g. in 2d the vector $v = [v_x, v_y]$ projected onto the $x$ axis will discard its $y$ coordinate and make $v’ = [v_x, 0]$</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\mathbf{P_x} = \mathbf{S}(\begin{bmatrix}
-0 & 1
-\end{bmatrix}, 0) = \begin{bmatrix}
-1 & 0 \\
-0 & 0
-\end{bmatrix} %]]></script>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\mathbf{P_y} = \mathbf{S}(\begin{bmatrix}
-1 & 0
-\end{bmatrix}, 0) = \begin{bmatrix}
-0 & 0 \\
-0 & 1
-\end{bmatrix} %]]></script>
-
-<p>When a 3d vector $v = [v_x, v_y, v_z]$ is projected onto the $xy$ plane then the $v_z$ coordinate will be discarded by copying just $v_x$ and $v_y$ i.e. $v’ = [v_x, v_y, 0]$</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\mathbf{P_{xy}} = \mathbf{S}(\begin{bmatrix}
-0 & 0 & 1
-\end{bmatrix}, 0) = \begin{bmatrix}
-1 & 0 & 0 \\
-0 & 1 & 0 \\
-0 & 0 & 0
-\end{bmatrix} %]]></script>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\mathbf{P_{xz}} = \mathbf{S}(\begin{bmatrix}
-0 & 1 & 0
-\end{bmatrix}, 0) = \begin{bmatrix}
-1 & 0 & 0 \\
-0 & 0 & 0 \\
-0 & 0 & 1
-\end{bmatrix} %]]></script>
-
-<script type="math/tex; mode=display">% <![CDATA[
-\mathbf{P_{yz}} = \mathbf{S}(\begin{bmatrix}
-1 & 0 & 0
-\end{bmatrix}, 0) = \begin{bmatrix}
-0 & 0 & 0 \\
-0 & 1 & 0 \\
-0 & 0 & 1
-\end{bmatrix} %]]></script>
-
-<h3 id="projection-onto-an-arbitrary-axisplane">Projection onto an arbitrary axis/plane</h3>
-
-<p>We can apply a zero factor scale along the direction of the vector perpendicular to the axis/plane</p>
-
-<p>In 2d</p>
+    <p>We can compose a series of transformations as simple matrix multiplications, one simple example is in rendering where an object at an arbitrary position and orientation in the world is rendered with a camera (also located at an arbitrary position and orientation), to do so we must transform the object from <em>object space</em> to <em>world space</em> (this transformation is known as <strong>model transform</strong>) denoted by the matrix $\mathbf{M}_{wld \leftarrow obj}$, from there we transform the vertices of the object from <em>world space</em> to <em>eye space</em> (transformation known as <strong>view transform</strong>) denoted with $\mathbf{M}_{eye \leftarrow wld}$</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align*}
-\mathbf{P(\unit{n})} = \mathbf{S}(\unit{n}, 0) &= \begin{bmatrix}
-1 + (0 - 1){n_x}^2 & (0 - 1)n_xn_y \\
-(0 - 1)n_xn_y & 1 + (0 - 1{n_y}^2
-\end{bmatrix} \\
-\\
-&= \begin{bmatrix}
-1 - {n_x}^2 & -n_xn_y \\
--n_xn_y & 1 - {n_y}^2
-\end{bmatrix}
+\mathbf{v}_{wld} &= \mathbf{M}_{wld \leftarrow obj} \mathbf{v}_{obj} \\
+\mathbf{v}_{eye} &= \mathbf{M}_{eye \leftarrow wld} \mathbf{v}_{wld} \\
+&= \mathbf{M}_{eye \leftarrow wld} \mathbf{M}_{wld \leftarrow obj}  \mathbf{v}_{obj}
 \end{align*} %]]></script>
 
-<p>In 3d</p>
+<p>We can associate the transformation matrices and have a single matrix to transform vertices of the object directly to <em>camera space</em></p>
+
+<script type="math/tex; mode=display">\begin{align*}
+\mathbf{v}_{eye} = (\mathbf{M}_{eye \leftarrow wld} \mathbf{M}_{wld \leftarrow obj})\mathbf{v}_{obj} 
+\end{align*}</script>
+
+<p>If $\mathbf{M}_{eye \leftarrow obj} = \mathbf{M}_{eye \leftarrow wld} \mathbf{M}_{wld \leftarrow obj}$ then</p>
+
+<script type="math/tex; mode=display">\mathbf{v}_{eye} = \mathbf{M}_{eye \leftarrow obj} \mathbf{v}_{obj}</script>
+
+<p>Now if we have two transformation matrices $\mathbf{M}$ and $\mathbf{N}$ and they are applied to some vector $\mathbf{v}$ in that respective order their product is</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align*}
-\mathbf{P(\unit{n})} = \mathbf{S}(\unit{n}, 0) &= \begin{bmatrix}
-1 + (0 - 1){n_x}^2 & (0 - 1)n_xn_y & (0 - 1)n_xn_z \\
-(0 - 1)n_xn_y & 1 + (0 - 1{n_y}^2 & (0 - 1)n_yn_z \\
-(0 - 1)n_xn_z & (0 - 1)n_yn_z & 1 + (0 - 1){n_z}^2
-\end{bmatrix} \\
-\\
-&= \begin{bmatrix}
-1 - {n_x}^2 & -n_xn_y & -n_xn_z \\
--n_xn_y & 1 - {n_y}^2 & -n_yn_z \\
--n_xn_z & -n_yn_z & 1 - {n_z}^2 \\
+
+\mathbf{NM} = \begin{bmatrix}
+\mathbf{s} &
+\mathbf{t} &
+\mathbf{u}
+\end{bmatrix} 
+\begin{bmatrix}
+\mathbf{p} &
+\mathbf{q} &
+\mathbf{r}
 \end{bmatrix}
+= \begin{bmatrix}
+p_x \mathbf{s} + p_y \mathbf{t} + p_z \mathbf{u} \\
+q_x \mathbf{s} + q_y \mathbf{t} + q_z \mathbf{u} \\
+r_x \mathbf{s} + r_y \mathbf{t} + r_z \mathbf{u} \\
+\end{bmatrix}^T
+
 \end{align*} %]]></script>
+
+<p>We can see that the rows of the product $\mathbf{NM}$ are the result of transforming the basis vectors of $\mathbf{M}$ by the transformation matrix $\mathbf{N}$ so matrix-matrix multiplication encodes a basis vectors transformation</p>
+
+<h3 id="combining-a-rotation-and-an-translation">Combining a rotation and an translation</h3>
+
+<p>Given the vector $\mathbf{v}$ let’s apply a rotation and a translation transform in that order</p>
+
+<script type="math/tex; mode=display">\mathbf{v'} = \mathbf{TRv}</script>
+
+<p>Let’s analyze the product $\mathbf{TR}$</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{TR} = \begin{bmatrix} 
+I_{3 \times 3} & T_{3 \times 1} \\
+0_{1 \times 3} & 1
+\end{bmatrix} \begin{bmatrix} 
+R_{3 \times 3} & 0_{3 \times 1} \\
+0_{1 \times 3} & 1
+\end{bmatrix} = \begin{bmatrix} 
+R_{3 \times 3} & T_{3 \times 1} \\
+0_{1 \times 3} & 1
+\end{bmatrix} %]]></script>
+
+<p>Which when multiplied by $\mathbf{v}$ results in</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{v'} = \mathbf{TRv} = \begin{bmatrix} 
+R_{3 \times 3} & T_{3 \times 1} \\
+0_{1 \times 3} & 1
+\end{bmatrix} \begin{bmatrix} \mathbf{v}_{3 \times 1} \\ 1 \end{bmatrix} = \begin{bmatrix} R_{3 \times 3} \mathbf{v}_{3 \times 1} + T_{3 \times 1} \\ 1 \end{bmatrix} %]]></script>
+
+<p>$\mathbf{v’}$ will have a compact form equal to</p>
+
+<script type="math/tex; mode=display">\mathbf{v'} = \mathbf{TRv} = \mathbf{Rv} + T_{3 \times 1}</script>
+
+<h3 id="combining-a-translation-and-a-rotation">Combining a translation and a rotation</h3>
+
+<p>Given the vector $\mathbf{v}$ let’s apply a translation and a rotation transform in that order</p>
+
+<script type="math/tex; mode=display">\mathbf{v'} = \mathbf{RTv}</script>
+
+<p>Let’s analyze the produce $\mathbf{RT}$</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{RT} = \begin{bmatrix} 
+R_{3 \times 3} & 0_{3 \times 1} \\
+0_{1 \times 3} & 1
+\end{bmatrix} \begin{bmatrix} 
+I_{3 \times 3} & T_{3 \times 1} \\
+0_{1 \times 3} & 1
+\end{bmatrix} = \begin{bmatrix} 
+R_{3 \times 3} & R_{3 \times 3} T_{3 \times 1} \\
+0_{1 \times 3} & 1
+\end{bmatrix} %]]></script>
+
+<p>Which when multiplied by $\mathbf{v}$ results in</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\mathbf{v'} = \mathbf{TRv} = \begin{bmatrix} 
+R_{3 \times 3} & R_{3 \times 3} T_{3 \times 1} \\
+0_{1 \times 3} & 1
+\end{bmatrix} \begin{bmatrix} \mathbf{v}_{3 \times 1} \\ 1 \end{bmatrix} = \begin{bmatrix} R_{3 \times 3} \mathbf{v}_{3 \times 1} + R_{3 \times 3} T_{3 \times 1} \\ 1 \end{bmatrix} %]]></script>
+
+<p>$\mathbf{v’}$ will have a compact form equal to</p>
+
+<script type="math/tex; mode=display">\mathbf{v'} = \mathbf{RTv} = \mathbf{Rv} + \mathbf{R}T_{3 \times 1}</script>
+
+<p>Note that both the vector $\mathbf{v}$ and the translation vector are transformed by $\mathbf{R}$</p>
+
 
   </article>
 
@@ -386,8 +448,10 @@
         deg: ['#1^{\\circ}', 1],
         tbold: ['\\textbf{#1}', 1],
         mbold: ['\\mathbf{#1}', 1],
-        unit: ['\\hat{\\mathbf{#1}}', 1],
-        magnitude: ['\\left \\| #1 \\right \\|', 1]
+        unit: ['\\widehat{\\mathbf{#1}}', 1],
+
+        magnitude: ['\\left \\| #1 \\right \\|', 1],
+        norm: ['\\left \\| #1 \\right \\|', 1]
       }
     },
     'HTML-CSS': {

@@ -458,6 +458,10 @@ code {
   margin: 0 auto;
   text-align: center; }
 
+.center-image {
+  margin: auto;
+  display: block; }
+
 .hljs {
   background: transparent; }
 
